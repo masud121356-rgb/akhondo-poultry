@@ -2,8 +2,8 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#087f5b">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b7a3b">
 <title>Akhondo Hisab Manager</title>
 
 <style>
@@ -11,200 +11,115 @@
 body{
   margin:0;
   font-family:Arial,"Noto Sans Bengali",sans-serif;
-  background:#f1f5f4;
-  color:#222;
+  background:#f4f7f5;
+  color:#17231b;
 }
 header{
-  background:linear-gradient(135deg,#087f5b,#0ca678);
+  background:linear-gradient(135deg,#075e2c,#0b8f48);
   color:white;
   padding:18px 15px;
   text-align:center;
   position:sticky;
   top:0;
-  z-index:50;
-  box-shadow:0 2px 10px #0002;
+  z-index:20;
 }
-header h2{margin:0 0 5px;font-size:22px}
-header small{opacity:.9}
-
+header h1{margin:0;font-size:22px}
+header p{margin:5px 0 0;font-size:13px}
 nav{
   display:flex;
   overflow-x:auto;
+  gap:7px;
+  padding:9px;
   background:white;
-  border-bottom:1px solid #ddd;
+  box-shadow:0 2px 8px #0001;
   position:sticky;
-  top:76px;
-  z-index:40;
+  top:78px;
+  z-index:19;
 }
 nav button{
   border:0;
-  background:white;
-  padding:13px 15px;
+  background:#edf4ef;
+  color:#075e2c;
+  padding:9px 12px;
+  border-radius:20px;
   white-space:nowrap;
   font-weight:bold;
-  color:#555;
 }
 nav button.active{
-  color:#087f5b;
-  border-bottom:3px solid #087f5b;
+  background:#087b3c;
+  color:white;
 }
-
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:15px;
-}
-
+main{max-width:1100px;margin:auto;padding:15px}
 .page{display:none}
 .page.active{display:block}
-
-.card{
-  background:white;
-  border-radius:14px;
-  padding:16px;
-  margin-bottom:15px;
-  box-shadow:0 2px 8px #00000010;
-}
-
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
   gap:12px;
 }
-
-.stat{
-  padding:17px;
-  border-radius:14px;
+.card{
   background:white;
-  box-shadow:0 2px 8px #00000010;
+  border-radius:15px;
+  padding:15px;
+  margin-bottom:14px;
+  box-shadow:0 3px 12px #0000000c;
 }
-.stat .number{
-  font-size:25px;
-  font-weight:bold;
-  margin-top:6px;
+.stat{
+  border-left:5px solid #0b7a3b;
 }
-.green{color:#087f5b}
-.red{color:#d63333}
-.blue{color:#1971c2}
-.orange{color:#e67700}
-
-label{
+.stat small{color:#65736a}
+.stat strong{
   display:block;
-  font-weight:bold;
-  margin:10px 0 5px;
+  font-size:23px;
+  margin-top:5px;
 }
+h2{font-size:19px;margin-top:5px}
+h3{margin-top:5px}
 input,select,textarea{
   width:100%;
   padding:11px;
-  border:1px solid #ccc;
+  margin:5px 0 10px;
+  border:1px solid #d4ddd7;
   border-radius:9px;
   font-size:15px;
   background:white;
 }
 textarea{min-height:75px}
-
 button{
   cursor:pointer;
   border:0;
-  border-radius:9px;
-  padding:10px 14px;
-  font-size:14px;
 }
 .btn{
-  background:#087f5b;
-  color:white;
+  padding:10px 14px;
+  border-radius:9px;
   font-weight:bold;
+  margin:3px;
 }
-.btn.blue{background:#1971c2;color:white}
-.btn.red{background:#d63333;color:white}
-.btn.orange{background:#e67700;color:white}
-.btn.gray{background:#666;color:white}
-.btn.light{
-  background:#e9f5f1;
-  color:#087f5b;
-}
-.btn.small{
-  padding:7px 10px;
-  font-size:12px;
-}
-
-.actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-  margin-top:12px;
-}
-
-.table-wrap{
-  overflow-x:auto;
-}
+.primary{background:#087b3c;color:white}
+.secondary{background:#e8f2eb;color:#075e2c}
+.danger{background:#ffe8e8;color:#c62828}
+.dark{background:#26352c;color:white}
 table{
   width:100%;
   border-collapse:collapse;
-  min-width:650px;
+  background:white;
 }
 th,td{
-  border-bottom:1px solid #eee;
-  padding:10px 7px;
+  padding:9px 7px;
+  border-bottom:1px solid #edf0ee;
   text-align:left;
-  vertical-align:middle;
+  font-size:13px;
 }
-th{
-  background:#f0f7f4;
-  color:#087f5b;
-}
-tr:hover{background:#fafafa}
-
+th{background:#edf5ef}
+.tableWrap{overflow:auto}
 .badge{
-  display:inline-block;
   padding:4px 8px;
-  border-radius:20px;
-  font-size:12px;
+  border-radius:12px;
+  font-size:11px;
   font-weight:bold;
 }
-.badge.due{
-  background:#ffe3e3;
-  color:#c92a2a;
-}
-.badge.paid{
-  background:#d3f9d8;
-  color:#2b8a3e;
-}
-.badge.stock{
-  background:#fff3bf;
-  color:#e67700;
-}
-
-.invoice-item{
-  border:1px solid #ddd;
-  border-radius:10px;
-  padding:10px;
-  margin:8px 0;
-  background:#fafafa;
-}
-.item-grid{
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr 1fr auto;
-  gap:7px;
-  align-items:end;
-}
-
-.summary{
-  max-width:420px;
-  margin-left:auto;
-}
-.summary-row{
-  display:flex;
-  justify-content:space-between;
-  padding:7px 0;
-  border-bottom:1px solid #eee;
-}
-.summary-row.total{
-  font-size:19px;
-  font-weight:bold;
-  color:#087f5b;
-}
-
+.good{background:#ddf6e5;color:#087b3c}
+.bad{background:#ffe0e0;color:#c62828}
 .modal{
   display:none;
   position:fixed;
@@ -214,587 +129,463 @@ tr:hover{background:#fafafa}
   padding:20px;
   overflow:auto;
 }
-.modal.show{display:block}
-.modal-box{
-  background:white;
+.modalBox{
   max-width:600px;
   margin:30px auto;
+  background:white;
   border-radius:15px;
   padding:18px;
 }
-.modal-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:10px;
+.row{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
 }
-
+.saleItem{
+  border:1px solid #dfe7e1;
+  padding:10px;
+  border-radius:10px;
+  margin-bottom:8px;
+}
+.right{text-align:right}
 .empty{
+  padding:20px;
   text-align:center;
-  padding:30px;
   color:#777;
 }
-
-.search{
-  margin-bottom:12px;
+.low{
+  background:#fff2f2;
 }
-
-.invoice-preview{
+.invoice{
   background:white;
-  border:1px solid #ddd;
   padding:20px;
   max-width:800px;
   margin:auto;
 }
-
-.shop-title{
+.invoiceHead{
   text-align:center;
-  color:#087f5b;
+  border-bottom:2px solid #087b3c;
+  padding-bottom:10px;
 }
-.invoice-head{
-  display:flex;
-  justify-content:space-between;
-  gap:20px;
-  margin:15px 0;
+.invoiceTotal{
+  font-size:18px;
+  font-weight:bold;
 }
-
-@media(max-width:650px){
-  header h2{font-size:19px}
-  nav{top:70px}
-  .item-grid{
-    grid-template-columns:1fr 1fr;
-  }
-  .item-grid .product-field{
-    grid-column:1/-1;
-  }
-  .invoice-head{
-    flex-direction:column;
-  }
-  table{min-width:600px}
+@media(max-width:600px){
+  .row{grid-template-columns:1fr}
+  main{padding:10px}
+  th,td{font-size:12px}
 }
-
 @media print{
-  body *{visibility:hidden}
-  #printArea,#printArea *{visibility:visible}
-  #printArea{
-    position:absolute;
-    left:0;
-    top:0;
-    width:100%;
-  }
+  body>*:not(#printArea){display:none!important}
+  #printArea{display:block!important}
 }
+#printArea{display:none}
 </style>
 </head>
 
 <body>
 
 <header>
-  <h2>🐔 Akhondo Hisab Manager 🐣</h2>
-  <small>আখন্দ পোল্ট্রি ফিড</small>
+  <h1>🐔 Akhondo Hisab Manager</h1>
+  <p>আখন্দ পোল্ট্রি ফিড • হিসাব ও স্টক ম্যানেজমেন্ট</p>
 </header>
 
 <nav>
-  <button onclick="showPage('dashboard')" id="nav-dashboard">🏠 Dashboard</button>
-  <button onclick="showPage('sale')" id="nav-sale">🧾 New Sale</button>
-  <button onclick="showPage('customers')" id="nav-customers">👤 Customers</button>
-  <button onclick="showPage('products')" id="nav-products">📦 Products</button>
-  <button onclick="showPage('payments')" id="nav-payments">💰 Payment</button>
-  <button onclick="showPage('ledger')" id="nav-ledger">📒 Ledger</button>
-  <button onclick="showPage('reports')" id="nav-reports">📊 Reports</button>
-  <button onclick="showPage('settings')" id="nav-settings">⚙️ Settings</button>
+  <button onclick="showPage('dashboard',this)" class="active">🏠 Dashboard</button>
+  <button onclick="showPage('sale',this)">🧾 Sale</button>
+  <button onclick="showPage('customers',this)">👥 Customer</button>
+  <button onclick="showPage('products',this)">📦 Products</button>
+  <button onclick="showPage('payment',this)">💰 Payment</button>
+  <button onclick="showPage('ledger',this)">📒 Ledger</button>
+  <button onclick="showPage('reports',this)">📊 Reports</button>
+  <button onclick="showPage('settings',this)">⚙️ Settings</button>
 </nav>
 
-<div class="container">
+<main>
 
 <!-- DASHBOARD -->
 <section id="dashboard" class="page active">
+  <h2>📊 Dashboard</h2>
 
   <div class="grid">
-    <div class="stat">
-      <div>আজকের বিক্রি</div>
-      <div class="number green" id="todaySales">৳0</div>
+    <div class="card stat">
+      <small>আজকের বিক্রি</small>
+      <strong id="todaySales">৳0</strong>
     </div>
-
-    <div class="stat">
-      <div>আজকের আদায়</div>
-      <div class="number blue" id="todayCollection">৳0</div>
+    <div class="card stat">
+      <small>আজকের আদায়</small>
+      <strong id="todayCollection">৳0</strong>
     </div>
-
-    <div class="stat">
-      <div>মোট বাকি</div>
-      <div class="number red" id="totalDue">৳0</div>
+    <div class="card stat">
+      <small>মোট বাকি</small>
+      <strong id="totalDue">৳0</strong>
     </div>
-
-    <div class="stat">
-      <div>Customer</div>
-      <div class="number" id="customerCount">0</div>
+    <div class="card stat">
+      <small>মোট Customer</small>
+      <strong id="customerCount">0</strong>
     </div>
-
-    <div class="stat">
-      <div>Product</div>
-      <div class="number" id="productCount">0</div>
+    <div class="card stat">
+      <small>মোট Product</small>
+      <strong id="productCount">0</strong>
     </div>
-
-    <div class="stat">
-      <div>মোট বিক্রি</div>
-      <div class="number green" id="allSales">৳0</div>
+    <div class="card stat">
+      <small>মোট বিক্রি</small>
+      <strong id="allSales">৳0</strong>
     </div>
-  </div>
-
-  <div class="card">
-    <h3>⚡ Quick Actions</h3>
-    <div class="actions">
-      <button class="btn" onclick="showPage('sale')">🧾 New Sale</button>
-      <button class="btn blue" onclick="openCustomerModal()">➕ Customer</button>
-      <button class="btn orange" onclick="openProductModal()">➕ Product</button>
-      <button class="btn red" onclick="showPage('payments')">💰 Payment</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3>🔴 বেশি বাকি Customer</h3>
-    <div id="topDueCustomers"></div>
   </div>
 
   <div class="card">
     <h3>⚠️ Low Stock</h3>
-    <div id="lowStockList"></div>
+    <div id="lowStock"></div>
   </div>
 
+  <div class="card">
+    <h3>💳 বেশি বাকি থাকা Customer</h3>
+    <div id="topDue"></div>
+  </div>
 </section>
-
 
 <!-- SALE -->
 <section id="sale" class="page">
+  <h2>🧾 নতুন বিক্রি</h2>
 
-<div class="card">
+  <div class="card">
+    <div class="row">
+      <div>
+        <label>Customer</label>
+        <select id="saleCustomer" onchange="updateSaleSummary()"></select>
+        <button class="btn secondary" onclick="openCustomerModal()">+ নতুন Customer</button>
+      </div>
+      <div>
+        <label>তারিখ</label>
+        <input type="date" id="saleDate">
+      </div>
+    </div>
 
-<h3>🧾 নতুন বিক্রয় / Invoice</h3>
+    <p>
+      <b>আগের বাকি:</b>
+      <span id="previousDue">৳0</span>
+    </p>
 
-<div class="grid">
+    <h3>Products</h3>
+    <div id="saleItems"></div>
 
-<div>
-<label>Customer</label>
-<select id="saleCustomer" onchange="customerChanged()">
-<option value="">-- Customer নির্বাচন করুন --</option>
-</select>
+    <button class="btn secondary" onclick="addSaleItem()">+ Product যোগ করুন</button>
 
-<button class="btn light small" onclick="openCustomerModal()">
-➕ নতুন Customer
-</button>
-</div>
+    <div class="card">
+      <div class="row">
+        <div>
+          <label>Discount</label>
+          <input type="number" id="discount" value="0" min="0" oninput="updateSaleSummary()">
+        </div>
+        <div>
+          <label>আজ Paid</label>
+          <input type="number" id="paid" value="0" min="0" oninput="updateSaleSummary()">
+        </div>
+      </div>
 
-<div>
-<label>Invoice No</label>
-<input id="invoiceNo" readonly>
-</div>
+      <label>Payment Method</label>
+      <select id="salePaymentMethod">
+        <option>Cash</option>
+        <option>bKash</option>
+        <option>Nagad</option>
+        <option>Pubali Bank</option>
+        <option>Bank</option>
+      </select>
 
-<div>
-<label>Date</label>
-<input type="date" id="saleDate">
-</div>
+      <hr>
 
-</div>
+      <p>Subtotal: <b id="subtotal">৳0</b></p>
+      <p>বর্তমান Sale: <b id="saleTotal">৳0</b></p>
+      <p>আগের বাকি: <b id="sumPreviousDue">৳0</b></p>
+      <p>মোট পাওনা: <b id="receivable">৳0</b></p>
+      <p>Paid: <b id="sumPaid">৳0</b></p>
+      <h3>নতুন বাকি: <span id="newDue">৳0</span></h3>
+    </div>
 
-<div id="customerInfo" class="card" style="background:#f4fbf8">
-<strong>Customer:</strong> <span id="selectedCustomerName">-</span><br>
-<strong>Mobile:</strong> <span id="selectedCustomerPhone">-</span><br>
-<strong>Previous Due:</strong>
-<span class="red" id="previousDue">৳0</span>
-</div>
+    <button class="btn primary" onclick="saveSale(false)">💾 Save Sale</button>
+    <button class="btn dark" onclick="saveSale(true)">🖨️ Save & Print</button>
+    <button class="btn danger" onclick="resetSale()">Reset</button>
+  </div>
 
-<h4>📦 Products</h4>
-
-<div id="saleItems"></div>
-
-<button class="btn light" onclick="addSaleItem()">➕ Add Product</button>
-
-<div class="summary">
-
-<div class="summary-row">
-<span>Subtotal</span>
-<strong id="subtotal">৳0</strong>
-</div>
-
-<div class="summary-row">
-<span>Discount</span>
-<input type="number" id="discount" value="0" min="0"
-oninput="calculateSale()" style="width:130px">
-</div>
-
-<div class="summary-row">
-<span>Current Sale</span>
-<strong id="saleTotal">৳0</strong>
-</div>
-
-<div class="summary-row">
-<span>Previous Due</span>
-<strong class="red" id="summaryPreviousDue">৳0</strong>
-</div>
-
-<div class="summary-row">
-<span>Total Receivable</span>
-<strong id="receivable">৳0</strong>
-</div>
-
-<div class="summary-row">
-<span>Paid Now</span>
-<input type="number" id="paidNow" value="0" min="0"
-oninput="calculateSale()" style="width:130px">
-</div>
-
-<div class="summary-row total">
-<span>NEW DUE</span>
-<strong id="newDue">৳0</strong>
-</div>
-
-</div>
-
-<div class="actions">
-<button class="btn" onclick="saveSale()">💾 Save Invoice</button>
-<button class="btn blue" onclick="saveAndPrint()">🖨️ Save & Print</button>
-<button class="btn gray" onclick="resetSale()">🔄 Reset</button>
-</div>
-
-</div>
-
-<div class="card">
-<h3>📋 Recent Invoices</h3>
-<div id="recentInvoices"></div>
-</div>
-
+  <div class="card">
+    <h3>🧾 Recent Invoices</h3>
+    <div id="recentSales"></div>
+  </div>
 </section>
-
 
 <!-- CUSTOMERS -->
 <section id="customers" class="page">
+  <h2>👥 Customers</h2>
 
-<div class="card">
-<h3>👤 Customer Management</h3>
+  <div class="card">
+    <button class="btn primary" onclick="openCustomerModal()">+ Customer Add</button>
+    <input id="customerSearch" placeholder="🔍 Customer search..." oninput="renderCustomers()">
+  </div>
 
-<button class="btn" onclick="openCustomerModal()">
-➕ Add Customer
-</button>
-
-<input class="search" id="customerSearch"
-placeholder="🔎 Customer name/mobile দিয়ে search..."
-oninput="renderCustomers()">
-
-<div class="table-wrap">
-<table>
-<thead>
-<tr>
-<th>ID</th>
-<th>Customer</th>
-<th>Mobile</th>
-<th>Address</th>
-<th>Total Purchase</th>
-<th>Due</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody id="customerTable"></tbody>
-</table>
-</div>
-
-</div>
-
+  <div class="card tableWrap">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>নাম</th>
+          <th>মোবাইল</th>
+          <th>বাকি</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="customerTable"></tbody>
+    </table>
+  </div>
 </section>
-
 
 <!-- PRODUCTS -->
 <section id="products" class="page">
+  <h2>📦 Products & Stock</h2>
 
-<div class="card">
-<h3>📦 Product Management</h3>
+  <div class="card">
+    <button class="btn primary" onclick="openProductModal()">+ Product Add</button>
+    <input id="productSearch" placeholder="🔍 Product search..." oninput="renderProducts()">
+  </div>
 
-<button class="btn" onclick="openProductModal()">
-➕ Add Product
-</button>
-
-<input class="search" id="productSearch"
-placeholder="🔎 Product search..."
-oninput="renderProducts()">
-
-<div class="table-wrap">
-<table>
-<thead>
-<tr>
-<th>Product</th>
-<th>Category</th>
-<th>Unit</th>
-<th>Purchase</th>
-<th>Sale</th>
-<th>Stock</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody id="productTable"></tbody>
-</table>
-</div>
-
-</div>
-
+  <div class="card tableWrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Unit</th>
+          <th>Sale Rate</th>
+          <th>Stock</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="productTable"></tbody>
+    </table>
+  </div>
 </section>
 
+<!-- PAYMENT -->
+<section id="payment" class="page">
+  <h2>💰 Payment Collection</h2>
 
-<!-- PAYMENTS -->
-<section id="payments" class="page">
+  <div class="card">
+    <label>Customer</label>
+    <select id="paymentCustomer" onchange="showPaymentDue()"></select>
 
-<div class="card">
+    <p>বর্তমান বাকি: <b id="paymentDue">৳0</b></p>
 
-<h3>💰 Payment / বাকি আদায়</h3>
+    <label>Amount</label>
+    <input type="number" id="paymentAmount" min="0">
 
-<div class="grid">
+    <label>Method</label>
+    <select id="paymentMethod">
+      <option>Cash</option>
+      <option>bKash</option>
+      <option>Nagad</option>
+      <option>Pubali Bank</option>
+      <option>Bank</option>
+    </select>
 
-<div>
-<label>Customer</label>
-<select id="paymentCustomer" onchange="showPaymentDue()"></select>
-</div>
+    <label>Note</label>
+    <input id="paymentNote" placeholder="যেমন: পুরোনো বাকি আদায়">
 
-<div>
-<label>Current Due</label>
-<input id="paymentCurrentDue" readonly>
-</div>
+    <button class="btn primary" onclick="savePayment()">💾 Payment Save</button>
+  </div>
 
-<div>
-<label>Payment Amount</label>
-<input type="number" id="paymentAmount" min="0" placeholder="0">
-</div>
-
-<div>
-<label>Payment Method</label>
-<select id="paymentMethod">
-<option>Cash</option>
-<option>bKash</option>
-<option>Nagad</option>
-<option>Pubali Bank</option>
-<option>Bank</option>
-</select>
-</div>
-
-</div>
-
-<label>Note</label>
-<textarea id="paymentNote" placeholder="Payment note..."></textarea>
-
-<button class="btn" onclick="savePayment()">💾 Save Payment</button>
-
-</div>
-
-<div class="card">
-<h3>💰 Payment History</h3>
-<div id="paymentHistory"></div>
-</div>
-
+  <div class="card tableWrap">
+    <h3>Payment History</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Customer</th>
+          <th>Amount</th>
+          <th>Method</th>
+          <th>Ref</th>
+        </tr>
+      </thead>
+      <tbody id="paymentTable"></tbody>
+    </table>
+  </div>
 </section>
-
 
 <!-- LEDGER -->
 <section id="ledger" class="page">
+  <h2>📒 Customer Ledger</h2>
 
-<div class="card">
+  <div class="card">
+    <select id="ledgerCustomer" onchange="renderLedger()"></select>
+  </div>
 
-<h3>📒 Customer Ledger</h3>
-
-<label>Customer নির্বাচন করুন</label>
-<select id="ledgerCustomer" onchange="renderLedger()"></select>
-
-<div id="ledgerSummary"></div>
-
-<div class="table-wrap">
-<table>
-<thead>
-<tr>
-<th>Date</th>
-<th>Type</th>
-<th>Invoice/Ref</th>
-<th>Sale</th>
-<th>Payment</th>
-<th>Balance</th>
-</tr>
-</thead>
-<tbody id="ledgerTable"></tbody>
-</table>
-</div>
-
-</div>
-
+  <div class="card">
+    <div id="ledgerSummary"></div>
+    <div class="tableWrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Ref</th>
+            <th>Sale</th>
+            <th>Payment</th>
+            <th>Balance</th>
+          </tr>
+        </thead>
+        <tbody id="ledgerTable"></tbody>
+      </table>
+    </div>
+  </div>
 </section>
 
-
-<!-- REPORTS -->
+<!-- REPORT -->
 <section id="reports" class="page">
+  <h2>📊 Reports</h2>
 
-<div class="card">
+  <div class="card">
+    <div class="row">
+      <div>
+        <label>From</label>
+        <input type="date" id="reportFrom">
+      </div>
+      <div>
+        <label>To</label>
+        <input type="date" id="reportTo">
+      </div>
+    </div>
+    <button class="btn primary" onclick="renderReports()">Generate Report</button>
+  </div>
 
-<h3>📊 Reports</h3>
+  <div class="grid">
+    <div class="card stat">
+      <small>Sales</small>
+      <strong id="reportSales">৳0</strong>
+    </div>
+    <div class="card stat">
+      <small>Collection</small>
+      <strong id="reportPayments">৳0</strong>
+    </div>
+    <div class="card stat">
+      <small>Estimated Profit</small>
+      <strong id="reportProfit">৳0</strong>
+    </div>
+  </div>
 
-<div class="grid">
-
-<div>
-<label>From</label>
-<input type="date" id="reportFrom">
-</div>
-
-<div>
-<label>To</label>
-<input type="date" id="reportTo">
-</div>
-
-</div>
-
-<button class="btn" onclick="generateReport()">Generate Report</button>
-
-<div id="reportResult"></div>
-
-</div>
-
+  <div class="card">
+    <h3>Product-wise Sales</h3>
+    <div id="reportProducts"></div>
+  </div>
 </section>
-
 
 <!-- SETTINGS -->
 <section id="settings" class="page">
+  <h2>⚙️ Settings</h2>
 
-<div class="card">
+  <div class="card">
+    <label>Shop Name</label>
+    <input id="shopName">
 
-<h3>⚙️ Shop Settings</h3>
+    <label>Address</label>
+    <textarea id="shopAddress"></textarea>
 
-<label>Shop Name</label>
-<input id="settingShopName">
+    <label>Mobile</label>
+    <input id="shopPhone">
 
-<label>Address</label>
-<textarea id="settingAddress"></textarea>
+    <label>Invoice Footer</label>
+    <input id="shopFooter">
 
-<label>Mobile</label>
-<input id="settingMobile">
+    <button class="btn primary" onclick="saveSettings()">💾 Save Settings</button>
+  </div>
 
-<label>Invoice Footer</label>
-<textarea id="settingFooter"></textarea>
+  <div class="card">
+    <h3>💾 Backup</h3>
+    <button class="btn secondary" onclick="backupData()">Download Backup</button>
+    <input type="file" id="restoreFile" accept=".json" onchange="restoreData(event)">
+  </div>
 
-<button class="btn" onclick="saveSettings()">💾 Save Settings</button>
-
-</div>
-
-<div class="card">
-
-<h3>💾 Backup & Restore</h3>
-
-<div class="actions">
-<button class="btn blue" onclick="backupData()">⬇️ Backup Data</button>
-
-<button class="btn orange" onclick="document.getElementById('restoreFile').click()">
-⬆️ Restore Data
-</button>
-
-<input type="file" id="restoreFile" accept=".json"
-style="display:none" onchange="restoreData(event)">
-
-<button class="btn red" onclick="clearAllData()">
-🗑️ Delete All Data
-</button>
-</div>
-
-</div>
-
+  <div class="card">
+    <h3>⚠️ Danger Zone</h3>
+    <button class="btn danger" onclick="clearAllData()">সব হিসাব মুছে ফেলুন</button>
+  </div>
 </section>
 
-</div>
-
+</main>
 
 <!-- CUSTOMER MODAL -->
-
 <div class="modal" id="customerModal">
+  <div class="modalBox">
+    <h2>👤 Customer Add</h2>
 
-<div class="modal-box">
+    <input type="hidden" id="editCustomerId">
 
-<div class="modal-head">
-<h3>👤 Add Customer</h3>
-<button onclick="closeCustomerModal()">✕</button>
+    <label>নাম *</label>
+    <input id="customerName">
+
+    <label>মোবাইল</label>
+    <input id="customerPhone">
+
+    <label>ঠিকানা</label>
+    <textarea id="customerAddress"></textarea>
+
+    <label>Opening / Previous Due</label>
+    <input type="number" id="customerOpeningDue" value="0">
+
+    <button class="btn primary" onclick="saveCustomer()">Save</button>
+    <button class="btn danger" onclick="closeModal('customerModal')">Cancel</button>
+  </div>
 </div>
-
-<label>Customer Name *</label>
-<input id="customerName" placeholder="Customer name">
-
-<label>Mobile</label>
-<input id="customerPhone" placeholder="01XXXXXXXXX">
-
-<label>Address</label>
-<textarea id="customerAddress"></textarea>
-
-<label>Opening Due</label>
-<input type="number" id="customerOpeningDue" value="0">
-
-<div class="actions">
-<button class="btn" onclick="saveCustomer()">💾 Save Customer</button>
-<button class="btn gray" onclick="closeCustomerModal()">Cancel</button>
-</div>
-
-</div>
-</div>
-
 
 <!-- PRODUCT MODAL -->
-
 <div class="modal" id="productModal">
+  <div class="modalBox">
+    <h2>📦 Product Add</h2>
 
-<div class="modal-box">
+    <input type="hidden" id="editProductId">
 
-<div class="modal-head">
-<h3>📦 Add Product</h3>
-<button onclick="closeProductModal()">✕</button>
+    <label>Product Name *</label>
+    <input id="productName">
+
+    <label>Category</label>
+    <input id="productCategory">
+
+    <label>Unit</label>
+    <select id="productUnit">
+      <option>Bag</option>
+      <option>KG</option>
+      <option>Piece</option>
+      <option>Box</option>
+      <option>Packet</option>
+      <option>Liter</option>
+    </select>
+
+    <label>Purchase Rate</label>
+    <input type="number" id="purchaseRate" value="0">
+
+    <label>Sale Rate</label>
+    <input type="number" id="productRate" value="0">
+
+    <label>Opening Stock</label>
+    <input type="number" id="openingStock" value="0">
+
+    <label>Low Stock Alert</label>
+    <input type="number" id="lowStockLimit" value="5">
+
+    <button class="btn primary" onclick="saveProduct()">Save</button>
+    <button class="btn danger" onclick="closeModal('productModal')">Cancel</button>
+  </div>
 </div>
-
-<label>Product Name *</label>
-<input id="productName" placeholder="যেমন: Paragon Broiler Starter">
-
-<label>Category</label>
-<input id="productCategory" placeholder="Feed / Chick / Medicine / Fish Feed">
-
-<label>Unit</label>
-<select id="productUnit">
-<option>Bag</option>
-<option>KG</option>
-<option>Piece</option>
-<option>Box</option>
-<option>Packet</option>
-<option>Liter</option>
-</select>
-
-<label>Purchase Rate</label>
-<input type="number" id="productPurchase" value="0">
-
-<label>Sale Rate</label>
-<input type="number" id="productSale" value="0">
-
-<label>Opening Stock</label>
-<input type="number" id="productStock" value="0">
-
-<label>Low Stock Alert</label>
-<input type="number" id="productLowStock" value="5">
-
-<div class="actions">
-<button class="btn" onclick="saveProduct()">💾 Save Product</button>
-<button class="btn gray" onclick="closeProductModal()">Cancel</button>
-</div>
-
-</div>
-</div>
-
 
 <!-- PRINT AREA -->
-
-<div id="printArea" style="display:none"></div>
-
+<div id="printArea"></div>
 
 <script>
+"use strict";
 
-/* =========================================================
-   AKHONDO HISAB MANAGER V2
-   Connected Local Accounting System
-========================================================= */
+/* =========================
+   DATABASE
+========================= */
 
-const DB_KEY = "akhondo_hisab_v2";
+const DB_KEY = "akhondo_hisab_final_v1";
 
 let db = {
   customers: [],
@@ -802,1234 +593,1123 @@ let db = {
   sales: [],
   payments: [],
   settings: {
-    shopName:"আখন্দ পোল্ট্রি ফিড",
-    address:"উপজেলা প্রাণিসম্পদ দপ্তর ও ভেটেনারি হাসপাতালের সামনে, লাকসাম রোড, চৌদ্দগ্রাম, কুমিল্লা",
-    mobile:"",
-    footer:"ধন্যবাদ। আবার আসবেন।"
+    shopName: "আখন্দ পোল্ট্রি ফিড",
+    shopAddress: "উপজেলা প্রাণিসম্পদ দপ্তর ও ভেটেনারি হাসপাতালের সামনে, লাকসাম রোড, চৌদ্দগ্রাম, কুমিল্লা",
+    shopPhone: "",
+    shopFooter: "ধন্যবাদ। আবার আসবেন।"
   }
 };
 
-let currentSaleItems = [];
+let saleItems = [];
 
+function uid(prefix="ID"){
+  return prefix + Date.now() + Math.random().toString(36).slice(2,7);
+}
 
-/* ================= DATABASE ================= */
+function money(n){
+  return "৳" + Number(n || 0).toLocaleString("en-BD",{maximumFractionDigits:2});
+}
+
+function num(v){
+  return Number(v) || 0;
+}
+
+function today(){
+  return new Date().toISOString().slice(0,10);
+}
+
+function escapeHtml(str){
+  return String(str ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+function saveDB(){
+  localStorage.setItem(DB_KEY, JSON.stringify(db));
+}
 
 function loadDB(){
-
   try{
-    const saved = localStorage.getItem(DB_KEY);
-
-    if(saved){
-      db = JSON.parse(saved);
+    const old = localStorage.getItem(DB_KEY);
+    if(old){
+      const parsed = JSON.parse(old);
+      db = {
+        customers: Array.isArray(parsed.customers) ? parsed.customers : [],
+        products: Array.isArray(parsed.products) ? parsed.products : [],
+        sales: Array.isArray(parsed.sales) ? parsed.sales : [],
+        payments: Array.isArray(parsed.payments) ? parsed.payments : [],
+        settings: {...db.settings,...(parsed.settings || {})}
+      };
     }
-
   }catch(e){
     console.error(e);
   }
-
-  if(!db.customers) db.customers=[];
-  if(!db.products) db.products=[];
-  if(!db.sales) db.sales=[];
-  if(!db.payments) db.payments=[];
-
-  if(!db.settings){
-    db.settings={
-      shopName:"আখন্দ পোল্ট্রি ফিড",
-      address:"",
-      mobile:"",
-      footer:"ধন্যবাদ। আবার আসবেন।"
-    };
-  }
-
-  saveDB();
 }
 
+/* =========================
+   NAVIGATION
+========================= */
 
-function saveDB(){
-  localStorage.setItem(DB_KEY,JSON.stringify(db));
+function showPage(id,btn){
+  document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+
+  document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));
+  if(btn) btn.classList.add("active");
+
+  refreshAll();
 }
 
-
-function money(n){
-  return "৳"+Number(n||0).toLocaleString("en-US",{
-    minimumFractionDigits:0,
-    maximumFractionDigits:2
-  });
-}
-
-
-function num(v){
-  return Number(v)||0;
-}
-
-
-function today(){
-
-  const d=new Date();
-
-  const y=d.getFullYear();
-  const m=String(d.getMonth()+1).padStart(2,"0");
-  const day=String(d.getDate()).padStart(2,"0");
-
-  return `${y}-${m}-${day}`;
-}
-
-
-function uid(prefix){
-
-  return prefix+"_"+Date.now()+"_"+Math.random()
-    .toString(36)
-    .substring(2,7);
-}
-
-
-/* ================= CUSTOMER BALANCE ================= */
-
-/*
-  Balance formula:
-
-  Opening Due
-  + Total Sales
-  - Total Payments
-*/
+/* =========================
+   CUSTOMER BALANCE
+========================= */
 
 function customerBalance(customerId){
+  const c = db.customers.find(x=>x.id===customerId);
+  if(!c) return 0;
 
-  const customer=db.customers.find(c=>c.id===customerId);
+  const opening = num(c.openingDue);
 
-  if(!customer) return 0;
-
-  const opening=num(customer.openingDue);
-
-  const sales=db.sales
+  const sales = db.sales
     .filter(s=>s.customerId===customerId)
-    .reduce((sum,s)=>sum+num(s.total),0);
+    .reduce((a,s)=>a+num(s.total),0);
 
-  const payments=db.payments
+  const payments = db.payments
     .filter(p=>p.customerId===customerId)
-    .reduce((sum,p)=>sum+num(p.amount),0);
+    .reduce((a,p)=>a+num(p.amount),0);
 
-  return opening+sales-payments;
+  return opening + sales - payments;
 }
 
+/* =========================
+   CUSTOMER
+========================= */
 
-function customerSales(customerId){
+function openCustomerModal(editId=""){
+  document.getElementById("editCustomerId").value = editId;
 
-  return db.sales
-    .filter(s=>s.customerId===customerId)
-    .reduce((sum,s)=>sum+num(s.total),0);
+  if(editId){
+    const c = db.customers.find(x=>x.id===editId);
+    if(!c) return;
+
+    document.getElementById("customerName").value = c.name;
+    document.getElementById("customerPhone").value = c.phone || "";
+    document.getElementById("customerAddress").value = c.address || "";
+    document.getElementById("customerOpeningDue").value = num(c.openingDue);
+  }else{
+    document.getElementById("customerName").value="";
+    document.getElementById("customerPhone").value="";
+    document.getElementById("customerAddress").value="";
+    document.getElementById("customerOpeningDue").value=0;
+  }
+
+  document.getElementById("customerModal").style.display="block";
 }
-
-
-/* ================= NAVIGATION ================= */
-
-function showPage(page){
-
-  document.querySelectorAll(".page")
-    .forEach(p=>p.classList.remove("active"));
-
-  document.getElementById(page)
-    .classList.add("active");
-
-  document.querySelectorAll("nav button")
-    .forEach(b=>b.classList.remove("active"));
-
-  const nav=document.getElementById("nav-"+page);
-
-  if(nav) nav.classList.add("active");
-
-  refreshAll();
-}
-
-
-/* ================= CUSTOMER ================= */
-
-function openCustomerModal(){
-
-  document.getElementById("customerName").value="";
-  document.getElementById("customerPhone").value="";
-  document.getElementById("customerAddress").value="";
-  document.getElementById("customerOpeningDue").value=0;
-
-  document.getElementById("customerModal")
-    .classList.add("show");
-}
-
-
-function closeCustomerModal(){
-
-  document.getElementById("customerModal")
-    .classList.remove("show");
-}
-
 
 function saveCustomer(){
-
-  const name=document.getElementById("customerName")
-    .value.trim();
+  const name=document.getElementById("customerName").value.trim();
 
   if(!name){
-    alert("Customer name দিন");
+    alert("Customer নাম দিন");
     return;
   }
 
-  const customer={
-    id:uid("CUS"),
-    name:name,
-    phone:document.getElementById("customerPhone").value.trim(),
-    address:document.getElementById("customerAddress").value.trim(),
-    openingDue:num(document.getElementById("customerOpeningDue").value),
-    createdAt:new Date().toISOString()
-  };
+  const editId=document.getElementById("editCustomerId").value;
 
-  db.customers.push(customer);
+  if(editId){
+    const c=db.customers.find(x=>x.id===editId);
+
+    if(c){
+      c.name=name;
+      c.phone=document.getElementById("customerPhone").value.trim();
+      c.address=document.getElementById("customerAddress").value.trim();
+      c.openingDue=num(document.getElementById("customerOpeningDue").value);
+    }
+  }else{
+    db.customers.push({
+      id:uid("CUS"),
+      name,
+      phone:document.getElementById("customerPhone").value.trim(),
+      address:document.getElementById("customerAddress").value.trim(),
+      openingDue:num(document.getElementById("customerOpeningDue").value),
+      createdAt:today()
+    });
+  }
 
   saveDB();
-
-  closeCustomerModal();
-
+  closeModal("customerModal");
   refreshAll();
-
-  document.getElementById("saleCustomer").value=customer.id;
-
-  customerChanged();
-
-  alert("Customer successfully added ✅");
 }
 
-
 function renderCustomers(){
+  const q=(document.getElementById("customerSearch")?.value || "").toLowerCase();
 
-  const tbody=document.getElementById("customerTable");
-
-  if(!tbody) return;
-
-  const search=(document.getElementById("customerSearch")?.value||"")
-    .toLowerCase();
-
-  let list=db.customers.filter(c=>
-    c.name.toLowerCase().includes(search) ||
-    (c.phone||"").includes(search)
-  );
-
-  if(!list.length){
-
-    tbody.innerHTML=`
+  const rows=db.customers
+    .filter(c=>
+      c.name.toLowerCase().includes(q) ||
+      (c.phone||"").includes(q)
+    )
+    .map(c=>`
       <tr>
-        <td colspan="7" class="empty">
-          কোনো Customer পাওয়া যায়নি
+        <td>${escapeHtml(c.id.slice(-6))}</td>
+        <td>${escapeHtml(c.name)}</td>
+        <td>${escapeHtml(c.phone || "-")}</td>
+        <td><b>${money(customerBalance(c.id))}</b></td>
+        <td>
+          <button class="btn secondary" onclick="openCustomerModal('${c.id}')">Edit</button>
         </td>
-      </tr>`;
+      </tr>
+    `).join("");
 
+  document.getElementById("customerTable").innerHTML =
+    rows || `<tr><td colspan="5" class="empty">কোনো Customer নেই</td></tr>`;
+}
+
+/* =========================
+   PRODUCT
+========================= */
+
+function openProductModal(editId=""){
+  document.getElementById("editProductId").value=editId;
+
+  if(editId){
+    const p=db.products.find(x=>x.id===editId);
+    if(!p)return;
+
+    document.getElementById("productName").value=p.name;
+    document.getElementById("productCategory").value=p.category||"";
+    document.getElementById("productUnit").value=p.unit||"Bag";
+    document.getElementById("purchaseRate").value=num(p.purchaseRate);
+    document.getElementById("productRate").value=num(p.saleRate);
+    document.getElementById("openingStock").value=num(p.stock);
+    document.getElementById("lowStockLimit").value=num(p.lowStock||5);
+  }else{
+    ["productName","productCategory"].forEach(id=>document.getElementById(id).value="");
+    document.getElementById("productUnit").value="Bag";
+    document.getElementById("purchaseRate").value=0;
+    document.getElementById("productRate").value=0;
+    document.getElementById("openingStock").value=0;
+    document.getElementById("lowStockLimit").value=5;
+  }
+
+  document.getElementById("productModal").style.display="block";
+}
+
+function saveProduct(){
+  const name=document.getElementById("productName").value.trim();
+
+  if(!name){
+    alert("Product নাম দিন");
     return;
   }
 
-  tbody.innerHTML=list.map(c=>{
+  const editId=document.getElementById("editProductId").value;
 
-    const due=customerBalance(c.id);
-    const sales=customerSales(c.id);
+  const data={
+    name,
+    category:document.getElementById("productCategory").value.trim(),
+    unit:document.getElementById("productUnit").value,
+    purchaseRate:num(document.getElementById("purchaseRate").value),
+    saleRate:num(document.getElementById("productRate").value),
+    stock:num(document.getElementById("openingStock").value),
+    lowStock:num(document.getElementById("lowStockLimit").value)
+  };
+
+  if(editId){
+    const p=db.products.find(x=>x.id===editId);
+    if(p) Object.assign(p,data);
+  }else{
+    db.products.push({
+      id:uid("PRD"),
+      ...data,
+      createdAt:today()
+    });
+  }
+
+  saveDB();
+  closeModal("productModal");
+  refreshAll();
+}
+
+function deleteProduct(id){
+  if(db.sales.some(s=>s.items.some(i=>i.productId===id))){
+    alert("এই Product-এর পুরোনো Sale আছে। Delete করা যাবে না।");
+    return;
+  }
+
+  if(confirm("Product delete করবেন?")){
+    db.products=db.products.filter(p=>p.id!==id);
+    saveDB();
+    refreshAll();
+  }
+}
+
+function renderProducts(){
+  const q=(document.getElementById("productSearch")?.value || "").toLowerCase();
+
+  const rows=db.products
+    .filter(p=>
+      p.name.toLowerCase().includes(q) ||
+      (p.category||"").toLowerCase().includes(q)
+    )
+    .map(p=>`
+      <tr class="${num(p.stock)<=num(p.lowStock) ? "low":""}">
+        <td>
+          <b>${escapeHtml(p.name)}</b><br>
+          <small>${escapeHtml(p.category||"")}</small>
+        </td>
+        <td>${escapeHtml(p.unit)}</td>
+        <td>${money(p.saleRate)}</td>
+        <td>
+          <span class="badge ${num(p.stock)<=num(p.lowStock)?"bad":"good"}">
+            ${p.stock} ${escapeHtml(p.unit)}
+          </span>
+        </td>
+        <td>
+          <button class="btn secondary" onclick="openProductModal('${p.id}')">Edit</button>
+          <button class="btn danger" onclick="deleteProduct('${p.id}')">Delete</button>
+        </td>
+      </tr>
+    `).join("");
+
+  document.getElementById("productTable").innerHTML =
+    rows || `<tr><td colspan="5" class="empty">কোনো Product নেই</td></tr>`;
+}
+
+/* =========================
+   SALE
+========================= */
+
+function addSaleItem(){
+  if(db.products.length===0){
+    alert("আগে Product Add করুন");
+    return;
+  }
+
+  saleItems.push({
+    id:uid("ITEM"),
+    productId:db.products[0].id,
+    qty:1,
+    rate:db.products[0].saleRate
+  });
+
+  renderSaleItems();
+  updateSaleSummary();
+}
+
+function removeSaleItem(id){
+  saleItems=saleItems.filter(x=>x.id!==id);
+  renderSaleItems();
+  updateSaleSummary();
+}
+
+function changeSaleProduct(itemId,productId){
+  const item=saleItems.find(x=>x.id===itemId);
+  const p=db.products.find(x=>x.id===productId);
+
+  if(item && p){
+    item.productId=productId;
+    item.rate=num(p.saleRate);
+  }
+
+  renderSaleItems();
+  updateSaleSummary();
+}
+
+function renderSaleItems(){
+  const box=document.getElementById("saleItems");
+
+  if(!saleItems.length){
+    box.innerHTML=`<div class="empty">+ Product যোগ করুন</div>`;
+    return;
+  }
+
+  box.innerHTML=saleItems.map(item=>{
+    const p=db.products.find(x=>x.id===item.productId);
+    if(!p)return "";
+
+    const options=db.products.map(x=>
+      `<option value="${x.id}" ${x.id===item.productId?"selected":""}>
+        ${escapeHtml(x.name)}
+      </option>`
+    ).join("");
 
     return `
-    <tr>
-      <td>${c.id.slice(-6)}</td>
-      <td><strong>${escapeHTML(c.name)}</strong></td>
-      <td>${escapeHTML(c.phone||"-")}</td>
-      <td>${escapeHTML(c.address||"-")}</td>
-      <td>${money(sales)}</td>
-      <td>
-        <span class="badge ${due>0?"due":"paid"}">
-          ${money(due)}
-        </span>
-      </td>
-      <td>
-        <button class="btn small blue"
-          onclick="viewCustomer('${c.id}')">
-          View
-        </button>
+      <div class="saleItem">
+        <div class="row">
+          <div>
+            <label>Product</label>
+            <select onchange="changeSaleProduct('${item.id}',this.value)">
+              ${options}
+            </select>
+          </div>
 
-        <button class="btn small red"
-          onclick="deleteCustomer('${c.id}')">
-          Delete
-        </button>
-      </td>
-    </tr>`;
+          <div>
+            <label>Qty (${escapeHtml(p.unit)})</label>
+            <input type="number" min="0.01" value="${item.qty}"
+              onchange="changeSaleQty('${item.id}',this.value)">
+          </div>
+        </div>
 
+        <div class="row">
+          <div>
+            <label>Rate</label>
+            <input type="number" min="0" value="${item.rate}"
+              onchange="changeSaleRate('${item.id}',this.value)">
+          </div>
+
+          <div class="right">
+            <label>Total</label>
+            <b>${money(num(item.qty)*num(item.rate))}</b>
+          </div>
+        </div>
+
+        <button class="btn danger" onclick="removeSaleItem('${item.id}')">
+          Remove
+        </button>
+      </div>
+    `;
   }).join("");
 }
 
+function changeSaleQty(id,value){
+  const item=saleItems.find(x=>x.id===id);
+  if(item)item.qty=num(value);
+  renderSaleItems();
+  updateSaleSummary();
+}
 
-function populateCustomerSelects(){
+function changeSaleRate(id,value){
+  const item=saleItems.find(x=>x.id===id);
+  if(item)item.rate=num(value);
+  renderSaleItems();
+  updateSaleSummary();
+}
 
+function populateSelects(){
   const selects=[
     document.getElementById("saleCustomer"),
     document.getElementById("paymentCustomer"),
     document.getElementById("ledgerCustomer")
   ];
 
-  selects.forEach(select=>{
+  selects.forEach(sel=>{
+    if(!sel)return;
 
-    if(!select) return;
-
-    const old=select.value;
+    const old=sel.value;
 
     let first="-- Customer নির্বাচন করুন --";
+    if(sel.id==="ledgerCustomer")first="-- Ledger Customer --";
 
-    if(select.id==="ledgerCustomer")
-      first="-- Customer ন    background:#1687e8;
-    color:white;
+    sel.innerHTML=
+      `<option value="">${first}</option>`+
+      db.customers.map(c=>
+        `<option value="${c.id}">${escapeHtml(c.name)}${c.phone?" - "+escapeHtml(c.phone):""}</option>`
+      ).join("");
+
+    if(db.customers.some(c=>c.id===old))sel.value=old;
+  });
 }
 
-.danger{
-    background:#dc3545;
-    color:white;
+function updateSaleSummary(){
+  const customerId=document.getElementById("saleCustomer").value;
+
+  const previous=customerId ? customerBalance(customerId):0;
+
+  const subtotal=saleItems.reduce(
+    (a,i)=>a+(num(i.qty)*num(i.rate)),0
+  );
+
+  const discount=num(document.getElementById("discount").value);
+  const total=Math.max(0,subtotal-discount);
+
+  const receivable=previous+total;
+
+  let paid=num(document.getElementById("paid").value);
+
+  if(paid>receivable){
+    paid=receivable;
+    document.getElementById("paid").value=paid;
+  }
+
+  const newDue=receivable-paid;
+
+  document.getElementById("previousDue").textContent=money(previous);
+  document.getElementById("sumPreviousDue").textContent=money(previous);
+  document.getElementById("subtotal").textContent=money(subtotal);
+  document.getElementById("saleTotal").textContent=money(total);
+  document.getElementById("receivable").textContent=money(receivable);
+  document.getElementById("sumPaid").textContent=money(paid);
+  document.getElementById("newDue").textContent=money(newDue);
 }
 
-.total-box{
-    margin-top:18px;
-    display:flex;
-    flex-direction:column;
-    align-items:flex-end;
-    gap:7px;
-    font-size:17px;
-}
+function saveSale(printAfter=false){
+  const customerId=document.getElementById("saleCustomer").value;
 
-.grand{
-    font-size:22px;
-    font-weight:bold;
-    color:#087f3e;
-}
+  if(!customerId){
+    alert("Customer নির্বাচন করুন");
+    return;
+  }
 
-.invoice{
-    background:white;
-    padding:25px;
-    max-width:800px;
-    margin:20px auto;
-    display:none;
-}
+  if(!saleItems.length){
+    alert("কমপক্ষে একটি Product দিন");
+    return;
+  }
 
-.invoice-head{
-    display:flex;
-    justify-content:space-between;
-    border-bottom:2px solid #087f3e;
-    padding-bottom:15px;
-}
+  for(const item of saleItems){
+    const p=db.products.find(x=>x.id===item.productId);
 
-.invoice table th{
-    background:#087f3e;
-}
-
-.invoice-footer{
-    margin-top:25px;
-    border-top:1px solid #ddd;
-    padding-top:15px;
-}
-
-.history-item{
-    border:1px solid #ddd;
-    border-radius:10px;
-    padding:12px;
-    margin:8px 0;
-}
-
-@media(max-width:650px){
-    .grid{
-        grid-template-columns:1fr;
+    if(!p){
+      alert("Product পাওয়া যায়নি");
+      return;
     }
 
-    table{
-        font-size:12px;
+    if(num(item.qty)<=0){
+      alert("Quantity সঠিক দিন");
+      return;
     }
 
-    th,td{
-        padding:6px;
+    if(num(item.qty)>num(p.stock)){
+      if(!confirm(
+        p.name+" এর stock কম আছে।\n"+
+        "Stock: "+p.stock+" "+p.unit+
+        "\nতবুও Sale করবেন?"
+      )){
+        return;
+      }
     }
+  }
 
-    .invoice-head{
-        flex-direction:column;
-        gap:10px;
-    }
+  const previousDue=customerBalance(customerId);
+
+  const subtotal=saleItems.reduce(
+    (a,i)=>a+num(i.qty)*num(i.rate),0
+  );
+
+  const discount=num(document.getElementById("discount").value);
+  const total=Math.max(0,subtotal-discount);
+
+  const paid=Math.min(
+    num(document.getElementById("paid").value),
+    previousDue+total
+  );
+
+  const invoiceNo=
+    "AK-"+new Date().getFullYear()+
+    "-"+String(db.sales.length+1).padStart(5,"0");
+
+  const items=saleItems.map(i=>{
+    const p=db.products.find(x=>x.id===i.productId);
+
+    p.stock=num(p.stock)-num(i.qty);
+
+    return {
+      productId:p.id,
+      name:p.name,
+      qty:num(i.qty),
+      unit:p.unit,
+      rate:num(i.rate),
+      costRate:num(p.purchaseRate),
+      total:num(i.qty)*num(i.rate)
+    };
+  });
+
+  const sale={
+    id:uid("SAL"),
+    invoiceNo,
+    customerId,
+    date:document.getElementById("saleDate").value || today(),
+    items,
+    subtotal,
+    discount,
+    total,
+    paid,
+    previousDue,
+    createdAt:new Date().toISOString()
+  };
+
+  db.sales.push(sale);
+
+  if(paid>0){
+    db.payments.push({
+      id:uid("PAY"),
+      customerId,
+      date:sale.date,
+      amount:paid,
+      method:document.getElementById("salePaymentMethod").value,
+      ref:invoiceNo,
+      note:"Invoice payment"
+    });
+  }
+
+  saveDB();
+
+  if(printAfter){
+    printSale(sale.id);
+  }
+
+  alert("Sale সফলভাবে Save হয়েছে\nInvoice: "+invoiceNo);
+
+  resetSale();
+  refreshAll();
 }
 
-@media print{
-    body *{
-        visibility:hidden;
-    }
-
-    #printInvoice,
-    #printInvoice *{
-        visibility:visible;
-    }
-
-    #printInvoice{
-        display:block;
-        position:absolute;
-        left:0;
-        top:0;
-        width:100%;
-        margin:0;
-        box-shadow:none;
-    }
-
-    .no-print{
-        display:none!important;
-    }
+function resetSale(){
+  saleItems=[];
+  document.getElementById("saleCustomer").value="";
+  document.getElementById("discount").value=0;
+  document.getElementById("paid").value=0;
+  document.getElementById("saleDate").value=today();
+  renderSaleItems();
+  updateSaleSummary();
 }
-</style>
-</head>
 
-<body>
-
-<header>
-    <h1>🐔 আখন্দ পোল্ট্রি ফিড 🐣</h1>
-    <p>Akhondo Poultry Feed</p>
-    <p>লাকসাম রোড, চৌদ্দগ্রাম, কুমিল্লা</p>
-</header>
-
-<div class="container">
-
-<div class="card">
-
-<h2>🧾 নতুন Invoice</h2>
-
-<div class="grid">
-
-<div>
-<label>Customer Name</label>
-<input id="customerName" placeholder="কাস্টমারের নাম">
-</div>
-
-<div>
-<label>Mobile</label>
-<input id="customerPhone" placeholder="01XXXXXXXXX">
-</div>
-
-<div>
-<label>Address</label>
-<input id="customerAddress" placeholder="ঠিকানা">
-</div>
-
-<div>
-<label>Invoice Date</label>
-<input type="date" id="invoiceDate">
-</div>
-
-</div>
-
-</div>
-
-
-<div class="card">
-
-<h2>📦 Products</h2>
-
-<table id="productTable">
-
-<thead>
-<tr>
-<th>Product</th>
-<th>Qty</th>
-<th>Unit</th>
-<th>Rate</th>
-<th>Total</th>
-<th>❌</th>
-</tr>
-</thead>
-
-<tbody id="productBody"></tbody>
-
-</table>
-
-<button class="btn" onclick="addProduct()">
-➕ Add Product
-</button>
-
-<div class="total-box">
-
-<div>
-Subtotal:
-<strong>৳ <span id="subtotal">0.00</span></strong>
-</div>
-
-<div>
-Previous Due:
-<input
-type="number"
-id="previousDue"
-value="0"
-oninput="calculate()"
-style="width:150px;text-align:right">
-</div>
-
-<div>
-Paid:
-<input
-type="number"
-id="paid"
-value="0"
-oninput="calculate()"
-style="width:150px;text-align:right">
-</div>
-
-<div class="grand">
-Total: ৳ <span id="grandTotal">0.00</span>
-</div>
-
-<div>
-New Due:
-<strong style="color:#dc3545">
-৳ <span id="newDue">0.00</span>
-</strong>
-</div>
-
-</div>
-
-</div>
-
-
-<div class="card">
-
-<button class="btn" onclick="generateInvoice()">
-🧾 Generate Invoice
-</button>
-
-<button class="btn2" onclick="saveInvoice()">
-💾 Save Invoice
-</button>
-
-<button class="btn2" onclick="printInvoice()">
-🖨️ Print / PDF
-</button>
-
-<button class="btn2" onclick="shareWhatsApp()">
-📲 WhatsApp
-</button>
-
-</div>
-
-
-<div class="card">
-
-<h2>📚 Invoice History</h2>
-
-<div id="history"></div>
-
-</div>
-
-</div>
-
-
-<!-- PRINTABLE INVOICE -->
-
-<div id="printInvoice" class="invoice">
-
-<div class="invoice-head">
-
-<div>
-<h1 style="color:#087f3e;margin:0">
-🐔 আখন্দ পোল্ট্রি ফিড
-</h1>
-
-<p>
-Akhondo Poultry Feed
-</p>
-
-<p>
-লাকসাম রোড, চৌদ্দগ্রাম, কুমিল্লা
-</p>
-
-</div>
-
-<div>
-
-<strong>INVOICE</strong>
-
-<p>
-Invoice No:
-<strong id="printInvoiceNo"></strong>
-</p>
-
-<p>
-Date:
-<span id="printDate"></span>
-</p>
-
-</div>
-
-</div>
-
-
-<div style="margin-top:20px">
-
-<strong>Customer:</strong>
-<span id="printCustomer"></span>
-
-<br>
-
-<strong>Mobile:</strong>
-<span id="printPhone"></span>
-
-<br>
-
-<strong>Address:</strong>
-<span id="printAddress"></span>
-
-</div>
-
-
-<table>
-
-<thead>
-<tr>
-<th>Product</th>
-<th>Qty</th>
-<th>Unit</th>
-<th>Rate</th>
-<th>Total</th>
-</tr>
-</thead>
-
-<tbody id="printProducts"></tbody>
-
-</table>
-
-
-<div class="total-box">
-
-<div>
-Subtotal:
-<strong>৳ <span id="printSubtotal"></span></strong>
-</div>
-
-<div>
-Previous Due:
-<strong>৳ <span id="printPreviousDue"></span></strong>
-</div>
-
-<div>
-Grand Total:
-<strong>৳ <span id="printGrandTotal"></span></strong>
-</div>
-
-<div>
-Paid:
-<strong>৳ <span id="printPaid"></span></strong>
-</div>
-
-<div style="color:#dc3545">
-New Due:
-<strong>৳ <span id="printNewDue"></span></strong>
-</div>
-
-</div>
-
-
-<div class="invoice-footer">
-
-<p>
-ধন্যবাদ। আবার আসবেন।
-</p>
-
-<p>
-🐔 Akhondo Poultry Feed
-</p>
-
-</div>
-
-</div>
-
-
-<script>
-
-let products = [];
-
-let invoiceCounter =
-parseInt(localStorage.getItem("invoiceCounter") || "1000");
-
-document.getElementById("invoiceDate").value =
-new Date().toISOString().split("T")[0];
-
-
-// ADD PRODUCT
-
-function addProduct(){
-
-products.push({
-    name:"",
+function renderRecentSales(){
+  const rows=[...db.sales].reverse().slice(0,10).map(s=>{
+    const c=db.customers.find(x=>x.id===s.customerId);
+
+    return `
+      <div class="card">
+        <b>${escapeHtml(s.invoiceNo)}</b>
+        <br>${escapeHtml(c?.name || "Unknown")}
+        <br><small>${s.date}</small>
+        <br><b>${money(s.total)}</b>
+        <button class="btn secondary" onclick="printSale('${s.id}')">🖨️ Print</button>
+      </div>
+    `;
+  }).join("");
+
+  document.getElementById("recentSales").innerHTML=
+    rows || `<div class="empty">কোনো Invoice নেই</div>`;
+}
+
+/* =========================
+   PAYMENT
+========================= */
+
+function showPaymentDue(){
+  const id=document.getElementById("paymentCustomer").value;
+  document.getElementById("paymentDue").textContent=
+    money(id ? customerBalance(id):0);
+}
+
+function savePayment(){
+  const customerId=document.getElementById("paymentCustomer").value;
+  const amount=num(document.getElementById("paymentAmount").value);
+
+  if(!customerId){
+    alert("Customer নির্বাচন করুন");
+    return;
+  }
+
+  if(amount<=0){
+    alert("Payment amount দিন");
+    return;
+  }
+
+  const due=customerBalance(customerId);
+
+  if(amount>due){
+    alert("Payment বাকি টাকার চেয়ে বেশি হতে পারবে না");
+    return;
+  }
+
+  db.payments.push({
+    id:uid("PAY"),
+    customerId,
+    date:today(),
+    amount,
+    method:document.getElementById("paymentMethod").value,
+    ref:"PAY-"+String(db.payments.length+1).padStart(5,"0"),
+    note:document.getElementById("paymentNote").value.trim()
+  });
+
+  saveDB();
+
+  document.getElementById("paymentAmount").value="";
+  document.getElementById("paymentNote").value="";
+
+  alert("Payment Save হয়েছে");
+  refreshAll();
+}
+
+function renderPayments(){
+  const rows=[...db.payments].reverse().map(p=>{
+    const c=db.customers.find(x=>x.id===p.customerId);
+
+    return `
+      <tr>
+        <td>${p.date}</td>
+        <td>${escapeHtml(c?.name||"Unknown")}</td>
+        <td><b>${money(p.amount)}</b></td>
+        <td>${escapeHtml(p.method)}</td>
+        <td>${escapeHtml(p.ref||"")}</td>
+      </tr>
+    `;
+  }).join("");
+
+  document.getElementById("paymentTable").innerHTML=
+    rows || `<tr><td colspan="5" class="empty">Payment নেই</td></tr>`;
+}
+
+/* =========================
+   LEDGER
+========================= */
+
+function renderLedger(){
+  const customerId=document.getElementById("ledgerCustomer").value;
+  const summary=document.getElementById("ledgerSummary");
+  const table=document.getElementById("ledgerTable");
+
+  if(!customerId){
+    summary.innerHTML="";
+    table.innerHTML=`<tr><td colspan="6" class="empty">Customer নির্বাচন করুন</td></tr>`;
+    return;
+  }
+
+  const c=db.customers.find(x=>x.id===customerId);
+  const opening=num(c?.openingDue);
+
+  let balance=opening;
+
+  let rows=`
+    <tr>
+      <td>-</td>
+      <td>Opening</td>
+      <td>-</td>
+      <td>৳0</td>
+      <td>৳0</td>
+      <td><b>${money(balance)}</b></td>
+    </tr>
+  `;
+
+  const events=[];
+
+  db.sales
+    .filter(s=>s.customerId===customerId)
+    .forEach(s=>events.push({
+      date:s.date,
+      type:"Sale",
+      ref:s.invoiceNo,
+      sale:s.total,
+      payment:0
+    }));
+
+  db.payments
+    .filter(p=>p.customerId===customerId)
+    .forEach(p=>events.push({
+      date:p.date,
+      type:"Payment",
+      ref:p.ref,
+      sale:0,
+      payment:p.amount
+    }));
+
+  events.sort((a,b)=>a.date.localeCompare(b.date));
+
+  events.forEach(e=>{
+    balance += num(e.sale)-num(e.payment);
+
+    rows+=`
+      <tr>
+        <td>${e.date}</td>
+        <td>${e.type}</td>
+        <td>${escapeHtml(e.ref||"")}</td>
+        <td>${e.sale?money(e.sale):"-"}</td>
+        <td>${e.payment?money(e.payment):"-"}</td>
+        <td><b>${money(balance)}</b></td>
+      </tr>
+    `;
+  });
+
+  summary.innerHTML=`
+    <h3>${escapeHtml(c.name)}</h3>
+    <p>মোবাইল: ${escapeHtml(c.phone||"-")}</p>
+    <h3>Current Due: ${money(customerBalance(customerId))}</h3>
+  `;
+
+  table.innerHTML=rows;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+function renderDashboard(){
+  const t=today();
+
+  const salesToday=db.sales
+    .filter(s=>s.date===t)
+    .reduce((a,s)=>a+num(s.total),0);
+
+  const collectionToday=db.payments
+    .filter(p=>p.date===t)
+    .reduce((a,p)=>a+num(p.amount),0);
+
+  const totalDue=db.customers
+    .reduce((a,c)=>a+Math.max(0,customerBalance(c.id)),0);
+
+  const allSales=db.sales
+    .reduce((a,s)=>a+num(s.total),0);
+
+  document.getElementById("todaySales").textContent=money(salesToday);
+  document.getElementById("todayCollection").textContent=money(collectionToday);
+  document.getElementById("totalDue").textContent=money(totalDue);
+  document.getElementById("customerCount").textContent=db.customers.length;
+  document.getElementById("productCount").textContent=db.products.length;
+  document.getElementById("allSales").textContent=money(allSales);
+
+  const low=db.products.filter(p=>num(p.stock)<=num(p.lowStock));
+
+  document.getElementById("lowStock").innerHTML=
+    low.length
+    ? low.map(p=>`
+        <p>🔴 <b>${escapeHtml(p.name)}</b> —
+        ${p.stock} ${escapeHtml(p.unit)}</p>
+      `).join("")
+    : `<p class="good">সব Product-এর stock ঠিক আছে ✅</p>`;
+
+  const dues=db.customers
+    .map(c=>({...c,due:customerBalance(c.id)}))
+    .filter(c=>c.due>0)
+    .sort((a,b)=>b.due-a.due)
+    .slice(0,8);
+
+  document.getElementById("topDue").innerHTML=
+    dues.length
+    ? dues.map(c=>`
+      <p>
+        👤 ${escapeHtml(c.name)}
+        — <b>${money(c.due)}</b>
+      </p>
+    `).join("")
+    : `<p>কোনো বাকি নেই 🎉</p>`;
+}
+
+/* =========================
+   REPORT
+========================= */
+
+function renderReports(){
+  const from=document.getElementById("reportFrom").value || "0000-01-01";
+  const to=document.getElementById("reportTo").value || "9999-12-31";
+
+  const sales=db.sales.filter(s=>s.date>=from && s.date<=to);
+  const payments=db.payments.filter(p=>p.date>=from && p.date<=to);
+
+  const salesTotal=sales.reduce((a,s)=>a+num(s.total),0);
+  const paymentTotal=payments.reduce((a,p)=>a+num(p.amount),0);
+
+  let profit=0;
+  const productMap={};
+
+  sales.forEach(s=>{
+    s.items.forEach(i=>{
+      profit+=(num(i.rate)-num(i.costRate))*num(i.qty);
+
+      if(!productMap[i.productId]){
+        productMap[i.productId]={
+          name:i.name,
+          qty:0,
+          amount:0
+        };
+      }
+
+      productMap[i.productId].qty+=num(i.qty);
+      productMap[i.productId].amount+=num(i.total);
+    });
+  });
+
+  document.getElementById("reportSales").textContent=money(salesTotal);
+  document.getElementById("reportPayments").textContent=money(paymentTotal);
+  document.getElementById("reportProfit").textContent=money(profit);
+
+  document.getElementById("reportProducts").innerHTML=
+    Object.values(productMap).map(x=>`
+      <p>
+        <b>${escapeHtml(x.name)}</b> —
+        Qty: ${x.qty} —
+        Sales: ${money(x.amount)}
+      </p>
+    `).join("") || `<div class="empty">এই সময়ের কোনো Sale নেই</div>`;
+}
+
+/* =========================
+   SETTINGS
+========================= */
+
+function loadSettings(){
+  document.getElementById("shopName").value=db.settings.shopName;
+  document.getElementById("shopAddress").value=db.settings.shopAddress;
+  document.getElementById("shopPhone").value=db.settings.shopPhone;
+  document.getElementById("shopFooter").value=db.settings.shopFooter;
+}
+
+function saveSettings(){
+  db.settings.shopName=
+    document.getElementById("shopName").value.trim() ||
+    "আখন্দ পোল্ট্রি ফিড";
+
+  db.settings.shopAddress=
+    document.getElementById("shopAddress").value.trim();
+
+  db.settings.shopPhone=
+    document.getElementById("shopPhone").value.trim();
+
+  db.settings.shopFooter=
+    document.getElementById("shopFooter").value.trim();
+
+  saveDB();
+
+  alert("Settings Save হয়েছে");
+}
+
+/* =========================
+   BACKUP / RESTORE
+========================= */
+
+function backupData(){
+  const blob=new Blob(
+    [JSON.stringify(db,null,2)],
+    {type:"application/json"}
+  );
+
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download="akhondo-hisab-backup-"+today()+".json";
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function restoreData(event){
+  const file=event.target.files[0];
+
+  if(!file)return;
+
+  const reader=new FileReader();
+
+  reader.onload=function(){
+    try{
+      const data=JSON.parse(reader.result);
+
+      if(
+        !Array.isArray(data.customers) ||
+        !Array.isArray(data.products) ||
+        !Array.isArray(data.sales) ||
+        !Array.isArray(data.payments)
+      ){
+        throw new Error("Invalid backup");
+      }
+
+      if(confirm("বর্তমান হিসাব replace করে backup restore করবেন?")){
+        db=data;
+        saveDB();
+        refreshAll();
+        alert("Backup Restore হয়েছে");
+      }
+    }catch(e){
+      alert("Backup file সঠিক নয়");
+    }
+  };
+
+  reader.readAsText(file);
+}
+
+function clearAllData(){
+  if(!confirm("সতর্কতা!\nসব Customer, Sale, Payment, Product মুছে যাবে।\nনিশ্চিত?")){
+    return;
+  }
+
+  if(!confirm("শেষবারের মতো নিশ্চিত করুন।")){
+    return;
+  }
+
+  localStorage.removeItem(DB_KEY);
+
+  location.reload();
+}
+
+/* =========================
+   PRINT INVOICE
+========================= */
+
+function printSale(saleId){
+  const s=db.sales.find(x=>x.id===saleId);
+
+  if(!s)return;
+
+  const c=db.customers.find(x=>x.id===s.customerId);
+
+  const rows=s.items.map((i,index)=>`
+    <tr>
+      <td>${index+1}</td>
+      <td>${escapeHtml(i.name)}</td>
+      <td>${i.qty} ${escapeHtml(i.unit)}</td>
+      <td>${money(i.rate)}</td>
+      <td>${money(i.total)}</td>
+    </tr>
+  `).join("");
+
+  document.getElementById("printArea").innerHTML=`
+    <div class="invoice">
+
+      <div class="invoiceHead">
+        <h1>${escapeHtml(db.settings.shopName)}</h1>
+        <p>${escapeHtml(db.settings.shopAddress)}</p>
+        <p>${escapeHtml(db.settings.shopPhone)}</p>
+        <h2>SALE INVOICE</h2>
+      </div>
+
+      <p>
+        <b>Invoice:</b> ${escapeHtml(s.invoiceNo)}
+        &nbsp;&nbsp;
+        <b>Date:</b> ${s.date}
+      </p>
+
+      <p>
+        <b>Customer:</b> ${escapeHtml(c?.name||"")}
+        <br>
+        <b>Mobile:</b> ${escapeHtml(c?.phone||"")}
+        <br>
+        <b>Address:</b> ${escapeHtml(c?.address||"")}
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Rate</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+
+      <br>
+
+      <table>
+        <tr>
+          <td>Subtotal</td>
+          <td class="right">${money(s.subtotal)}</td>
+        </tr>
+        <tr>
+          <td>Discount</td>
+          <td class="right">${money(s.discount)}</td>
+        </tr>
+        <tr>
+          <td>Current Sale</td>
+          <td class="right">${money(s.total)}</td>
+        </tr>
+        <tr>
+          <td>Previous Due</td>
+          <td class="right">${money(s.previousDue)}</td>
+        </tr>
+        <tr>
+          <td><b>Total Receivable</b></td>
+          <td class="right"><b>${money(s.previousDue+s.total)}</b></td>
+        </tr>
+        <tr>
+          <td>Paid</td>
+          <td class="right">${money(s.paid)}</td>
+        </tr>
+        <tr>
+          <td class="invoiceTotal">New Due</td>
+          <td class="right invoiceTotal">
+            ${money(s.previousDue+s.total-s.paid)}
+          </td>
+        </tr>
+      </table>
+
+      <br>
+
+      <p style="text-align:center">
+        ${escapeHtml(db.settings.shopFooter)}
+      </p>
+
+    </div>
+  `;
+
+  window.print();
+}
+
+/* =========================
+   WHATSAPP
+========================= */
+
+function shareCustomerDue(customerId){
+  const c=db.customers.find(x=>x.id===customerId);
+
+  if(!c)return;
+
+  const text=
+    `আখন্দ পোল্ট্রি ফিড\n`+
+    `প্রিয় ${c.name},\n`+
+    `আপনার বর্তমান বাকি: ${money(customerBalance(c.id))}\n`+
+    `ধন্যবাদ।`;
+
+  const url=
+    "https://wa.me/88"+
+    String(c.phone||"").replace(/\D/g,"")+
+    "?text="+encodeURIComponent(text);
+
+  window.open(url,"_blank");
+}
+
+/* =========================
+   MODAL
+========================= */
+
+function closeModal(id){
+  document.getElementById(id).style.display="none";
+}
+
+/* =========================
+   REFRESH
+========================= */
+
+function refreshAll(){
+  populateSelects();
+
+  renderDashboard();
+  renderCustomers();
+  renderProducts();
+  renderPayments();
+  renderLedger();
+  renderRecentSales();
+  renderReports();
+
+  showPaymentDue();
+  loadSettings();
+
+  updateSaleSummary();
+}
+
+/* =========================
+   START
+========================= */
+
+loadDB();
+
+document.getElementById("saleDate").value=today();
+document.getElementById("reportFrom").value=today();
+document.getElementById("reportTo").value=today();
+
+if(db.products.length>0){
+  saleItems=[{
+    id:uid("ITEM"),
+    productId:db.products[0].id,
     qty:1,
-    unit:"Bag",
-    rate:0
-});
-
-renderProducts();
-
+    rate:db.products[0].saleRate
+  }];
 }
 
-
-// RENDER PRODUCTS
-
-function renderProducts(){
-
-let body =
-document.getElementById("productBody");
-
-body.innerHTML="";
-
-products.forEach((p,index)=>{
-
-let total =
-(Number(p.qty)||0) *
-(Number(p.rate)||0);
-
-body.innerHTML += `
-
-<tr>
-
-<td>
-<input
-value="${p.name}"
-placeholder="Feed / Medicine"
-oninput="products[${index}].name=this.value">
-</td>
-
-<td>
-<input
-type="number"
-value="${p.qty}"
-oninput="products[${index}].qty=this.value;calculate()">
-</td>
-
-<td>
-
-<select
-onchange="products[${index}].unit=this.value">
-
-<option ${p.unit==="Bag"?"selected":""}>Bag</option>
-<option ${p.unit==="Kg"?"selected":""}>Kg</option>
-<option ${p.unit==="Pcs"?"selected":""}>Pcs</option>
-<option ${p.unit==="Dozen"?"selected":""}>Dozen</option>
-
-</select>
-
-</td>
-
-<td>
-<input
-type="number"
-value="${p.rate}"
-oninput="products[${index}].rate=this.value;calculate()">
-</td>
-
-<td>
-৳ ${total.toFixed(2)}
-</td>
-
-<td>
-
-<button
-class="danger"
-onclick="removeProduct(${index})">
-X
-</button>
-
-</td>
-
-</tr>
-
-`;
-
-});
-
-calculate();
-
-}
-
-
-// REMOVE PRODUCT
-
-function removeProduct(index){
-
-products.splice(index,1);
-
-renderProducts();
-
-}
-
-
-// CALCULATE
-
-function calculate(){
-
-let subtotal=0;
-
-products.forEach(p=>{
-
-subtotal +=
-(Number(p.qty)||0) *
-(Number(p.rate)||0);
-
-});
-
-let previous =
-Number(document.getElementById("previousDue").value)||0;
-
-let paid =
-Number(document.getElementById("paid").value)||0;
-
-let grand =
-subtotal + previous;
-
-let due =
-grand - paid;
-
-if(due < 0) due=0;
-
-document.getElementById("subtotal").innerText =
-subtotal.toFixed(2);
-
-document.getElementById("grandTotal").innerText =
-grand.toFixed(2);
-
-document.getElementById("newDue").innerText =
-due.toFixed(2);
-
-}
-
-
-// INVOICE NUMBER
-
-function getInvoiceNumber(){
-
-invoiceCounter++;
-
-localStorage.setItem(
-"invoiceCounter",
-invoiceCounter
-);
-
-return "AKH-" + invoiceCounter;
-
-}
-
-
-// GENERATE INVOICE
-
-function generateInvoice(){
-
-if(!document.getElementById("customerName").value.trim()){
-
-alert("Customer name দিন");
-
-return;
-
-}
-
-if(products.length===0){
-
-alert("কমপক্ষে একটি product যোগ করুন");
-
-return;
-
-}
-
-calculate();
-
-let invoiceNo =
-getInvoiceNumber();
-
-let name =
-document.getElementById("customerName").value;
-
-let phone =
-document.getElementById("customerPhone").value;
-
-let address =
-document.getElementById("customerAddress").value;
-
-let date =
-document.getElementById("invoiceDate").value;
-
-let subtotal =
-document.getElementById("subtotal").innerText;
-
-let previous =
-document.getElementById("previousDue").value;
-
-let grand =
-document.getElementById("grandTotal").innerText;
-
-let paid =
-document.getElementById("paid").value;
-
-let due =
-document.getElementById("newDue").innerText;
-
-
-document.getElementById("printInvoiceNo").innerText =
-invoiceNo;
-
-document.getElementById("printDate").innerText =
-date;
-
-document.getElementById("printCustomer").innerText =
-name;
-
-document.getElementById("printPhone").innerText =
-phone || "-";
-
-document.getElementById("printAddress").innerText =
-address || "-";
-
-document.getElementById("printSubtotal").innerText =
-subtotal;
-
-document.getElementById("printPreviousDue").innerText =
-Number(previous).toFixed(2);
-
-document.getElementById("printGrandTotal").innerText =
-grand;
-
-document.getElementById("printPaid").innerText =
-Number(paid).toFixed(2);
-
-document.getElementById("printNewDue").innerText =
-due;
-
-
-let printBody =
-document.getElementById("printProducts");
-
-printBody.innerHTML="";
-
-products.forEach(p=>{
-
-let total =
-(Number(p.qty)||0) *
-(Number(p.rate)||0);
-
-printBody.innerHTML += `
-
-<tr>
-
-<td>${escapeHtml(p.name)}</td>
-
-<td>${p.qty}</td>
-
-<td>${p.unit}</td>
-
-<td>৳ ${Number(p.rate).toFixed(2)}</td>
-
-<td>৳ ${total.toFixed(2)}</td>
-
-</tr>
-
-`;
-
-});
-
-
-document.getElementById("printInvoice").style.display =
-"block";
-
-}
-
-
-// SAVE INVOICE
-
-function saveInvoice(){
-
-if(!document.getElementById("customerName").value.trim()){
-
-alert("Customer name দিন");
-
-return;
-
-}
-
-if(products.length===0){
-
-alert("Product যোগ করুন");
-
-return;
-
-}
-
-calculate();
-
-let invoiceNo =
-getInvoiceNumber();
-
-let invoice={
-
-invoiceNo:invoiceNo,
-
-date:document.getElementById("invoiceDate").value,
-
-customer:document.getElementById("customerName").value,
-
-phone:document.getElementById("customerPhone").value,
-
-address:document.getElementById("customerAddress").value,
-
-products:products,
-
-subtotal:Number(document.getElementById("subtotal").innerText),
-
-previousDue:Number(document.getElementById("previousDue").value)||0,
-
-grandTotal:Number(document.getElementById("grandTotal").innerText),
-
-paid:Number(document.getElementById("paid").value)||0,
-
-due:Number(document.getElementById("newDue").innerText)
-
-};
-
-
-let history =
-JSON.parse(localStorage.getItem("akhondoInvoices") || "[]");
-
-history.unshift(invoice);
-
-localStorage.setItem(
-"akhondoInvoices",
-JSON.stringify(history)
-);
-
-renderHistory();
-
-alert(
-"Invoice saved successfully!\n\nInvoice No: "
-+ invoiceNo
-);
-
-}
-
-
-// HISTORY
-
-function renderHistory(){
-
-let history =
-JSON.parse(localStorage.getItem("akhondoInvoices") || "[]");
-
-let box =
-document.getElementById("history");
-
-if(history.length===0){
-
-box.innerHTML =
-"<p>এখনো কোনো invoice নেই।</p>";
-
-return;
-
-}
-
-box.innerHTML="";
-
-history.forEach((inv,index)=>{
-
-box.innerHTML += `
-
-<div class="history-item">
-
-<strong>${inv.invoiceNo}</strong>
-
-<br>
-
-Customer:
-${escapeHtml(inv.customer)}
-
-<br>
-
-Date:
-${inv.date}
-
-<br>
-
-Total:
-৳ ${inv.grandTotal.toFixed(2)}
-
-<br>
-
-Due:
-<strong style="color:#dc3545">
-৳ ${inv.due.toFixed(2)}
-</strong>
-
-<br>
-
-<button
-class="btn"
-onclick="viewSavedInvoice(${index})">
-View
-</button>
-
-<button
-class="danger"
-onclick="deleteInvoice(${index})">
-Delete
-</button>
-
-</div>
-
-`;
-
-});
-
-}
-
-
-// VIEW SAVED
-
-function viewSavedInvoice(index){
-
-let history =
-JSON.parse(localStorage.getItem("akhondoInvoices") || "[]");
-
-let inv=history[index];
-
-products=inv.products;
-
-document.getElementById("customerName").value =
-inv.customer;
-
-document.getElementById("customerPhone").value =
-inv.phone;
-
-document.getElementById("customerAddress").value =
-inv.address;
-
-document.getElementById("invoiceDate").value =
-inv.date;
-
-document.getElementById("previousDue").value =
-inv.previousDue;
-
-document.getElementById("paid").value =
-inv.paid;
-
-renderProducts();
-
-generateInvoice();
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
-
-// DELETE
-
-function deleteInvoice(index){
-
-if(!confirm("এই invoice delete করবেন?")) return;
-
-let history =
-JSON.parse(localStorage.getItem("akhondoInvoices") || "[]");
-
-history.splice(index,1);
-
-localStorage.setItem(
-"akhondoInvoices",
-JSON.stringify(history)
-);
-
-renderHistory();
-
-}
-
-
-// PRINT
-
-function printInvoice(){
-
-if(
-document.getElementById("printInvoice").style.display !== "block"
-){
-
-generateInvoice();
-
-}
-
-setTimeout(()=>{
-
-window.print();
-
-},300);
-
-}
-
-
-// WHATSAPP
-
-function shareWhatsApp(){
-
-let name =
-document.getElementById("customerName").value;
-
-let phone =
-document.getElementById("customerPhone").value;
-
-let total =
-document.getElementById("grandTotal").innerText;
-
-let paid =
-document.getElementById("paid").value;
-
-let due =
-document.getElementById("newDue").innerText;
-
-
-let message =
-
-`🐔 Akhondo Poultry Feed
-
-🧾 Invoice
-
-Customer: ${name}
-
-Total: ৳${total}
-
-Paid: ৳${paid}
-
-Due: ৳${due}
-
-ধন্যবাদ।
-আখন্দ পোল্ট্রি ফিড
-লাকসাম রোড, চৌদ্দগ্রাম, কুমিল্লা`;
-
-let url =
-"https://wa.me/" +
-phone.replace(/\D/g,"") +
-"?text=" +
-encodeURIComponent(message);
-
-window.open(url,"_blank");
-
-}
-
-
-// SECURITY
-
-function escapeHtml(text){
-
-return String(text || "")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-
-}
-
-
-// START
-
-addProduct();
-
-renderHistory();
+renderSaleItems();
+refreshAll();
 
 </script>
 

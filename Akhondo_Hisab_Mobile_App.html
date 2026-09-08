@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#146c43">
+<title>আখন্দ হিসাব</title>
+<style>
+*{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif;background:#f4f7f5;color:#18221d}
+header{background:#146c43;color:#fff;padding:18px 16px;position:sticky;top:0;z-index:5;box-shadow:0 2px 10px #0002}
+header h1{font-size:21px;margin:0} header p{margin:4px 0 0;font-size:13px;opacity:.9}
+main{max-width:680px;margin:auto;padding:14px}
+.card{background:#fff;border-radius:16px;padding:15px;margin-bottom:13px;box-shadow:0 3px 14px #0000000d}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:#eef8f1;border-radius:13px;padding:13px}.stat small{display:block;color:#587064}.stat b{font-size:21px}
+button,input,select{font:inherit} input,select{width:100%;padding:13px;border:1px solid #d6ded9;border-radius:11px;margin:6px 0 10px;background:#fff}
+button{border:0;border-radius:11px;padding:13px 15px;font-weight:700;cursor:pointer}
+.primary{background:#146c43;color:#fff;width:100%}.danger{background:#ffe9e9;color:#b42318}.secondary{background:#eaf2ed;color:#146c43}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:13px}.tab{font-size:12px;padding:11px 4px;background:#eaf2ed;color:#146c43}.tab.active{background:#146c43;color:#fff}
+.hidden{display:none}.customer{border-bottom:1px solid #edf0ee;padding:13px 0}.customer:last-child{border:0}.row{display:flex;justify-content:space-between;gap:10px;align-items:center}.name{font-weight:800}.due{font-weight:800;color:#b42318}.paid{color:#146c43}.muted{color:#68766e;font-size:13px;margin-top:4px}
+.actions{display:flex;gap:7px;margin-top:10px}.actions button{padding:8px 11px;font-size:12px}
+label{font-size:13px;font-weight:700;color:#42544a}.empty{text-align:center;color:#6b7971;padding:25px 10px}
+footer{text-align:center;color:#7a867f;font-size:12px;padding:10px 0 30px}
+</style>
+</head>
+<body>
+<header><h1>🐔 আখন্দ হিসাব</h1><p>আখন্দ পোল্ট্রি ফিড — সহজ কাস্টমার বাকি হিসাব</p></header>
+<main>
+<div class="tabs">
+<button class="tab active" data-tab="home">হোম</button>
+<button class="tab" data-tab="customer">কাস্টমার</button>
+<button class="tab" data-tab="sale">বিক্রি</button>
+<button class="tab" data-tab="payment">আদায়</button>
+</div>
+
+<section id="home" class="panel">
+<div class="card"><div class="stats">
+<div class="stat"><small>মোট কাস্টমার</small><b id="totalCustomers">0</b></div>
+<div class="stat"><small>মোট বাকি</small><b id="totalDue">৳0</b></div>
+</div></div>
+<div class="card">
+<input id="search" placeholder="🔍 কাস্টমার নাম বা মোবাইল দিয়ে খুঁজুন">
+<div id="customerList"></div>
+</div>
+</section>
+
+<section id="customer" class="panel hidden">
+<div class="card">
+<h3>➕ নতুন কাস্টমার</h3>
+<label>কাস্টমারের নাম</label><input id="cName" placeholder="যেমন: রহিম">
+<label>মোবাইল নম্বর</label><input id="cPhone" inputmode="tel" placeholder="01XXXXXXXXX">
+<label>পুরাতন বাকি</label><input id="cDue" type="number" inputmode="decimal" value="0" min="0">
+<button class="primary" onclick="addCustomer()">কাস্টমার সেভ করুন</button>
+</div>
+</section>
+
+<section id="sale" class="panel hidden">
+<div class="card">
+<h3>➕ বাকিতে বিক্রি</h3>
+<label>কাস্টমার</label><select id="saleCustomer"></select>
+<label>বিক্রির টাকা / নতুন বাকি</label><input id="saleAmount" type="number" inputmode="decimal" placeholder="টাকার পরিমাণ">
+<label>নোট (ঐচ্ছিক)</label><input id="saleNote" placeholder="যেমন: ২ বস্তা ফিড">
+<button class="primary" onclick="addSale()">বাকি যোগ করুন</button>
+</div>
+</section>
+
+<section id="payment" class="panel hidden">
+<div class="card">
+<h3>💰 টাকা আদায়</h3>
+<label>কাস্টমার</label><select id="payCustomer"></select>
+<label>আদায়ের টাকা</label><input id="payAmount" type="number" inputmode="decimal" placeholder="টাকার পরিমাণ">
+<label>নোট (ঐচ্ছিক)</label><input id="payNote" placeholder="যেমন: বিকাশে পেয়েছি">
+<button class="primary" onclick="addPayment()">আদায় সেভ করুন</button>
+</div>
+</section>
+
+<div class="card">
+<div class="row"><h3 style="margin:0">📒 সাম্প্রতিক লেনদেন</h3><button class="secondary" onclick="toggleHistory()">দেখুন</button></div>
+<div id="history" class="hidden"></div>
+</div>
+
+<div class="card">
+<h3>💾 ডাটা সুরক্ষা</h3>
+<button class="secondary" onclick="exportData()">ব্যাকআপ ডাউনলোড</button>
+<input id="importFile" type="file" accept="application/json" onchange="importData(event)">
+<button class="danger" onclick="clearAll()">সব ডাটা মুছুন</button>
+</div>
+<footer>ডাটা এই ফোনের ব্রাউজারেই সেভ থাকে। নিয়মিত Backup নিন।</footer>
+</main>
+
+<script>
+let customers = JSON.parse(localStorage.getItem('akhondo_customers')||'[]');
+let transactions = JSON.parse(localStorage.getItem('akhondo_transactions')||'[]');
+
+function save(){localStorage.setItem('akhondo_customers',JSON.stringify(customers));localStorage.setItem('akhondo_transactions',JSON.stringify(transactions));}
+function money(n){return '৳'+Number(n||0).toLocaleString('en-US',{maximumFractionDigits:2});}
+function id(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6);}
+function render(){
+ const total=customers.reduce((s,c)=>s+Number(c.due||0),0);
+ document.getElementById('totalCustomers').textContent=customers.length;
+ document.getElementById('totalDue').textContent=money(total);
+ const q=(document.getElementById('search').value||'').toLowerCase();
+ const list=customers.filter(c=>(c.name+c.phone).toLowerCase().includes(q)).sort((a,b)=>b.due-a.due);
+ document.getElementById('customerList').innerHTML=list.length?list.map(c=>`
+ <div class="customer"><div class="row"><div><div class="name">${esc(c.name)}</div><div class="muted">📱 ${esc(c.phone||'মোবাইল নেই')}</div></div><div class="due">${money(c.due)}</div></div>
+ <div class="actions"><button class="secondary" onclick="quickSale('${c.id}')">বাকি যোগ</button><button class="secondary" onclick="quickPay('${c.id}')">টাকা আদায়</button><button class="danger" onclick="deleteCustomer('${c.id}')">মুছুন</button></div></div>`).join(''):'<div class="empty">এখনো কোনো কাস্টমার নেই।</div>';
+ const opts='<option value="">কাস্টমার নির্বাচন করুন</option>'+customers.map(c=>`<option value="${c.id}">${esc(c.name)} — ${money(c.due)}</option>`).join('');
+ document.getElementById('saleCustomer').innerHTML=opts;
+ document.getElementById('payCustomer').innerHTML=opts;
+ renderHistory();
+}
+function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+function addCustomer(){
+ const name=cName.value.trim(),phone=cPhone.value.trim(),due=Number(cDue.value||0);
+ if(!name)return alert('কাস্টমারের নাম দিন');
+ customers.push({id:id(),name,phone,due});
+ save(); cName.value='';cPhone.value='';cDue.value='0'; render(); alert('কাস্টমার সেভ হয়েছে');
+}
+function addSale(){
+ const cid=saleCustomer.value,amt=Number(saleAmount.value||0);
+ if(!cid||amt<=0)return alert('কাস্টমার ও টাকার পরিমাণ দিন');
+ const c=customers.find(x=>x.id===cid); c.due+=amt;
+ transactions.unshift({id:id(),type:'বাকি বিক্রি',cid,amount:amt,note:saleNote.value.trim(),time:new Date().toLocaleString('bn-BD')});
+ save();saleAmount.value='';saleNote.value='';render();alert('বাকি সফলভাবে যোগ হয়েছে');
+}
+function addPayment(){
+ const cid=payCustomer.value,amt=Number(payAmount.value||0);
+ if(!cid||amt<=0)return alert('কাস্টমার ও টাকার পরিমাণ দিন');
+ const c=customers.find(x=>x.id===cid);
+ if(amt>c.due && !confirm('আদায়ের টাকা বর্তমান বাকি থেকে বেশি। তবুও সেভ করবেন?'))return;
+ c.due-=amt;
+ transactions.unshift({id:id(),type:'টাকা আদায়',cid,amount:amt,note:payNote.value.trim(),time:new Date().toLocaleString('bn-BD')});
+ save();payAmount.value='';payNote.value='';render();alert('আদায় সেভ হয়েছে');
+}
+function deleteCustomer(cid){if(confirm('এই কাস্টমার মুছে ফেলবেন?')){customers=customers.filter(c=>c.id!==cid);save();render();}}
+function quickSale(cid){openTab('sale');setTimeout(()=>document.getElementById('saleCustomer').value=cid,0)}
+function quickPay(cid){openTab('payment');setTimeout(()=>document.getElementById('payCustomer').value=cid,0)}
+function renderHistory(){
+ const box=document.getElementById('history');
+ box.innerHTML=transactions.slice(0,30).map(t=>{const c=customers.find(x=>x.id===t.cid);return `<div class="customer"><b>${t.type}</b> — ${esc(c?c.name:'মুছে ফেলা কাস্টমার')} <span class="${t.type==='টাকা আদায়'?'paid':'due'}">${money(t.amount)}</span><div class="muted">${esc(t.note||'')} • ${t.time}</div></div>`}).join('')||'<div class="empty">এখনো কোনো লেনদেন নেই।</div>';
+}
+function toggleHistory(){history.classList.toggle('hidden')}
+function exportData(){
+ const blob=new Blob([JSON.stringify({customers,transactions,exportedAt:new Date().toISOString()},null,2)],{type:'application/json'});
+ const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Akhondo-Hisab-Backup.json';a.click();URL.revokeObjectURL(a.href);
+}
+function importData(e){
+ const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!Array.isArray(d.customers))throw 0;customers=d.customers;transactions=Array.isArray(d.transactions)?d.transactions:[];save();render();alert('Backup সফলভাবে Restore হয়েছে');}catch{x=alert('সঠিক Backup file নয়')}};r.readAsText(f);
+}
+function clearAll(){if(confirm('সব কাস্টমার ও হিসাব স্থায়ীভাবে মুছে যাবে। নিশ্চিত?')){customers=[];transactions=[];save();render();}}
+function openTab(name){document.querySelectorAll('.panel').forEach(x=>x.classList.add('hidden'));document.getElementById(name).classList.remove('hidden');document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.tab===name));}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>openTab(b.dataset.tab));
+search.oninput=render;
+render();
+</script>
+</body></html>

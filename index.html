@@ -3,74 +3,1062 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#146c43">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="manifest" href="manifest.json">
-<title>আখন্দ হিসাব</title>
+<title>Akhondo Poultry Feed - Invoice</title>
+
 <style>
-*{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif;background:#f4f7f5;color:#18221d}
-header{background:#146c43;color:#fff;padding:18px 16px;position:sticky;top:0;z-index:5;box-shadow:0 2px 10px #0002}
-header h1{font-size:21px;margin:0} header p{margin:4px 0 0;font-size:13px;opacity:.9}
-main{max-width:680px;margin:auto;padding:14px}.card{background:#fff;border-radius:16px;padding:15px;margin-bottom:13px;box-shadow:0 3px 14px #0000000d}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{background:#eef8f1;border-radius:13px;padding:13px}.stat small{display:block;color:#587064}.stat b{font-size:21px}
-button,input,select{font:inherit} input,select{width:100%;padding:13px;border:1px solid #d6ded9;border-radius:11px;margin:6px 0 10px;background:#fff}
-button{border:0;border-radius:11px;padding:13px 15px;font-weight:700}.primary{background:#146c43;color:#fff;width:100%}.danger{background:#ffe9e9;color:#b42318}.secondary{background:#eaf2ed;color:#146c43}
-.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:13px}.tab{font-size:12px;padding:11px 4px;background:#eaf2ed;color:#146c43}.tab.active{background:#146c43;color:#fff}
-.hidden{display:none}.customer{border-bottom:1px solid #edf0ee;padding:13px 0}.customer:last-child{border:0}.row{display:flex;justify-content:space-between;gap:10px;align-items:center}.name{font-weight:800}.due{font-weight:800;color:#b42318}.paid{color:#146c43}.muted{color:#68766e;font-size:13px;margin-top:4px}
-.actions{display:flex;gap:7px;margin-top:10px}.actions button{padding:8px 11px;font-size:12px}label{font-size:13px;font-weight:700;color:#42544a}.empty{text-align:center;color:#6b7971;padding:25px 10px}
-#installBtn{margin-top:10px;background:#fff;color:#146c43;width:100%;display:none}footer{text-align:center;color:#7a867f;font-size:12px;padding:10px 0 30px}
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,"Noto Sans Bengali",sans-serif;
+    background:#f1f5f3;
+    color:#222;
+}
+
+header{
+    background:linear-gradient(135deg,#087f3e,#12a653);
+    color:white;
+    padding:22px 15px;
+    text-align:center;
+}
+
+header h1{
+    margin:0;
+    font-size:25px;
+}
+
+header p{
+    margin:6px 0 0;
+}
+
+.container{
+    max-width:950px;
+    margin:20px auto;
+    padding:0 12px;
+}
+
+.card{
+    background:white;
+    border-radius:14px;
+    padding:18px;
+    margin-bottom:18px;
+    box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+h2{
+    margin-top:0;
+    color:#087f3e;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+label{
+    font-weight:bold;
+    font-size:14px;
+}
+
+input,select{
+    width:100%;
+    padding:12px;
+    margin-top:6px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:9px;
+    text-align:center;
+}
+
+th{
+    background:#087f3e;
+    color:white;
+}
+
+button{
+    border:0;
+    border-radius:8px;
+    padding:11px 15px;
+    font-size:15px;
+    cursor:pointer;
+    margin:4px;
+}
+
+.btn{
+    background:#087f3e;
+    color:white;
+}
+
+.btn2{
+    background:#1687e8;
+    color:white;
+}
+
+.danger{
+    background:#dc3545;
+    color:white;
+}
+
+.total-box{
+    margin-top:18px;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:7px;
+    font-size:17px;
+}
+
+.grand{
+    font-size:22px;
+    font-weight:bold;
+    color:#087f3e;
+}
+
+.invoice{
+    background:white;
+    padding:25px;
+    max-width:800px;
+    margin:20px auto;
+    display:none;
+}
+
+.invoice-head{
+    display:flex;
+    justify-content:space-between;
+    border-bottom:2px solid #087f3e;
+    padding-bottom:15px;
+}
+
+.invoice table th{
+    background:#087f3e;
+}
+
+.invoice-footer{
+    margin-top:25px;
+    border-top:1px solid #ddd;
+    padding-top:15px;
+}
+
+.history-item{
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:12px;
+    margin:8px 0;
+}
+
+@media(max-width:650px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    table{
+        font-size:12px;
+    }
+
+    th,td{
+        padding:6px;
+    }
+
+    .invoice-head{
+        flex-direction:column;
+        gap:10px;
+    }
+}
+
+@media print{
+    body *{
+        visibility:hidden;
+    }
+
+    #printInvoice,
+    #printInvoice *{
+        visibility:visible;
+    }
+
+    #printInvoice{
+        display:block;
+        position:absolute;
+        left:0;
+        top:0;
+        width:100%;
+        margin:0;
+        box-shadow:none;
+    }
+
+    .no-print{
+        display:none!important;
+    }
+}
 </style>
 </head>
+
 <body>
+
 <header>
-<h1>🐔 আখন্দ হিসাব</h1>
-<p>আখন্দ পোল্ট্রি ফিড — সহজ কাস্টমার বাকি হিসাব</p>
-<button id="installBtn">📲 অ্যাপ হিসেবে Install করুন</button>
+    <h1>🐔 আখন্দ পোল্ট্রি ফিড 🐣</h1>
+    <p>Akhondo Poultry Feed</p>
+    <p>লাকসাম রোড, চৌদ্দগ্রাম, কুমিল্লা</p>
 </header>
-<main>
-<div class="tabs">
-<button class="tab active" data-tab="home">হোম</button><button class="tab" data-tab="customer">কাস্টমার</button><button class="tab" data-tab="sale">বিক্রি</button><button class="tab" data-tab="payment">আদায়</button>
+
+<div class="container">
+
+<div class="card">
+
+<h2>🧾 নতুন Invoice</h2>
+
+<div class="grid">
+
+<div>
+<label>Customer Name</label>
+<input id="customerName" placeholder="কাস্টমারের নাম">
 </div>
-<section id="home" class="panel">
-<div class="card"><div class="stats"><div class="stat"><small>মোট কাস্টমার</small><b id="totalCustomers">0</b></div><div class="stat"><small>মোট বাকি</small><b id="totalDue">৳0</b></div></div></div>
-<div class="card"><input id="search" placeholder="🔍 কাস্টমার নাম বা মোবাইল দিয়ে খুঁজুন"><div id="customerList"></div></div>
-</section>
-<section id="customer" class="panel hidden"><div class="card"><h3>➕ নতুন কাস্টমার</h3>
-<label>কাস্টমারের নাম</label><input id="cName" placeholder="যেমন: রহিম"><label>মোবাইল নম্বর</label><input id="cPhone" inputmode="tel" placeholder="01XXXXXXXXX"><label>পুরাতন বাকি</label><input id="cDue" type="number" inputmode="decimal" value="0" min="0"><button class="primary" onclick="addCustomer()">কাস্টমার সেভ করুন</button></div></section>
-<section id="sale" class="panel hidden"><div class="card"><h3>➕ বাকিতে বিক্রি</h3>
-<label>কাস্টমার</label><select id="saleCustomer"></select><label>বিক্রির টাকা / নতুন বাকি</label><input id="saleAmount" type="number" inputmode="decimal" placeholder="টাকার পরিমাণ"><label>নোট (ঐচ্ছিক)</label><input id="saleNote" placeholder="যেমন: ২ বস্তা ফিড"><button class="primary" onclick="addSale()">বাকি যোগ করুন</button></div></section>
-<section id="payment" class="panel hidden"><div class="card"><h3>💰 টাকা আদায়</h3>
-<label>কাস্টমার</label><select id="payCustomer"></select><label>আদায়ের টাকা</label><input id="payAmount" type="number" inputmode="decimal" placeholder="টাকার পরিমাণ"><label>নোট (ঐচ্ছিক)</label><input id="payNote" placeholder="যেমন: বিকাশে পেয়েছি"><button class="primary" onclick="addPayment()">আদায় সেভ করুন</button></div></section>
-<div class="card"><div class="row"><h3 style="margin:0">📒 সাম্প্রতিক লেনদেন</h3><button class="secondary" onclick="toggleHistory()">দেখুন</button></div><div id="history" class="hidden"></div></div>
-<div class="card"><h3>💾 ডাটা সুরক্ষা</h3><button class="secondary" onclick="exportData()">ব্যাকআপ ডাউনলোড</button><input id="importFile" type="file" accept="application/json" onchange="importData(event)"><button class="danger" onclick="clearAll()">সব ডাটা মুছুন</button></div>
-<footer>🐔 আখন্দ পোল্ট্রি ফিড • নিয়মিত Backup নিন</footer>
-</main>
+
+<div>
+<label>Mobile</label>
+<input id="customerPhone" placeholder="01XXXXXXXXX">
+</div>
+
+<div>
+<label>Address</label>
+<input id="customerAddress" placeholder="ঠিকানা">
+</div>
+
+<div>
+<label>Invoice Date</label>
+<input type="date" id="invoiceDate">
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>📦 Products</h2>
+
+<table id="productTable">
+
+<thead>
+<tr>
+<th>Product</th>
+<th>Qty</th>
+<th>Unit</th>
+<th>Rate</th>
+<th>Total</th>
+<th>❌</th>
+</tr>
+</thead>
+
+<tbody id="productBody"></tbody>
+
+</table>
+
+<button class="btn" onclick="addProduct()">
+➕ Add Product
+</button>
+
+<div class="total-box">
+
+<div>
+Subtotal:
+<strong>৳ <span id="subtotal">0.00</span></strong>
+</div>
+
+<div>
+Previous Due:
+<input
+type="number"
+id="previousDue"
+value="0"
+oninput="calculate()"
+style="width:150px;text-align:right">
+</div>
+
+<div>
+Paid:
+<input
+type="number"
+id="paid"
+value="0"
+oninput="calculate()"
+style="width:150px;text-align:right">
+</div>
+
+<div class="grand">
+Total: ৳ <span id="grandTotal">0.00</span>
+</div>
+
+<div>
+New Due:
+<strong style="color:#dc3545">
+৳ <span id="newDue">0.00</span>
+</strong>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<button class="btn" onclick="generateInvoice()">
+🧾 Generate Invoice
+</button>
+
+<button class="btn2" onclick="saveInvoice()">
+💾 Save Invoice
+</button>
+
+<button class="btn2" onclick="printInvoice()">
+🖨️ Print / PDF
+</button>
+
+<button class="btn2" onclick="shareWhatsApp()">
+📲 WhatsApp
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>📚 Invoice History</h2>
+
+<div id="history"></div>
+
+</div>
+
+</div>
+
+
+<!-- PRINTABLE INVOICE -->
+
+<div id="printInvoice" class="invoice">
+
+<div class="invoice-head">
+
+<div>
+<h1 style="color:#087f3e;margin:0">
+🐔 আখন্দ পোল্ট্রি ফিড
+</h1>
+
+<p>
+Akhondo Poultry Feed
+</p>
+
+<p>
+লাকসাম রোড, চৌদ্দগ্রাম, কুমিল্লা
+</p>
+
+</div>
+
+<div>
+
+<strong>INVOICE</strong>
+
+<p>
+Invoice No:
+<strong id="printInvoiceNo"></strong>
+</p>
+
+<p>
+Date:
+<span id="printDate"></span>
+</p>
+
+</div>
+
+</div>
+
+
+<div style="margin-top:20px">
+
+<strong>Customer:</strong>
+<span id="printCustomer"></span>
+
+<br>
+
+<strong>Mobile:</strong>
+<span id="printPhone"></span>
+
+<br>
+
+<strong>Address:</strong>
+<span id="printAddress"></span>
+
+</div>
+
+
+<table>
+
+<thead>
+<tr>
+<th>Product</th>
+<th>Qty</th>
+<th>Unit</th>
+<th>Rate</th>
+<th>Total</th>
+</tr>
+</thead>
+
+<tbody id="printProducts"></tbody>
+
+</table>
+
+
+<div class="total-box">
+
+<div>
+Subtotal:
+<strong>৳ <span id="printSubtotal"></span></strong>
+</div>
+
+<div>
+Previous Due:
+<strong>৳ <span id="printPreviousDue"></span></strong>
+</div>
+
+<div>
+Grand Total:
+<strong>৳ <span id="printGrandTotal"></span></strong>
+</div>
+
+<div>
+Paid:
+<strong>৳ <span id="printPaid"></span></strong>
+</div>
+
+<div style="color:#dc3545">
+New Due:
+<strong>৳ <span id="printNewDue"></span></strong>
+</div>
+
+</div>
+
+
+<div class="invoice-footer">
+
+<p>
+ধন্যবাদ। আবার আসবেন।
+</p>
+
+<p>
+🐔 Akhondo Poultry Feed
+</p>
+
+</div>
+
+</div>
+
+
 <script>
-let customers=JSON.parse(localStorage.getItem('akhondo_customers')||'[]'),transactions=JSON.parse(localStorage.getItem('akhondo_transactions')||'[]'),deferredPrompt;
-function save(){localStorage.setItem('akhondo_customers',JSON.stringify(customers));localStorage.setItem('akhondo_transactions',JSON.stringify(transactions))}
-function money(n){return '৳'+Number(n||0).toLocaleString('en-US',{maximumFractionDigits:2})}
-function id(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
-function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-function render(){totalCustomers.textContent=customers.length;totalDue.textContent=money(customers.reduce((s,c)=>s+Number(c.due||0),0));let q=(search.value||'').toLowerCase();let list=customers.filter(c=>(c.name+c.phone).toLowerCase().includes(q)).sort((a,b)=>b.due-a.due);
-customerList.innerHTML=list.length?list.map(c=>`<div class="customer"><div class="row"><div><div class="name">${esc(c.name)}</div><div class="muted">📱 ${esc(c.phone||'মোবাইল নেই')}</div></div><div class="due">${money(c.due)}</div></div><div class="actions"><button class="secondary" onclick="quickSale('${c.id}')">বাকি যোগ</button><button class="secondary" onclick="quickPay('${c.id}')">টাকা আদায়</button><button class="danger" onclick="deleteCustomer('${c.id}')">মুছুন</button></div></div>`).join(''):'<div class="empty">এখনো কোনো কাস্টমার নেই।</div>';
-let opts='<option value="">কাস্টমার নির্বাচন করুন</option>'+customers.map(c=>`<option value="${c.id}">${esc(c.name)} — ${money(c.due)}</option>`).join('');saleCustomer.innerHTML=opts;payCustomer.innerHTML=opts;renderHistory()}
-function addCustomer(){let name=cName.value.trim(),phone=cPhone.value.trim(),due=Number(cDue.value||0);if(!name)return alert('কাস্টমারের নাম দিন');customers.push({id:id(),name,phone,due});save();cName.value='';cPhone.value='';cDue.value='0';render();alert('কাস্টমার সেভ হয়েছে')}
-function addSale(){let cid=saleCustomer.value,amt=Number(saleAmount.value||0);if(!cid||amt<=0)return alert('কাস্টমার ও টাকার পরিমাণ দিন');let c=customers.find(x=>x.id===cid);c.due+=amt;transactions.unshift({id:id(),type:'বাকি বিক্রি',cid,amount:amt,note:saleNote.value.trim(),time:new Date().toLocaleString('bn-BD')});save();saleAmount.value='';saleNote.value='';render();alert('বাকি সফলভাবে যোগ হয়েছে')}
-function addPayment(){let cid=payCustomer.value,amt=Number(payAmount.value||0);if(!cid||amt<=0)return alert('কাস্টমার ও টাকার পরিমাণ দিন');let c=customers.find(x=>x.id===cid);if(amt>c.due&&!confirm('আদায়ের টাকা বর্তমান বাকি থেকে বেশি। তবুও সেভ করবেন?'))return;c.due-=amt;transactions.unshift({id:id(),type:'টাকা আদায়',cid,amount:amt,note:payNote.value.trim(),time:new Date().toLocaleString('bn-BD')});save();payAmount.value='';payNote.value='';render();alert('আদায় সেভ হয়েছে')}
-function deleteCustomer(cid){if(confirm('এই কাস্টমার মুছে ফেলবেন?')){customers=customers.filter(c=>c.id!==cid);save();render()}}
-function quickSale(cid){openTab('sale');setTimeout(()=>saleCustomer.value=cid,0)}function quickPay(cid){openTab('payment');setTimeout(()=>payCustomer.value=cid,0)}
-function renderHistory(){history.innerHTML=transactions.slice(0,30).map(t=>{let c=customers.find(x=>x.id===t.cid);return `<div class="customer"><b>${t.type}</b> — ${esc(c?c.name:'মুছে ফেলা কাস্টমার')} <span class="${t.type==='টাকা আদায়'?'paid':'due'}">${money(t.amount)}</span><div class="muted">${esc(t.note||'')} • ${t.time}</div></div>`}).join('')||'<div class="empty">এখনো কোনো লেনদেন নেই।</div>'}
-function toggleHistory(){history.classList.toggle('hidden')}
-function exportData(){let blob=new Blob([JSON.stringify({customers,transactions,exportedAt:new Date().toISOString()},null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Akhondo-Hisab-Backup.json';a.click()}
-function importData(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);if(!Array.isArray(d.customers))throw 0;customers=d.customers;transactions=Array.isArray(d.transactions)?d.transactions:[];save();render();alert('Backup Restore হয়েছে')}catch{alert('সঠিক Backup file নয়')}};r.readAsText(f)}
-function clearAll(){if(confirm('সব কাস্টমার ও হিসাব স্থায়ীভাবে মুছে যাবে। নিশ্চিত?')){customers=[];transactions=[];save();render()}}
-function openTab(n){document.querySelectorAll('.panel').forEach(x=>x.classList.add('hidden'));document.getElementById(n).classList.remove('hidden');document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.tab===n))}
-document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>openTab(b.dataset.tab));search.oninput=render;
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;installBtn.style.display='block'});
-installBtn.onclick=async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;installBtn.style.display='none'};
-if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');render();
+
+let products = [];
+
+let invoiceCounter =
+parseInt(localStorage.getItem("invoiceCounter") || "1000");
+
+document.getElementById("invoiceDate").value =
+new Date().toISOString().split("T")[0];
+
+
+// ADD PRODUCT
+
+function addProduct(){
+
+products.push({
+    name:"",
+    qty:1,
+    unit:"Bag",
+    rate:0
+});
+
+renderProducts();
+
+}
+
+
+// RENDER PRODUCTS
+
+function renderProducts(){
+
+let body =
+document.getElementById("productBody");
+
+body.innerHTML="";
+
+products.forEach((p,index)=>{
+
+let total =
+(Number(p.qty)||0) *
+(Number(p.rate)||0);
+
+body.innerHTML += `
+
+<tr>
+
+<td>
+<input
+value="${p.name}"
+placeholder="Feed / Medicine"
+oninput="products[${index}].name=this.value">
+</td>
+
+<td>
+<input
+type="number"
+value="${p.qty}"
+oninput="products[${index}].qty=this.value;calculate()">
+</td>
+
+<td>
+
+<select
+onchange="products[${index}].unit=this.value">
+
+<option ${p.unit==="Bag"?"selected":""}>Bag</option>
+<option ${p.unit==="Kg"?"selected":""}>Kg</option>
+<option ${p.unit==="Pcs"?"selected":""}>Pcs</option>
+<option ${p.unit==="Dozen"?"selected":""}>Dozen</option>
+
+</select>
+
+</td>
+
+<td>
+<input
+type="number"
+value="${p.rate}"
+oninput="products[${index}].rate=this.value;calculate()">
+</td>
+
+<td>
+৳ ${total.toFixed(2)}
+</td>
+
+<td>
+
+<button
+class="danger"
+onclick="removeProduct(${index})">
+X
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+calculate();
+
+}
+
+
+// REMOVE PRODUCT
+
+function removeProduct(index){
+
+products.splice(index,1);
+
+renderProducts();
+
+}
+
+
+// CALCULATE
+
+function calculate(){
+
+let subtotal=0;
+
+products.forEach(p=>{
+
+subtotal +=
+(Number(p.qty)||0) *
+(Number(p.rate)||0);
+
+});
+
+let previous =
+Number(document.getElementById("previousDue").value)||0;
+
+let paid =
+Number(document.getElementById("paid").value)||0;
+
+let grand =
+subtotal + previous;
+
+let due =
+grand - paid;
+
+if(due < 0) due=0;
+
+document.getElementById("subtotal").innerText =
+subtotal.toFixed(2);
+
+document.getElementById("grandTotal").innerText =
+grand.toFixed(2);
+
+document.getElementById("newDue").innerText =
+due.toFixed(2);
+
+}
+
+
+// INVOICE NUMBER
+
+function getInvoiceNumber(){
+
+invoiceCounter++;
+
+localStorage.setItem(
+"invoiceCounter",
+invoiceCounter
+);
+
+return "AKH-" + invoiceCounter;
+
+}
+
+
+// GENERATE INVOICE
+
+function generateInvoice(){
+
+if(!document.getElementById("customerName").value.trim()){
+
+alert("Customer name দিন");
+
+return;
+
+}
+
+if(products.length===0){
+
+alert("কমপক্ষে একটি product যোগ করুন");
+
+return;
+
+}
+
+calculate();
+
+let invoiceNo =
+getInvoiceNumber();
+
+let name =
+document.getElementById("customerName").value;
+
+let phone =
+document.getElementById("customerPhone").value;
+
+let address =
+document.getElementById("customerAddress").value;
+
+let date =
+document.getElementById("invoiceDate").value;
+
+let subtotal =
+document.getElementById("subtotal").innerText;
+
+let previous =
+document.getElementById("previousDue").value;
+
+let grand =
+document.getElementById("grandTotal").innerText;
+
+let paid =
+document.getElementById("paid").value;
+
+let due =
+document.getElementById("newDue").innerText;
+
+
+document.getElementById("printInvoiceNo").innerText =
+invoiceNo;
+
+document.getElementById("printDate").innerText =
+date;
+
+document.getElementById("printCustomer").innerText =
+name;
+
+document.getElementById("printPhone").innerText =
+phone || "-";
+
+document.getElementById("printAddress").innerText =
+address || "-";
+
+document.getElementById("printSubtotal").innerText =
+subtotal;
+
+document.getElementById("printPreviousDue").innerText =
+Number(previous).toFixed(2);
+
+document.getElementById("printGrandTotal").innerText =
+grand;
+
+document.getElementById("printPaid").innerText =
+Number(paid).toFixed(2);
+
+document.getElementById("printNewDue").innerText =
+due;
+
+
+let printBody =
+document.getElementById("printProducts");
+
+printBody.innerHTML="";
+
+products.forEach(p=>{
+
+let total =
+(Number(p.qty)||0) *
+(Number(p.rate)||0);
+
+printBody.innerHTML += `
+
+<tr>
+
+<td>${escapeHtml(p.name)}</td>
+
+<td>${p.qty}</td>
+
+<td>${p.unit}</td>
+
+<td>৳ ${Number(p.rate).toFixed(2)}</td>
+
+<td>৳ ${total.toFixed(2)}</td>
+
+</tr>
+
+`;
+
+});
+
+
+document.getElementById("printInvoice").style.display =
+"block";
+
+}
+
+
+// SAVE INVOICE
+
+function saveInvoice(){
+
+if(!document.getElementById("customerName").value.trim()){
+
+alert("Customer name দিন");
+
+return;
+
+}
+
+if(products.length===0){
+
+alert("Product যোগ করুন");
+
+return;
+
+}
+
+calculate();
+
+let invoiceNo =
+getInvoiceNumber();
+
+let invoice={
+
+invoiceNo:invoiceNo,
+
+date:document.getElementById("invoiceDate").value,
+
+customer:document.getElementById("customerName").value,
+
+phone:document.getElementById("customerPhone").value,
+
+address:document.getElementById("customerAddress").value,
+
+products:products,
+
+subtotal:Number(document.getElementById("subtotal").innerText),
+
+previousDue:Number(document.getElementById("previousDue").value)||0,
+
+grandTotal:Number(document.getElementById("grandTotal").innerText),
+
+paid:Number(document.getElementById("paid").value)||0,
+
+due:Number(document.getElementById("newDue").innerText)
+
+};
+
+
+let history =
+JSON.parse(localStorage.getItem("akhondoInvoices") || "[]");
+
+history.unshift(invoice);
+
+localStorage.setItem(
+"akhondoInvoices",
+JSON.stringify(history)
+);
+
+renderHistory();
+
+alert(
+"Invoice saved successfully!\n\nInvoice No: "
++ invoiceNo
+);
+
+}
+
+
+// HISTORY
+
+function renderHistory(){
+
+let history =
+JSON.parse(localStorage.getItem("akhondoInvoices") || "[]");
+
+let box =
+document.getElementById("history");
+
+if(history.length===0){
+
+box.innerHTML =
+"<p>এখনো কোনো invoice নেই।</p>";
+
+return;
+
+}
+
+box.innerHTML="";
+
+history.forEach((inv,index)=>{
+
+box.innerHTML += `
+
+<div class="history-item">
+
+<strong>${inv.invoiceNo}</strong>
+
+<br>
+
+Customer:
+${escapeHtml(inv.customer)}
+
+<br>
+
+Date:
+${inv.date}
+
+<br>
+
+Total:
+৳ ${inv.grandTotal.toFixed(2)}
+
+<br>
+
+Due:
+<strong style="color:#dc3545">
+৳ ${inv.due.toFixed(2)}
+</strong>
+
+<br>
+
+<button
+class="btn"
+onclick="viewSavedInvoice(${index})">
+View
+</button>
+
+<button
+class="danger"
+onclick="deleteInvoice(${index})">
+Delete
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+// VIEW SAVED
+
+function viewSavedInvoice(index){
+
+let history =
+JSON.parse(localStorage.getItem("akhondoInvoices") || "[]");
+
+let inv=history[index];
+
+products=inv.products;
+
+document.getElementById("customerName").value =
+inv.customer;
+
+document.getElementById("customerPhone").value =
+inv.phone;
+
+document.getElementById("customerAddress").value =
+inv.address;
+
+document.getElementById("invoiceDate").value =
+inv.date;
+
+document.getElementById("previousDue").value =
+inv.previousDue;
+
+document.getElementById("paid").value =
+inv.paid;
+
+renderProducts();
+
+generateInvoice();
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+// DELETE
+
+function deleteInvoice(index){
+
+if(!confirm("এই invoice delete করবেন?")) return;
+
+let history =
+JSON.parse(localStorage.getItem("akhondoInvoices") || "[]");
+
+history.splice(index,1);
+
+localStorage.setItem(
+"akhondoInvoices",
+JSON.stringify(history)
+);
+
+renderHistory();
+
+}
+
+
+// PRINT
+
+function printInvoice(){
+
+if(
+document.getElementById("printInvoice").style.display !== "block"
+){
+
+generateInvoice();
+
+}
+
+setTimeout(()=>{
+
+window.print();
+
+},300);
+
+}
+
+
+// WHATSAPP
+
+function shareWhatsApp(){
+
+let name =
+document.getElementById("customerName").value;
+
+let phone =
+document.getElementById("customerPhone").value;
+
+let total =
+document.getElementById("grandTotal").innerText;
+
+let paid =
+document.getElementById("paid").value;
+
+let due =
+document.getElementById("newDue").innerText;
+
+
+let message =
+
+`🐔 Akhondo Poultry Feed
+
+🧾 Invoice
+
+Customer: ${name}
+
+Total: ৳${total}
+
+Paid: ৳${paid}
+
+Due: ৳${due}
+
+ধন্যবাদ।
+আখন্দ পোল্ট্রি ফিড
+লাকসাম রোড, চৌদ্দগ্রাম, কুমিল্লা`;
+
+let url =
+"https://wa.me/" +
+phone.replace(/\D/g,"") +
+"?text=" +
+encodeURIComponent(message);
+
+window.open(url,"_blank");
+
+}
+
+
+// SECURITY
+
+function escapeHtml(text){
+
+return String(text || "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+// START
+
+addProduct();
+
+renderHistory();
+
 </script>
+
 </body>
 </html>

@@ -8,528 +8,584 @@
 
 <style>
 :root{
-  --green:#087f5b;
-  --green2:#12b886;
-  --dark:#053d2c;
-  --blue:#2563eb;
-  --red:#e11d48;
-  --orange:#f97316;
-  --purple:#7c3aed;
-  --bg:#f3f6f5;
-  --card:#ffffff;
-  --text:#15221c;
-  --muted:#718078;
-  --border:#e3ebe7;
+    --primary:#087f5b;
+    --primary2:#12b886;
+    --dark:#053d2c;
+    --blue:#2563eb;
+    --purple:#7c3aed;
+    --red:#e11d48;
+    --orange:#f97316;
+    --bg:#f4f7f6;
+    --card:#ffffff;
+    --border:#e1e8e4;
+    --text:#17221d;
+    --muted:#728078;
 }
 
-*{box-sizing:border-box}
+*{
+    box-sizing:border-box;
+}
 
 body{
-  margin:0;
-  font-family:Arial,"Noto Sans Bengali",sans-serif;
-  background:var(--bg);
-  color:var(--text);
+    margin:0;
+    font-family:Arial,"Noto Sans Bengali",sans-serif;
+    background:var(--bg);
+    color:var(--text);
 }
 
 button,input,select{
-  font-family:inherit;
+    font-family:inherit;
 }
 
-button{cursor:pointer}
+button{
+    cursor:pointer;
+}
 
 /* HEADER */
 
 .header{
-  height:72px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:0 16px;
-  color:#fff;
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:linear-gradient(135deg,var(--dark),var(--green),var(--green2));
-  box-shadow:0 4px 20px rgba(0,0,0,.15);
+    height:72px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:0 16px;
+    color:#fff;
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:linear-gradient(135deg,#053d2c,#087f5b,#12b886);
+    box-shadow:0 4px 20px rgba(0,0,0,.15);
 }
 
 .menu-btn{
-  width:44px;
-  height:44px;
-  border:0;
-  border-radius:13px;
-  background:rgba(255,255,255,.15);
-  color:#fff;
-  font-size:23px;
+    width:44px;
+    height:44px;
+    border:0;
+    border-radius:13px;
+    background:rgba(255,255,255,.16);
+    color:#fff;
+    font-size:22px;
 }
 
-.header-logo{
-  width:43px;
-  height:43px;
-  border-radius:13px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:24px;
-  background:rgba(255,255,255,.14);
+.logo{
+    width:44px;
+    height:44px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
+    border-radius:13px;
+    background:rgba(255,255,255,.16);
 }
 
 .header h1{
-  margin:0;
-  font-size:17px;
+    margin:0;
+    font-size:17px;
 }
 
 .header p{
-  margin:2px 0;
-  font-size:11px;
-  opacity:.9;
+    margin:3px 0 0;
+    font-size:11px;
+    opacity:.9;
 }
 
 /* SIDEBAR */
 
 .overlay{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.5);
-  z-index:900;
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.5);
+    z-index:900;
 }
 
-.overlay.show{display:block}
+.overlay.show{
+    display:block;
+}
 
 .sidebar{
-  position:fixed;
-  top:0;
-  left:-300px;
-  width:285px;
-  height:100vh;
-  z-index:1000;
-  background:#fff;
-  transition:.3s;
-  overflow-y:auto;
-  box-shadow:8px 0 35px rgba(0,0,0,.2);
+    position:fixed;
+    top:0;
+    left:-300px;
+    width:285px;
+    height:100vh;
+    z-index:1000;
+    overflow-y:auto;
+    background:#fff;
+    transition:.3s;
+    box-shadow:8px 0 35px rgba(0,0,0,.18);
 }
 
-.sidebar.show{left:0}
+.sidebar.show{
+    left:0;
+}
 
 .side-top{
-  padding:28px 20px;
-  color:#fff;
-  background:linear-gradient(135deg,var(--dark),var(--green),var(--green2));
+    padding:27px 20px;
+    color:#fff;
+    background:linear-gradient(135deg,#053d2c,#087f5b,#12b886);
 }
 
 .side-logo{
-  width:60px;
-  height:60px;
-  border-radius:18px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:30px;
-  background:rgba(255,255,255,.17);
-  margin-bottom:12px;
+    width:62px;
+    height:62px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:31px;
+    border-radius:18px;
+    background:rgba(255,255,255,.16);
+    margin-bottom:12px;
 }
 
 .side-top h2{
-  margin:0;
-  font-size:19px;
+    margin:0;
+    font-size:19px;
 }
 
 .side-top p{
-  margin:5px 0 0;
-  font-size:12px;
+    margin:5px 0 0;
+    font-size:12px;
 }
 
-.side-menu{padding:12px}
+.side-menu{
+    padding:12px;
+}
 
 .menu-title{
-  font-size:11px;
-  color:#9aa8a0;
-  margin:15px 12px 7px;
-  font-weight:bold;
+    margin:16px 12px 7px;
+    color:#9aa8a0;
+    font-size:11px;
+    font-weight:bold;
 }
 
 .menu-item{
-  width:100%;
-  border:0;
-  background:none;
-  text-align:left;
-  padding:14px;
-  margin-bottom:4px;
-  border-radius:13px;
-  font-size:15px;
-  font-weight:bold;
-  color:#34423b;
+    width:100%;
+    padding:14px;
+    margin-bottom:4px;
+    border:0;
+    border-radius:13px;
+    background:none;
+    text-align:left;
+    color:#35443c;
+    font-size:15px;
+    font-weight:bold;
 }
 
-.menu-item.active,
-.menu-item:hover{
-  color:var(--green);
-  background:#e9f8f2;
+.menu-item:hover,
+.menu-item.active{
+    color:var(--primary);
+    background:#e9f8f2;
 }
 
 /* MAIN */
 
 .container{
-  max-width:1100px;
-  margin:auto;
-  padding:18px 15px 45px;
+    max-width:1100px;
+    margin:auto;
+    padding:18px 15px 45px;
 }
 
-.page{display:none}
-.page.active{display:block}
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
 
 .title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  margin:8px 0 15px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin:8px 0 15px;
 }
 
 .title h2{
-  margin:0;
-  font-size:21px;
+    margin:0;
+    font-size:21px;
 }
 
 /* BUTTON */
 
 .btn{
-  border:0;
-  padding:11px 15px;
-  border-radius:12px;
-  color:#fff;
-  font-weight:bold;
+    border:0;
+    border-radius:12px;
+    padding:11px 15px;
+    color:#fff;
+    font-weight:bold;
 }
 
 .btn-green{
-  background:linear-gradient(135deg,var(--green),var(--green2));
+    background:linear-gradient(135deg,#087f5b,#12b886);
 }
 
 .btn-blue{
-  background:linear-gradient(135deg,#2563eb,#38bdf8);
-}
-
-.btn-red{
-  background:linear-gradient(135deg,#e11d48,#fb7185);
+    background:linear-gradient(135deg,#2563eb,#38bdf8);
 }
 
 .btn-purple{
-  background:linear-gradient(135deg,#7c3aed,#a855f7);
+    background:linear-gradient(135deg,#7c3aed,#a855f7);
+}
+
+.btn-red{
+    background:linear-gradient(135deg,#e11d48,#fb7185);
+}
+
+.btn-orange{
+    background:linear-gradient(135deg,#ea580c,#f97316);
 }
 
 .btn-light{
-  background:#edf4f0;
-  color:#244236;
+    background:#eaf2ee;
+    color:#264238;
 }
 
-.full{width:100%}
+.full{
+    width:100%;
+}
 
 /* DASHBOARD */
 
 .stats{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
 }
 
 .stat{
-  padding:15px;
-  min-height:105px;
-  border-radius:19px;
-  color:#fff;
+    min-height:105px;
+    padding:15px;
+    border-radius:19px;
+    color:#fff;
 }
 
 .stat small{
-  font-size:12px;
+    font-size:12px;
 }
 
 .stat strong{
-  display:block;
-  margin-top:9px;
-  font-size:18px;
+    display:block;
+    margin-top:9px;
+    font-size:18px;
 }
 
-.green{background:linear-gradient(135deg,#087f5b,#12b886)}
-.blue{background:linear-gradient(135deg,#2563eb,#38bdf8)}
-.red{background:linear-gradient(135deg,#e11d48,#fb7185)}
-.purple{background:linear-gradient(135deg,#7c3aed,#a855f7)}
+.green{
+    background:linear-gradient(135deg,#087f5b,#12b886);
+}
+
+.blue{
+    background:linear-gradient(135deg,#2563eb,#38bdf8);
+}
+
+.red{
+    background:linear-gradient(135deg,#e11d48,#fb7185);
+}
+
+.purple{
+    background:linear-gradient(135deg,#7c3aed,#a855f7);
+}
 
 .panel{
-  background:#fff;
-  padding:16px;
-  border-radius:19px;
-  margin-bottom:14px;
-  box-shadow:0 7px 25px rgba(0,0,0,.05);
+    background:#fff;
+    padding:16px;
+    border-radius:19px;
+    margin-bottom:14px;
+    box-shadow:0 7px 25px rgba(0,0,0,.05);
 }
 
 .quick-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:8px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
 }
 
 .quick{
-  border:1px solid var(--border);
-  background:#fff;
-  padding:11px 4px;
-  border-radius:15px;
+    padding:11px 4px;
+    border:1px solid var(--border);
+    border-radius:15px;
+    background:#fff;
 }
 
-.quick div{font-size:22px}
-.quick span{font-size:10px;font-weight:bold}
+.quick div{
+    font-size:22px;
+}
+
+.quick span{
+    font-size:10px;
+    font-weight:bold;
+}
 
 /* FORM */
 
 label{
-  display:block;
-  font-size:12px;
-  color:var(--muted);
-  font-weight:bold;
-  margin-bottom:5px;
+    display:block;
+    margin-bottom:5px;
+    color:var(--muted);
+    font-size:12px;
+    font-weight:bold;
 }
 
 input,select{
-  width:100%;
-  padding:12px;
-  border-radius:11px;
-  border:1px solid var(--border);
-  margin-bottom:12px;
-  background:#fff;
+    width:100%;
+    padding:12px;
+    margin-bottom:12px;
+    border:1px solid var(--border);
+    border-radius:11px;
+    background:#fff;
 }
 
-/* CARDS */
+/* CARD */
 
 .customer-card,
 .product-card,
-.history-card{
-  background:#fff;
-  border:1px solid var(--border);
-  padding:14px;
-  border-radius:17px;
-  margin-bottom:10px;
+.history-card,
+.rate-card{
+    padding:14px;
+    margin-bottom:10px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:17px;
 }
 
 .card-top{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
 }
 
 .customer-name,
 .product-name{
-  font-size:16px;
-  font-weight:bold;
+    font-size:16px;
+    font-weight:bold;
 }
 
 .muted{
-  font-size:12px;
-  color:var(--muted);
+    color:var(--muted);
+    font-size:12px;
 }
 
 .due{
-  background:#fff1f2;
-  color:var(--red);
-  padding:6px 9px;
-  border-radius:12px;
-  font-size:11px;
-  font-weight:bold;
+    padding:6px 9px;
+    border-radius:12px;
+    background:#fff1f2;
+    color:var(--red);
+    font-size:11px;
+    font-weight:bold;
 }
 
 .stock{
-  background:#ecfdf5;
-  color:#047857;
-  padding:6px 9px;
-  border-radius:12px;
-  font-size:11px;
-  font-weight:bold;
+    padding:6px 9px;
+    border-radius:12px;
+    background:#ecfdf5;
+    color:#047857;
+    font-size:11px;
+    font-weight:bold;
 }
 
 .actions{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:7px;
-  margin-top:12px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:7px;
+    margin-top:12px;
 }
 
 .actions button{
-  border:0;
-  padding:9px 3px;
-  border-radius:10px;
-  background:#edf7f2;
-  color:var(--green);
-  font-size:11px;
-  font-weight:bold;
+    padding:9px 3px;
+    border:0;
+    border-radius:10px;
+    background:#edf7f2;
+    color:var(--primary);
+    font-size:10px;
+    font-weight:bold;
 }
 
 /* SALE */
 
 .sale-item{
-  background:#fff;
-  border:1px solid var(--border);
-  padding:13px;
-  border-radius:17px;
-  margin-bottom:10px;
+    padding:13px;
+    margin-bottom:10px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:17px;
 }
 
 .sale-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr 65px;
-  gap:7px;
+    display:grid;
+    grid-template-columns:1fr 1fr 60px;
+    gap:7px;
 }
 
 .summary{
-  color:#fff;
-  padding:16px;
-  border-radius:19px;
-  background:linear-gradient(135deg,var(--dark),var(--green));
+    padding:16px;
+    color:#fff;
+    border-radius:19px;
+    background:linear-gradient(135deg,#053d2c,#087f5b);
 }
 
 .summary-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:9px 0;
-  border-bottom:1px solid rgba(255,255,255,.16);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:9px 0;
+    border-bottom:1px solid rgba(255,255,255,.15);
 }
 
 /* MODAL */
 
 .modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.52);
-  z-index:2000;
-  align-items:flex-end;
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:2000;
+    align-items:flex-end;
+    background:rgba(0,0,0,.52);
 }
 
-.modal.show{display:flex}
+.modal.show{
+    display:flex;
+}
 
 .modal-box{
-  width:100%;
-  max-height:92vh;
-  overflow:auto;
-  background:#fff;
-  padding:20px 16px 32px;
-  border-radius:25px 25px 0 0;
+    width:100%;
+    max-height:92vh;
+    overflow-y:auto;
+    padding:20px 16px 32px;
+    background:#fff;
+    border-radius:25px 25px 0 0;
 }
 
 /* INVOICE */
 
 .invoice{
-  background:#fff;
-  color:#111;
-  padding:18px;
-  border-radius:8px;
-  border:1px solid #ddd;
-}
-
-.invoice-header{
-  border-bottom:3px solid var(--green);
-  padding-bottom:12px;
-  margin-bottom:15px;
+    padding:20px;
+    color:#18221d;
+    background:#fff;
+    border:1px solid #dce5e0;
 }
 
 .invoice-company{
-  font-size:22px;
-  font-weight:bold;
-  color:var(--green);
+    color:#087f5b;
+    font-size:22px;
+    font-weight:bold;
 }
 
-.invoice-company-en{
-  font-size:11px;
-  color:#666;
+.invoice-en{
+    color:#6b756f;
+    font-size:10px;
+    letter-spacing:1px;
+}
+
+.invoice-header{
+    padding-bottom:14px;
+    border-bottom:3px solid #087f5b;
 }
 
 .invoice-title{
-  text-align:center;
-  margin:15px 0;
-  font-size:20px;
-  font-weight:bold;
+    margin:18px 0;
+    text-align:center;
+    font-size:21px;
+    font-weight:bold;
 }
 
 .invoice-info{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:8px;
-  font-size:12px;
-  margin-bottom:14px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-bottom:15px;
+    font-size:12px;
 }
 
 .invoice table{
-  width:100%;
-  border-collapse:collapse;
-  font-size:11px;
+    width:100%;
+    border-collapse:collapse;
+    font-size:11px;
 }
 
 .invoice th,
 .invoice td{
-  border:1px solid #ddd;
-  padding:7px 4px;
+    padding:7px 4px;
+    border:1px solid #d9e2dd;
 }
 
 .invoice th{
-  background:#e9f8f2;
+    background:#e9f8f2;
 }
 
 .invoice-total{
-  margin-top:14px;
-  padding-top:10px;
-  border-top:2px solid var(--green);
+    margin-top:15px;
+    padding-top:10px;
+    border-top:2px solid #087f5b;
 }
 
 .invoice-row{
-  display:flex;
-  justify-content:space-between;
-  padding:5px 0;
+    display:flex;
+    justify-content:space-between;
+    padding:5px 0;
 }
 
 .invoice-grand{
-  font-size:17px;
-  font-weight:bold;
-  color:var(--green);
+    color:#087f5b;
+    font-size:17px;
+    font-weight:bold;
 }
 
 .invoice-contact{
-  margin-top:18px;
-  padding-top:10px;
-  border-top:1px solid #ddd;
-  font-size:10px;
-  color:#666;
+    margin-top:20px;
+    padding-top:10px;
+    border-top:1px solid #ddd;
+    color:#6b756f;
+    font-size:10px;
 }
 
-/* EMPTY */
-
 .empty{
-  text-align:center;
-  padding:35px;
-  color:var(--muted);
+    padding:35px;
+    text-align:center;
+    color:var(--muted);
 }
 
 @media(min-width:700px){
 
-.stats{
-  grid-template-columns:repeat(4,1fr);
+    .stats{
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    .sidebar{
+        left:0;
+    }
+
+    .header{
+        padding-left:305px;
+    }
+
+    .menu-btn{
+        display:none;
+    }
+
+    .container{
+        margin-left:285px;
+        max-width:calc(1100px + 285px);
+    }
 }
 
-.sidebar{
-  left:0;
-}
+@media print{
 
-.header{
-  padding-left:305px;
-}
+    body *{
+        visibility:hidden;
+    }
 
-.menu-btn{
-  display:none;
-}
+    #invoiceContent,
+    #invoiceContent *{
+        visibility:visible;
+    }
 
-.container{
-  margin-left:285px;
-  max-width:calc(1100px + 285px);
-}
-
+    #invoiceContent{
+        position:absolute;
+        left:0;
+        top:0;
+        width:100%;
+    }
 }
 
 </style>
@@ -542,30 +598,54 @@ input,select{
 <aside id="sidebar" class="sidebar">
 
 <div class="side-top">
+
 <div class="side-logo">🐔</div>
+
 <h2>আখন্দ পোল্ট্রি ফিড</h2>
+
 <p>Akhondo Manager PRO</p>
+
 </div>
 
 <div class="side-menu">
 
-<button class="menu-item active" onclick="goPage('homePage',this)">🏠 Home Dashboard</button>
+<button class="menu-item active" onclick="goPage('homePage',this)">
+🏠 Home Dashboard
+</button>
 
 <div class="menu-title">BUSINESS</div>
 
-<button class="menu-item" onclick="goPage('salePage',this)">🧾 New Sale</button>
+<button class="menu-item" onclick="goPage('salePage',this)">
+🧾 New Sale
+</button>
 
-<button class="menu-item" onclick="goPage('customerPage',this)">👥 Customer List</button>
+<button class="menu-item" onclick="goPage('customerPage',this)">
+👥 Customer List
+</button>
 
-<button class="menu-item" onclick="goPage('productPage',this)">📦 Product & Stock</button>
+<button class="menu-item" onclick="goPage('productPage',this)">
+📦 Product & Stock
+</button>
 
-<button class="menu-item" onclick="goPage('paymentPage',this)">💰 Payment Collection</button>
+<button class="menu-item" onclick="goPage('paymentPage',this)">
+💰 Payment Collection
+</button>
+
+<div class="menu-title">MANAGEMENT</div>
+
+<button class="menu-item" onclick="goPage('customerRatePage',this)">
+🏷️ Customer Rate
+</button>
 
 <div class="menu-title">REPORT</div>
 
-<button class="menu-item" onclick="goPage('salesHistoryPage',this)">📊 Sales History</button>
+<button class="menu-item" onclick="goPage('salesHistoryPage',this)">
+📊 Sales History
+</button>
 
-<button class="menu-item" onclick="goPage('morePage',this)">⚙️ Settings</button>
+<button class="menu-item" onclick="goPage('settingsPage',this)">
+⚙️ Settings
+</button>
 
 </div>
 
@@ -575,11 +655,14 @@ input,select{
 
 <button class="menu-btn" onclick="openSidebar()">☰</button>
 
-<div class="header-logo">🐔</div>
+<div class="logo">🐔</div>
 
 <div>
+
 <h1>AKHONDO MANAGER PRO</h1>
+
 <p>Smart Business Management System</p>
+
 </div>
 
 </header>
@@ -639,9 +722,9 @@ input,select{
 <span>Product</span>
 </button>
 
-<button class="quick" onclick="goPage('paymentPage')">
-<div>💰</div>
-<span>Payment</span>
+<button class="quick" onclick="goPage('customerRatePage')">
+<div>🏷️</div>
+<span>Rate</span>
 </button>
 
 </div>
@@ -652,24 +735,27 @@ input,select{
 
 <hr style="border:0;border-top:1px solid #eee">
 
-<div>📦 Total Product: <b id="totalProduct">0</b></div>
+<p>📦 Total Product: <b id="totalProduct">0</b></p>
 
-<br>
-
-<div>🧾 Total Invoice: <b id="totalInvoice">0</b></div>
+<p>🧾 Total Invoice: <b id="totalInvoice">0</b></p>
 
 </div>
 
 </section>
 
 
-<!-- CUSTOMER -->
+<!-- CUSTOMER PAGE -->
 
 <section id="customerPage" class="page">
 
 <div class="title">
+
 <h2>👥 Customer List</h2>
-<button class="btn btn-green" onclick="openModal('customerModal')">+ Add</button>
+
+<button class="btn btn-green" onclick="openModal('customerModal')">
++ Add
+</button>
+
 </div>
 
 <input id="customerSearch"
@@ -681,13 +767,18 @@ oninput="renderCustomers()">
 </section>
 
 
-<!-- PRODUCT -->
+<!-- PRODUCT PAGE -->
 
 <section id="productPage" class="page">
 
 <div class="title">
+
 <h2>📦 Product & Stock</h2>
-<button class="btn btn-green" onclick="openModal('productModal')">+ Add</button>
+
+<button class="btn btn-green" onclick="openModal('productModal')">
++ Add
+</button>
+
 </div>
 
 <input id="productSearch"
@@ -699,7 +790,30 @@ oninput="renderProducts()">
 </section>
 
 
-<!-- SALE -->
+<!-- CUSTOMER RATE PAGE -->
+
+<section id="customerRatePage" class="page">
+
+<div class="title">
+<h2>🏷️ Customer Specific Rate</h2>
+</div>
+
+<div class="panel">
+
+<label>Customer নির্বাচন করুন</label>
+
+<select id="rateCustomer" onchange="renderCustomerRates()">
+<option value="">Customer নির্বাচন করুন</option>
+</select>
+
+<div id="customerRateList"></div>
+
+</div>
+
+</section>
+
+
+<!-- SALE PAGE -->
 
 <section id="salePage" class="page">
 
@@ -711,8 +825,10 @@ oninput="renderProducts()">
 
 <label>Customer নির্বাচন করুন</label>
 
-<select id="saleCustomer" onchange="calculateSale()">
+<select id="saleCustomer" onchange="customerChanged()">
+
 <option value="">Customer নির্বাচন করুন</option>
+
 </select>
 
 </div>
@@ -738,13 +854,14 @@ oninput="renderProducts()">
 </div>
 
 <div class="summary-row">
+
 <span>Paid Today</span>
 
 <input id="salePaid"
 type="number"
 value="0"
 oninput="calculateSale()"
-style="width:100px;margin:0;padding:7px">
+style="width:110px;margin:0;padding:7px">
 
 </div>
 
@@ -764,7 +881,7 @@ style="width:100px;margin:0;padding:7px">
 </section>
 
 
-<!-- PAYMENT -->
+<!-- PAYMENT PAGE -->
 
 <section id="paymentPage" class="page">
 
@@ -781,10 +898,14 @@ style="width:100px;margin:0;padding:7px">
 </select>
 
 <label>Current Due</label>
+
 <input id="paymentDue" disabled>
 
 <label>Collection Amount</label>
-<input id="paymentAmount" type="number" placeholder="Amount লিখুন">
+
+<input id="paymentAmount"
+type="number"
+placeholder="Amount লিখুন">
 
 <button class="btn btn-green full" onclick="savePayment()">
 💰 Save Payment
@@ -797,7 +918,7 @@ style="width:100px;margin:0;padding:7px">
 </section>
 
 
-<!-- HISTORY -->
+<!-- HISTORY PAGE -->
 
 <section id="salesHistoryPage" class="page">
 
@@ -812,7 +933,7 @@ style="width:100px;margin:0;padding:7px">
 
 <!-- SETTINGS -->
 
-<section id="morePage" class="page">
+<section id="settingsPage" class="page">
 
 <div class="title">
 <h2>⚙️ Settings</h2>
@@ -823,8 +944,11 @@ style="width:100px;margin:0;padding:7px">
 <h3>🐔 আখন্দ পোল্ট্রি ফিড</h3>
 
 <p class="muted">
+
 উপজেলা প্রাণিসম্পদ দপ্তর ও ভেটেনারি হাসপাতালের সামনে,<br>
+
 লাকসাম রোড, চৌদ্দগ্রাম, কুমিল্লা
+
 </p>
 
 <p>
@@ -832,7 +956,9 @@ style="width:100px;margin:0;padding:7px">
 📞 01645140156
 </p>
 
-<p>✉️ masud.chauddagram2825@gmail.com</p>
+<p>
+✉️ masud.chauddagram2825@gmail.com
+</p>
 
 </div>
 
@@ -860,25 +986,37 @@ style="width:100px;margin:0;padding:7px">
 <h2>👤 Add Customer</h2>
 
 <label>Customer Name *</label>
+
 <input id="customerName">
 
 <label>Mobile Number</label>
+
 <input id="customerPhone">
 
 <label>Address</label>
+
 <input id="customerAddress">
 
 <label>Previous Due</label>
-<input id="customerDueInput" type="number" value="0">
 
-<button class="btn btn-green full" onclick="addCustomer()">
+<input id="customerDueInput"
+type="number"
+value="0">
+
+<button class="btn btn-green full"
+onclick="addCustomer()">
+
 💾 Save Customer
+
 </button>
 
 <br><br>
 
-<button class="btn btn-light full" onclick="closeModal('customerModal')">
+<button class="btn btn-light full"
+onclick="closeModal('customerModal')">
+
 Cancel
+
 </button>
 
 </div>
@@ -895,11 +1033,13 @@ Cancel
 <h2>📦 Add Product</h2>
 
 <label>Product Name *</label>
+
 <input id="productNameInput">
 
 <label>Category</label>
 
 <select id="productCategory">
+
 <option>Poultry Feed</option>
 <option>Fish Feed</option>
 <option>Cattle Feed</option>
@@ -907,41 +1047,61 @@ Cancel
 <option>Vaccine</option>
 <option>Chicks</option>
 <option>Others</option>
+
 </select>
 
 <label>Unit</label>
 
 <select id="productUnit">
+
 <option>Bag</option>
 <option>KG</option>
 <option>Piece</option>
+
 </select>
 
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
 
 <div>
+
 <label>Purchase Price</label>
-<input id="productBuyPrice" type="number">
+
+<input id="productBuyPrice"
+type="number">
+
 </div>
 
 <div>
-<label>Sale Price</label>
-<input id="productSalePrice" type="number">
+
+<label>Default Sale Price</label>
+
+<input id="productSalePrice"
+type="number">
+
 </div>
 
 </div>
 
 <label>Opening Stock</label>
-<input id="productStockInput" type="number" value="0">
 
-<button class="btn btn-green full" onclick="addProduct()">
+<input id="productStockInput"
+type="number"
+value="0">
+
+<button class="btn btn-green full"
+onclick="addProduct()">
+
 💾 Save Product
+
 </button>
 
 <br><br>
 
-<button class="btn btn-light full" onclick="closeModal('productModal')">
+<button class="btn btn-light full"
+onclick="closeModal('productModal')">
+
 Cancel
+
 </button>
 
 </div>
@@ -959,20 +1119,29 @@ Cancel
 
 <br>
 
-<button class="btn btn-purple full" onclick="repeatInvoiceVoice()">
+<button class="btn btn-purple full"
+onclick="repeatInvoiceVoice()">
+
 🔊 Customer Name & Due শুনুন
+
 </button>
 
 <br><br>
 
-<button class="btn btn-green full" onclick="window.print()">
+<button class="btn btn-green full"
+onclick="window.print()">
+
 🖨️ Print / Save PDF
+
 </button>
 
 <br><br>
 
-<button class="btn btn-light full" onclick="closeModal('invoiceModal')">
+<button class="btn btn-light full"
+onclick="closeModal('invoiceModal')">
+
 Close
+
 </button>
 
 </div>
@@ -982,1026 +1151,2455 @@ Close
 
 <script>
 
-/* DATABASE */
+/* =========================
+DATABASE
+========================= */
 
-let customers=JSON.parse(localStorage.getItem("akhondo_customers")||"[]");
-let products=JSON.parse(localStorage.getItem("akhondo_products")||"[]");
-let sales=JSON.parse(localStorage.getItem("akhondo_sales")||"[]");
-let payments=JSON.parse(localStorage.getItem("akhondo_payments")||"[]");
+let customers =
+JSON.parse(localStorage.getItem("akhondo_customers") || "[]");
+
+let products =
+JSON.parse(localStorage.getItem("akhondo_products") || "[]");
+
+let sales =
+JSON.parse(localStorage.getItem("akhondo_sales") || "[]");
+
+let payments =
+JSON.parse(localStorage.getItem("akhondo_payments") || "[]");
+
+/*
+Customer Specific Rates
+
+Format:
+
+{
+customerId: {
+productId: price
+}
+}
+
+*/
+
+let customerRates =
+JSON.parse(localStorage.getItem("akhondo_customer_rates") || "{}");
 
 let saleCart=[];
+
 let currentInvoice=null;
 
 
-/* HELPER */
+/* =========================
+HELPERS
+========================= */
 
 function el(id){
-return document.getElementById(id);
+    return document.getElementById(id);
 }
 
 function money(n){
-return Number(n||0).toLocaleString("en-BD",{
-minimumFractionDigits:2,
-maximumFractionDigits:2
-});
+
+    return Number(n || 0).toLocaleString("en-BD",{
+        minimumFractionDigits:2,
+        maximumFractionDigits:2
+    });
+
 }
 
 function saveDatabase(){
 
-localStorage.setItem("akhondo_customers",JSON.stringify(customers));
-localStorage.setItem("akhondo_products",JSON.stringify(products));
-localStorage.setItem("akhondo_sales",JSON.stringify(sales));
-localStorage.setItem("akhondo_payments",JSON.stringify(payments));
+    localStorage.setItem(
+        "akhondo_customers",
+        JSON.stringify(customers)
+    );
 
-updateDashboard();
+    localStorage.setItem(
+        "akhondo_products",
+        JSON.stringify(products)
+    );
+
+    localStorage.setItem(
+        "akhondo_sales",
+        JSON.stringify(sales)
+    );
+
+    localStorage.setItem(
+        "akhondo_payments",
+        JSON.stringify(payments)
+    );
+
+    localStorage.setItem(
+        "akhondo_customer_rates",
+        JSON.stringify(customerRates)
+    );
+
+    updateDashboard();
+
 }
 
 
-/* SIDEBAR */
+/* =========================
+SIDEBAR
+========================= */
 
 function openSidebar(){
-el("sidebar").classList.add("show");
-el("overlay").classList.add("show");
+
+    el("sidebar").classList.add("show");
+
+    el("overlay").classList.add("show");
+
 }
 
 function closeSidebar(){
-el("sidebar").classList.remove("show");
-el("overlay").classList.remove("show");
+
+    el("sidebar").classList.remove("show");
+
+    el("overlay").classList.remove("show");
+
 }
 
 
-/* PAGE */
+/* =========================
+PAGE
+========================= */
 
 function goPage(pageId,button){
 
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+    document.querySelectorAll(".page")
+    .forEach(function(page){
 
-el(pageId).classList.add("active");
+        page.classList.remove("active");
 
-document.querySelectorAll(".menu-item").forEach(b=>b.classList.remove("active"));
+    });
 
-if(button)button.classList.add("active");
+    el(pageId).classList.add("active");
 
-closeSidebar();
 
-if(pageId==="customerPage")renderCustomers();
+    document.querySelectorAll(".menu-item")
+    .forEach(function(btn){
 
-if(pageId==="productPage")renderProducts();
+        btn.classList.remove("active");
 
-if(pageId==="salePage")prepareSale();
+    });
 
-if(pageId==="paymentPage")preparePayment();
+    if(button){
 
-if(pageId==="salesHistoryPage")renderSalesHistory();
+        button.classList.add("active");
 
-window.scrollTo(0,0);
+    }
+
+
+    closeSidebar();
+
+
+    if(pageId==="customerPage"){
+
+        renderCustomers();
+
+    }
+
+
+    if(pageId==="productPage"){
+
+        renderProducts();
+
+    }
+
+
+    if(pageId==="customerRatePage"){
+
+        prepareCustomerRatePage();
+
+    }
+
+
+    if(pageId==="salePage"){
+
+        prepareSale();
+
+    }
+
+
+    if(pageId==="paymentPage"){
+
+        preparePayment();
+
+    }
+
+
+    if(pageId==="salesHistoryPage"){
+
+        renderSalesHistory();
+
+    }
+
+
+    window.scrollTo(0,0);
 
 }
 
 
-/* MODAL */
+/* =========================
+MODAL
+========================= */
 
 function openModal(id){
-el(id).classList.add("show");
+
+    el(id).classList.add("show");
+
 }
 
 function closeModal(id){
-el(id).classList.remove("show");
+
+    el(id).classList.remove("show");
+
 }
 
 
-/* CUSTOMER */
+/* =========================
+CUSTOMER
+========================= */
 
 function addCustomer(){
 
-let name=el("customerName").value.trim();
+    let name =
+    el("customerName").value.trim();
 
-if(!name){
-alert("Customer Name দিন");
-return;
-}
 
-customers.push({
-id:Date.now(),
-code:"C-"+String(customers.length+1).padStart(4,"0"),
-name:name,
-phone:el("customerPhone").value,
-address:el("customerAddress").value,
-due:Number(el("customerDueInput").value)||0
-});
+    if(!name){
 
-saveDatabase();
+        alert("Customer Name দিন");
 
-el("customerName").value="";
-el("customerPhone").value="";
-el("customerAddress").value="";
-el("customerDueInput").value="0";
+        return;
 
-closeModal("customerModal");
+    }
 
-renderCustomers();
 
-alert("Customer Added Successfully");
+    let customer={
+
+        id:Date.now(),
+
+        code:
+        "C-"+
+        String(customers.length+1)
+        .padStart(4,"0"),
+
+        name:name,
+
+        phone:
+        el("customerPhone").value.trim(),
+
+        address:
+        el("customerAddress").value.trim(),
+
+        due:
+        Number(el("customerDueInput").value) || 0
+
+    };
+
+
+    customers.push(customer);
+
+
+    saveDatabase();
+
+
+    el("customerName").value="";
+
+    el("customerPhone").value="";
+
+    el("customerAddress").value="";
+
+    el("customerDueInput").value="0";
+
+
+    closeModal("customerModal");
+
+
+    renderCustomers();
+
+
+    alert("Customer Successfully Added");
 
 }
 
 
 function renderCustomers(){
 
-let search=el("customerSearch")?el("customerSearch").value.toLowerCase():"";
+    let search =
+    el("customerSearch").value
+    .toLowerCase();
 
-let html="";
 
-customers
-.filter(c=>(c.name+" "+c.phone+" "+c.code).toLowerCase().includes(search))
-.forEach((c,index)=>{
+    let html="";
 
-html+=`
 
-<div class="customer-card">
+    customers
+    .filter(function(customer){
 
-<div class="card-top">
+        return (
+            customer.name+
+            " "+
+            customer.phone+
+            " "+
+            customer.code
+        )
+        .toLowerCase()
+        .includes(search);
 
-<div>
+    })
+    .forEach(function(customer,index){
 
-<div class="customer-name">
-${index+1}. ${c.name}
-</div>
 
-<div class="muted">
-${c.code}
-</div>
+        html+=`
 
-</div>
+        <div class="customer-card">
 
-<div class="due">
-বকেয়া ৳ ${money(c.due)}
-</div>
+        <div class="card-top">
 
-</div>
+        <div>
 
-<div class="muted" style="margin-top:8px">
-📱 ${c.phone||"-"}<br>
-📍 ${c.address||"-"}
-</div>
+        <div class="customer-name">
 
-<div class="actions">
+        ${index+1}. ${customer.name}
 
-<button onclick="customerSale(${c.id})">
-🧾 Sale
-</button>
+        </div>
 
-<button onclick="customerPayment(${c.id})">
-💰 Payment
-</button>
+        <div class="muted">
 
-<button onclick="openCustomerInvoice(${c.id})">
-🧾 Invoice
-</button>
+        ${customer.code}
 
-</div>
+        </div>
 
-</div>
+        </div>
 
-`;
+        <div class="due">
 
-});
+        বকেয়া ৳ ${money(customer.due)}
 
-el("customerList").innerHTML=html||`<div class="empty">কোন Customer পাওয়া যায়নি</div>`;
+        </div>
+
+        </div>
+
+
+        <div class="muted"
+        style="margin-top:8px">
+
+        📱 ${customer.phone || "-"}
+
+        <br>
+
+        📍 ${customer.address || "-"}
+
+        </div>
+
+
+        <div class="actions">
+
+        <button
+        onclick="customerSale(${customer.id})">
+
+        🧾 Sale
+
+        </button>
+
+
+        <button
+        onclick="customerPayment(${customer.id})">
+
+        💰 Payment
+
+        </button>
+
+
+        <button
+        onclick="openCustomerInvoice(${customer.id})">
+
+        📄 Invoice
+
+        </button>
+
+        </div>
+
+        </div>
+
+        `;
+
+    });
+
+
+    el("customerList").innerHTML=
+
+    html ||
+
+    `<div class="empty">
+
+    কোন Customer পাওয়া যায়নি
+
+    </div>`;
 
 }
 
 
-/* PRODUCT */
+/* =========================
+PRODUCT
+========================= */
 
 function addProduct(){
 
-let name=el("productNameInput").value.trim();
+    let name =
+    el("productNameInput")
+    .value.trim();
 
-if(!name){
-alert("Product Name দিন");
-return;
-}
 
-products.push({
-id:Date.now(),
-name:name,
-category:el("productCategory").value,
-unit:el("productUnit").value,
-buy:Number(el("productBuyPrice").value)||0,
-sell:Number(el("productSalePrice").value)||0,
-stock:Number(el("productStockInput").value)||0
-});
+    if(!name){
 
-saveDatabase();
+        alert("Product Name দিন");
 
-el("productNameInput").value="";
-el("productBuyPrice").value="";
-el("productSalePrice").value="";
-el("productStockInput").value="0";
+        return;
 
-closeModal("productModal");
+    }
 
-renderProducts();
 
-alert("Product Added Successfully");
+    products.push({
+
+        id:Date.now(),
+
+        name:name,
+
+        category:
+        el("productCategory").value,
+
+        unit:
+        el("productUnit").value,
+
+        buy:
+        Number(el("productBuyPrice").value)||0,
+
+        sell:
+        Number(el("productSalePrice").value)||0,
+
+        stock:
+        Number(el("productStockInput").value)||0
+
+    });
+
+
+    saveDatabase();
+
+
+    el("productNameInput").value="";
+
+    el("productBuyPrice").value="";
+
+    el("productSalePrice").value="";
+
+    el("productStockInput").value="0";
+
+
+    closeModal("productModal");
+
+
+    renderProducts();
+
+
+    alert("Product Successfully Added");
 
 }
 
 
 function renderProducts(){
 
-let search=el("productSearch")?el("productSearch").value.toLowerCase():"";
+    let search =
+    el("productSearch").value
+    .toLowerCase();
 
-let html="";
 
-products
-.filter(p=>(p.name+" "+p.category).toLowerCase().includes(search))
-.forEach((p,index)=>{
+    let html="";
 
-html+=`
 
-<div class="product-card">
+    products
+    .filter(function(product){
 
-<div class="card-top">
+        return (
 
-<div>
+            product.name+
+            " "+
+            product.category
 
-<div class="product-name">
-${index+1}. ${p.name}
-</div>
+        )
+        .toLowerCase()
+        .includes(search);
 
-<div class="muted">
-${p.category} • ${p.unit}
-</div>
+    })
+    .forEach(function(product,index){
 
-<div class="muted">
-Buy ৳ ${money(p.buy)} | Sale ৳ ${money(p.sell)}
-</div>
 
-</div>
+        html+=`
 
-<div class="stock">
-Stock ${p.stock}
-</div>
+        <div class="product-card">
 
-</div>
+        <div class="card-top">
 
-</div>
+        <div>
 
-`;
+        <div class="product-name">
 
-});
+        ${index+1}. ${product.name}
 
-el("productList").innerHTML=html||`<div class="empty">কোন Product নেই</div>`;
+        </div>
+
+
+        <div class="muted">
+
+        ${product.category}
+        •
+        ${product.unit}
+
+        </div>
+
+
+        <div class="muted">
+
+        Buy ৳ ${money(product.buy)}
+
+        |
+
+        Default Sale ৳ ${money(product.sell)}
+
+        </div>
+
+        </div>
+
+
+        <div class="stock">
+
+        Stock ${product.stock}
+
+        </div>
+
+        </div>
+
+        </div>
+
+        `;
+
+    });
+
+
+    el("productList").innerHTML=
+
+    html ||
+
+    `<div class="empty">
+
+    কোন Product নেই
+
+    </div>`;
 
 }
 
 
-/* SALE */
+/* =========================
+CUSTOMER SPECIFIC RATE
+========================= */
+
+function prepareCustomerRatePage(){
+
+    let select=
+    el("rateCustomer");
+
+
+    select.innerHTML=
+
+    `<option value="">
+
+    Customer নির্বাচন করুন
+
+    </option>`;
+
+
+    customers.forEach(function(customer){
+
+        select.innerHTML+=`
+
+        <option value="${customer.id}">
+
+        ${customer.code} - ${customer.name}
+
+        </option>
+
+        `;
+
+    });
+
+
+    renderCustomerRates();
+
+}
+
+
+function renderCustomerRates(){
+
+    let customerId =
+    Number(el("rateCustomer").value);
+
+
+    if(!customerId){
+
+        el("customerRateList").innerHTML=
+
+        `<div class="empty">
+
+        প্রথমে একটি Customer নির্বাচন করুন
+
+        </div>`;
+
+        return;
+
+    }
+
+
+    if(!customerRates[customerId]){
+
+        customerRates[customerId]={};
+
+    }
+
+
+    let html=""
+
+
+    products.forEach(function(product,index){
+
+        let customRate=
+
+        customerRates[customerId][product.id];
+
+
+        let currentRate=
+
+        customRate!==undefined
+
+        ?
+
+        customRate
+
+        :
+
+        product.sell;
+
+
+        html+=`
+
+        <div class="rate-card">
+
+        <div class="card-top">
+
+        <div>
+
+        <b>
+
+        ${index+1}. ${product.name}
+
+        </b>
+
+        <div class="muted">
+
+        Default Rate:
+        ৳ ${money(product.sell)}
+
+        </div>
+
+        </div>
+
+        <div class="stock">
+
+        Custom Rate
+
+        </div>
+
+        </div>
+
+
+        <input
+        type="number"
+        id="rate_${product.id}"
+        value="${currentRate}"
+        placeholder="Customer Rate">
+
+
+        <button
+        class="btn btn-green full"
+        onclick="saveCustomerRate(${product.id})">
+
+        💾 Save This Rate
+
+        </button>
+
+        </div>
+
+        `;
+
+    });
+
+
+    el("customerRateList").innerHTML=
+
+    html ||
+
+    `<div class="empty">
+
+    আগে Product যোগ করুন
+
+    </div>`;
+
+}
+
+
+function saveCustomerRate(productId){
+
+    let customerId=
+
+    Number(el("rateCustomer").value);
+
+
+    if(!customerId){
+
+        alert("Customer নির্বাচন করুন");
+
+        return;
+
+    }
+
+
+    let rate=
+
+    Number(el("rate_"+productId).value);
+
+
+    if(isNaN(rate) || rate<0){
+
+        alert("সঠিক Rate দিন");
+
+        return;
+
+    }
+
+
+    if(!customerRates[customerId]){
+
+        customerRates[customerId]={};
+
+    }
+
+
+    customerRates[customerId][productId]=rate;
+
+
+    saveDatabase();
+
+
+    alert("Customer Specific Rate Saved");
+
+}
+
+
+/* =========================
+GET CUSTOMER RATE
+========================= */
+
+function getCustomerRate(
+customerId,
+productId
+){
+
+    if(
+
+        customerRates[customerId]
+
+        &&
+
+        customerRates[customerId][productId] !== undefined
+
+    ){
+
+        return Number(
+            customerRates[customerId][productId]
+        );
+
+    }
+
+
+    let product=
+
+    products.find(function(p){
+
+        return p.id===Number(productId);
+
+    });
+
+
+    return product
+    ?
+    Number(product.sell)
+    :
+    0;
+
+}
+
+
+/* =========================
+SALE
+========================= */
 
 function prepareSale(){
 
-let select=el("saleCustomer");
+    let select=
 
-let current=select.value;
+    el("saleCustomer");
 
-select.innerHTML=`<option value="">Customer নির্বাচন করুন</option>`;
 
-customers.forEach(c=>{
-select.innerHTML+=`<option value="${c.id}">${c.code} - ${c.name}</option>`;
-});
+    let current=
 
-select.value=current;
+    select.value;
 
-if(saleCart.length===0)addSaleRow();
 
-calculateSale();
+    select.innerHTML=
+
+    `<option value="">
+
+    Customer নির্বাচন করুন
+
+    </option>`;
+
+
+    customers.forEach(function(customer){
+
+        select.innerHTML+=`
+
+        <option value="${customer.id}">
+
+        ${customer.code}
+        -
+        ${customer.name}
+
+        </option>
+
+        `;
+
+    });
+
+
+    select.value=current;
+
+
+    if(saleCart.length===0){
+
+        addSaleRow();
+
+    }
+
+
+    calculateSale();
+
+}
+
+
+function customerChanged(){
+
+    let customerId=
+
+    Number(el("saleCustomer").value);
+
+
+    saleCart.forEach(function(item){
+
+        if(item.productId){
+
+            item.rate=
+
+            getCustomerRate(
+                customerId,
+                item.productId
+            );
+
+        }
+
+    });
+
+
+    renderSaleRows();
 
 }
 
 
 function addSaleRow(){
 
-saleCart.push({
-productId:"",
-qty:1,
-rate:0
-});
+    saleCart.push({
 
-renderSaleRows();
+        productId:"",
+
+        qty:1,
+
+        rate:0
+
+    });
+
+
+    renderSaleRows();
 
 }
 
 
 function renderSaleRows(){
 
-let html="";
+    let html="";
 
-saleCart.forEach((item,index)=>{
 
-let options=`<option value="">Product নির্বাচন করুন</option>`;
+    saleCart.forEach(function(item,index){
 
-products.forEach(p=>{
-options+=`<option value="${p.id}" ${Number(item.productId)===p.id?"selected":""}>${p.name}</option>`;
-});
 
-html+=`
+        let options=
 
-<div class="sale-item">
+        `<option value="">
 
-<label>Product</label>
+        Product নির্বাচন করুন
 
-<select onchange="selectSaleProduct(${index},this.value)">
-${options}
-</select>
+        </option>`;
 
-<div class="sale-grid">
 
-<div>
-<label>Qty</label>
-<input type="number" min="1" value="${item.qty}" onchange="changeSaleQty(${index},this.value)">
-</div>
+        products.forEach(function(product){
 
-<div>
-<label>Rate</label>
-<input type="number" value="${item.rate}" onchange="changeSaleRate(${index},this.value)">
-</div>
+            options+=`
 
-<div>
-<label>Remove</label>
-<button class="btn btn-red full" onclick="removeSaleRow(${index})">✕</button>
-</div>
+            <option
+            value="${product.id}"
 
-</div>
+            ${Number(item.productId)===product.id
+            ?
+            "selected"
+            :
+            ""}>
 
-<div class="muted">
-Total: ৳ ${money(item.qty*item.rate)}
-</div>
+            ${product.name}
 
-</div>
+            </option>
 
-`;
+            `;
 
-});
+        });
 
-el("saleItems").innerHTML=html;
 
-calculateSale();
+        html+=`
+
+        <div class="sale-item">
+
+        <label>Product</label>
+
+        <select
+        onchange="selectSaleProduct(
+        ${index},
+        this.value
+        )">
+
+        ${options}
+
+        </select>
+
+
+        <div class="sale-grid">
+
+        <div>
+
+        <label>Qty</label>
+
+        <input
+        type="number"
+        min="1"
+        value="${item.qty}"
+        onchange="changeSaleQty(
+        ${index},
+        this.value
+        )">
+
+        </div>
+
+
+        <div>
+
+        <label>Rate</label>
+
+        <input
+        type="number"
+        value="${item.rate}"
+        onchange="changeSaleRate(
+        ${index},
+        this.value
+        )">
+
+        </div>
+
+
+        <div>
+
+        <label>Remove</label>
+
+        <button
+        class="btn btn-red full"
+        onclick="removeSaleRow(${index})">
+
+        ✕
+
+        </button>
+
+        </div>
+
+        </div>
+
+
+        <div class="muted">
+
+        Total:
+        ৳ ${money(item.qty*item.rate)}
+
+        </div>
+
+        </div>
+
+        `;
+
+    });
+
+
+    el("saleItems").innerHTML=html;
+
+
+    calculateSale();
 
 }
 
 
-function selectSaleProduct(index,id){
+function selectSaleProduct(
+index,
+productId
+){
 
-let p=products.find(x=>x.id===Number(id));
+    let customerId=
 
-saleCart[index].productId=Number(id);
+    Number(el("saleCustomer").value);
 
-saleCart[index].rate=p?p.sell:0;
 
-renderSaleRows();
+    if(!customerId){
+
+        alert(
+        "প্রথমে Customer নির্বাচন করুন"
+        );
+
+        return;
+
+    }
+
+
+    saleCart[index].productId=
+
+    Number(productId);
+
+
+    saleCart[index].rate=
+
+    getCustomerRate(
+
+        customerId,
+
+        Number(productId)
+
+    );
+
+
+    renderSaleRows();
 
 }
 
 
-function changeSaleQty(index,value){
+function changeSaleQty(
+index,
+value
+){
 
-saleCart[index].qty=Number(value)||0;
+    saleCart[index].qty=
 
-calculateSale();
+    Number(value)||0;
+
+
+    calculateSale();
 
 }
 
 
-function changeSaleRate(index,value){
+function changeSaleRate(
+index,
+value
+){
 
-saleCart[index].rate=Number(value)||0;
+    saleCart[index].rate=
 
-calculateSale();
+    Number(value)||0;
+
+
+    calculateSale();
 
 }
 
 
 function removeSaleRow(index){
 
-saleCart.splice(index,1);
+    saleCart.splice(index,1);
 
-renderSaleRows();
+
+    renderSaleRows();
 
 }
 
 
 function calculateSale(){
 
-let subtotal=saleCart.reduce((a,b)=>a+(b.qty*b.rate),0);
+    let subtotal=
 
-let customer=customers.find(c=>c.id===Number(el("saleCustomer").value));
+    saleCart.reduce(
 
-let previousDue=customer?Number(customer.due):0;
+        function(total,item){
 
-let paid=Number(el("salePaid").value)||0;
+            return total+
 
-let currentDue=previousDue+subtotal-paid;
+            (
+                Number(item.qty)*
+                Number(item.rate)
+            );
 
-el("saleSubtotal").textContent=money(subtotal);
+        },
 
-el("salePreviousDue").textContent=money(previousDue);
+        0
 
-el("saleCurrentDue").textContent=money(currentDue);
+    );
+
+
+    let customer=
+
+    customers.find(function(customer){
+
+        return customer.id===
+
+        Number(
+            el("saleCustomer").value
+        );
+
+    });
+
+
+    let previousDue=
+
+    customer
+
+    ?
+
+    Number(customer.due)
+
+    :
+
+    0;
+
+
+    let paid=
+
+    Number(el("salePaid").value)||0;
+
+
+    let currentDue=
+
+    previousDue+
+    subtotal-
+    paid;
+
+
+    el("saleSubtotal").textContent=
+
+    money(subtotal);
+
+
+    el("salePreviousDue").textContent=
+
+    money(previousDue);
+
+
+    el("saleCurrentDue").textContent=
+
+    money(currentDue);
 
 }
 
 
-/* SAVE SALE */
+/* =========================
+SAVE SALE
+========================= */
 
 function saveSale(){
 
-let customer=customers.find(c=>c.id===Number(el("saleCustomer").value));
+    let customer=
 
-if(!customer){
-alert("Customer নির্বাচন করুন");
-return;
+    customers.find(function(c){
+
+        return c.id===
+
+        Number(
+            el("saleCustomer").value
+        );
+
+    });
+
+
+    if(!customer){
+
+        alert("Customer নির্বাচন করুন");
+
+        return;
+
+    }
+
+
+    if(saleCart.length===0){
+
+        alert("Product যোগ করুন");
+
+        return;
+
+    }
+
+
+    for(let item of saleCart){
+
+        if(!item.productId){
+
+            alert(
+            "সব Product নির্বাচন করুন"
+            );
+
+            return;
+
+        }
+
+
+        let product=
+
+        products.find(function(p){
+
+            return p.id===
+            Number(item.productId);
+
+        });
+
+
+        if(!product){
+
+            alert("Product পাওয়া যায়নি");
+
+            return;
+
+        }
+
+
+        if(item.qty>product.stock){
+
+            alert(
+
+            product.name+
+
+            " এর Stock পর্যাপ্ত নেই"
+
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    let subtotal=
+
+    saleCart.reduce(
+
+        function(total,item){
+
+            return total+
+
+            item.qty*
+            item.rate;
+
+        },
+
+        0
+
+    );
+
+
+    let paid=
+
+    Number(
+        el("salePaid").value
+    )||0;
+
+
+    let previousDue=
+
+    Number(customer.due)||0;
+
+
+    let currentDue=
+
+    previousDue+
+    subtotal-
+    paid;
+
+
+    saleCart.forEach(function(item){
+
+        let product=
+
+        products.find(function(p){
+
+            return p.id===
+            Number(item.productId);
+
+        });
+
+
+        product.stock-=
+        Number(item.qty);
+
+    });
+
+
+    customer.due=
+    currentDue;
+
+
+    let sale={
+
+        id:Date.now(),
+
+        invoice:
+
+        "APF-"+
+
+        String(sales.length+1)
+        .padStart(5,"0"),
+
+        customerId:
+        customer.id,
+
+        date:
+        new Date().toISOString(),
+
+        items:
+
+        JSON.parse(
+            JSON.stringify(saleCart)
+        ),
+
+        subtotal:
+        subtotal,
+
+        paid:
+        paid,
+
+        previousDue:
+        previousDue,
+
+        currentDue:
+        currentDue
+
+    };
+
+
+    sales.push(sale);
+
+
+    saveDatabase();
+
+
+    currentInvoice=
+    sale;
+
+
+    saleCart=[];
+
+
+    el("salePaid").value=
+    "0";
+
+
+    openInvoice(sale);
+
 }
 
-if(saleCart.length===0){
-alert("Product যোগ করুন");
-return;
-}
 
-for(let item of saleCart){
-
-if(!item.productId){
-alert("সব Product নির্বাচন করুন");
-return;
-}
-
-let product=products.find(p=>p.id===Number(item.productId));
-
-if(!product||item.qty>product.stock){
-alert("Stock পর্যাপ্ত নেই");
-return;
-}
-
-}
-
-let subtotal=saleCart.reduce((a,b)=>a+(b.qty*b.rate),0);
-
-let paid=Number(el("salePaid").value)||0;
-
-let previousDue=Number(customer.due)||0;
-
-let currentDue=previousDue+subtotal-paid;
-
-
-saleCart.forEach(item=>{
-
-let product=products.find(p=>p.id===Number(item.productId));
-
-product.stock-=item.qty;
-
-});
-
-
-customer.due=currentDue;
-
-
-let sale={
-
-id:Date.now(),
-
-invoice:"APF-"+String(sales.length+1).padStart(5,"0"),
-
-customerId:customer.id,
-
-date:new Date().toISOString(),
-
-items:JSON.parse(JSON.stringify(saleCart)),
-
-subtotal:subtotal,
-
-paid:paid,
-
-previousDue:previousDue,
-
-currentDue:currentDue
-
-};
-
-
-sales.push(sale);
-
-saveDatabase();
-
-currentInvoice=sale;
-
-saleCart=[];
-
-el("salePaid").value="0";
-
-openInvoice(sale);
-
-}
-
-
-/* PAYMENT */
+/* =========================
+PAYMENT
+========================= */
 
 function preparePayment(){
 
-let select=el("paymentCustomer");
+    let select=
 
-select.innerHTML=`<option value="">Customer নির্বাচন করুন</option>`;
+    el("paymentCustomer");
 
-customers.forEach(c=>{
-select.innerHTML+=`<option value="${c.id}">${c.code} - ${c.name}</option>`;
-});
 
-updatePaymentDue();
+    select.innerHTML=
 
-renderPaymentHistory();
+    `<option value="">
+
+    Customer নির্বাচন করুন
+
+    </option>`;
+
+
+    customers.forEach(function(customer){
+
+        select.innerHTML+=`
+
+        <option
+        value="${customer.id}">
+
+        ${customer.code}
+        -
+        ${customer.name}
+
+        </option>
+
+        `;
+
+    });
+
+
+    updatePaymentDue();
+
+
+    renderPaymentHistory();
 
 }
 
 
 function updatePaymentDue(){
 
-let customer=customers.find(c=>c.id===Number(el("paymentCustomer").value));
+    let customer=
 
-el("paymentDue").value=customer?money(customer.due):"0.00";
+    customers.find(function(c){
+
+        return c.id===
+
+        Number(
+            el("paymentCustomer").value
+        );
+
+    });
+
+
+    el("paymentDue").value=
+
+    customer
+
+    ?
+
+    money(customer.due)
+
+    :
+
+    "0.00";
 
 }
 
 
 function savePayment(){
 
-let customer=customers.find(c=>c.id===Number(el("paymentCustomer").value));
+    let customer=
 
-let amount=Number(el("paymentAmount").value)||0;
+    customers.find(function(c){
 
-if(!customer||amount<=0){
-alert("Customer এবং Amount দিন");
-return;
+        return c.id===
+
+        Number(
+            el("paymentCustomer").value
+        );
+
+    });
+
+
+    let amount=
+
+    Number(
+        el("paymentAmount").value
+    )||0;
+
+
+    if(!customer || amount<=0){
+
+        alert(
+        "Customer এবং Amount দিন"
+        );
+
+        return;
+
+    }
+
+
+    if(amount>customer.due){
+
+        alert(
+        "Due এর চেয়ে বেশি Payment দেওয়া যাবে না"
+        );
+
+        return;
+
+    }
+
+
+    customer.due-=
+    amount;
+
+
+    payments.push({
+
+        id:Date.now(),
+
+        customerId:
+        customer.id,
+
+        amount:
+        amount,
+
+        date:
+        new Date().toISOString()
+
+    });
+
+
+    saveDatabase();
+
+
+    el("paymentAmount").value=
+    "";
+
+
+    updatePaymentDue();
+
+
+    renderPaymentHistory();
+
+
+    alert(
+    "Payment Saved Successfully"
+    );
+
 }
 
-if(amount>customer.due){
-alert("Due এর চেয়ে বেশি Payment দেওয়া যাবে না");
-return;
-}
-
-customer.due-=amount;
-
-payments.push({
-id:Date.now(),
-customerId:customer.id,
-amount:amount,
-date:new Date().toISOString()
-});
-
-saveDatabase();
-
-el("paymentAmount").value="";
-
-updatePaymentDue();
-
-renderPaymentHistory();
-
-alert("Payment Saved Successfully");
-
-}
-
-
-/* PAYMENT HISTORY */
 
 function renderPaymentHistory(){
 
-let html="";
+    let html="";
 
-payments.slice().reverse().forEach(p=>{
 
-let customer=customers.find(c=>c.id===p.customerId);
+    payments
+    .slice()
+    .reverse()
+    .forEach(function(payment){
 
-html+=`
+        let customer=
 
-<div class="history-card">
+        customers.find(function(c){
 
-<b>${customer?customer.name:"Customer"}</b>
+            return c.id===
+            payment.customerId;
 
-<div class="muted">
-${new Date(p.date).toLocaleDateString("en-BD")}
-</div>
+        });
 
-<div class="stock" style="margin-top:7px;display:inline-block">
-৳ ${money(p.amount)}
-</div>
 
-</div>
+        html+=`
 
-`;
+        <div class="history-card">
 
-});
+        <b>
 
-el("paymentHistory").innerHTML=html;
+        ${customer
+        ?
+        customer.name
+        :
+        "Customer"}
+
+        </b>
+
+        <div class="muted">
+
+        ${new Date(payment.date)
+        .toLocaleDateString("en-BD")}
+
+        </div>
+
+        <div
+        class="stock"
+        style="
+        margin-top:7px;
+        display:inline-block">
+
+        ৳ ${money(payment.amount)}
+
+        </div>
+
+        </div>
+
+        `;
+
+    });
+
+
+    el("paymentHistory").innerHTML=
+
+    html ||
+
+    `<div class="empty">
+
+    কোন Payment নেই
+
+    </div>`;
 
 }
 
 
-/* CUSTOMER QUICK */
+/* =========================
+CUSTOMER QUICK ACTION
+========================= */
 
 function customerSale(id){
 
-goPage("salePage");
+    goPage("salePage");
 
-setTimeout(()=>{
-el("saleCustomer").value=id;
-calculateSale();
-},150);
+
+    setTimeout(function(){
+
+        el("saleCustomer").value=id;
+
+        customerChanged();
+
+        calculateSale();
+
+    },150);
 
 }
 
 
 function customerPayment(id){
 
-goPage("paymentPage");
+    goPage("paymentPage");
 
-setTimeout(()=>{
-el("paymentCustomer").value=id;
-updatePaymentDue();
-},150);
+
+    setTimeout(function(){
+
+        el("paymentCustomer").value=id;
+
+        updatePaymentDue();
+
+    },150);
 
 }
 
 
-/* INVOICE */
+/* =========================
+INVOICE
+========================= */
 
 function openCustomerInvoice(customerId){
 
-let customer=customers.find(c=>c.id===Number(customerId));
+    let customer=
 
-let customerSales=sales
-.filter(s=>s.customerId===customer.id)
-.sort((a,b)=>new Date(b.date)-new Date(a.date));
+    customers.find(function(c){
 
-if(customerSales.length===0){
+        return c.id===
+        Number(customerId);
 
-let fakeInvoice={
+    });
 
-invoice:"CUSTOMER-INFO",
 
-customerId:customer.id,
+    let customerSales=
 
-date:new Date().toISOString(),
+    sales
+    .filter(function(s){
 
-items:[],
+        return s.customerId===
+        customer.id;
 
-subtotal:0,
+    })
+    .sort(function(a,b){
 
-paid:0,
+        return new Date(b.date)-
+        new Date(a.date);
 
-previousDue:customer.due,
+    });
 
-currentDue:customer.due
 
-};
+    if(customerSales.length===0){
 
-openInvoice(fakeInvoice);
+        let infoInvoice={
 
-return;
+            invoice:
+            "CUSTOMER-INFO",
 
-}
+            customerId:
+            customer.id,
 
-openInvoice(customerSales[0]);
+            date:
+            new Date().toISOString(),
+
+            items:[],
+
+            subtotal:0,
+
+            paid:0,
+
+            previousDue:
+            customer.due,
+
+            currentDue:
+            customer.due
+
+        };
+
+
+        openInvoice(
+        infoInvoice
+        );
+
+        return;
+
+    }
+
+
+    openInvoice(
+    customerSales[0]
+    );
 
 }
 
 
 function openInvoice(sale){
 
-currentInvoice=sale;
+    currentInvoice=
+    sale;
 
-let customer=customers.find(c=>c.id===sale.customerId);
 
-let itemRows="";
+    let customer=
 
-sale.items.forEach((item,index)=>{
+    customers.find(function(c){
 
-let product=products.find(p=>p.id===Number(item.productId));
+        return c.id===
+        sale.customerId;
 
-itemRows+=`
+    });
 
-<tr>
-<td>${index+1}</td>
-<td>${product?product.name:"Product"}</td>
-<td>${item.qty}</td>
-<td>৳ ${money(item.rate)}</td>
-<td>৳ ${money(item.qty*item.rate)}</td>
-</tr>
 
-`;
+    let itemRows="";
 
-});
 
-if(sale.items.length===0){
+    sale.items.forEach(
+    function(item,index){
 
-itemRows=`
+        let product=
 
-<tr>
-<td colspan="5" style="text-align:center">
-এই Customer-এর কোনো Sale Invoice নেই
-</td>
-</tr>
+        products.find(function(p){
 
-`;
+            return p.id===
+            Number(item.productId);
+
+        });
+
+
+        itemRows+=`
+
+        <tr>
+
+        <td>${index+1}</td>
+
+        <td>
+        ${product
+        ?
+        product.name
+        :
+        "Product"}
+        </td>
+
+        <td>${item.qty}</td>
+
+        <td>
+        ৳ ${money(item.rate)}
+        </td>
+
+        <td>
+        ৳ ${money(
+        item.qty*
+        item.rate
+        )}
+        </td>
+
+        </tr>
+
+        `;
+
+    });
+
+
+    if(sale.items.length===0){
+
+        itemRows=`
+
+        <tr>
+
+        <td
+        colspan="5"
+        style="text-align:center">
+
+        এই Customer-এর
+        কোনো Sale Invoice নেই
+
+        </td>
+
+        </tr>
+
+        `;
+
+    }
+
+
+    el("invoiceContent").innerHTML=`
+
+    <div class="invoice-header">
+
+    <div class="invoice-company">
+
+    🐔 আখন্দ পোল্ট্রি ফিড
+
+    </div>
+
+    <div class="invoice-en">
+
+    AKHONDO POULTRY FEED
+
+    </div>
+
+
+    <div
+    class="muted"
+    style="margin-top:6px">
+
+    উপজেলা প্রাণিসম্পদ দপ্তর ও
+    ভেটেনারি হাসপাতালের সামনে,
+    লাকসাম রোড,
+    চৌদ্দগ্রাম, কুমিল্লা
+
+    </div>
+
+    </div>
+
+
+    <div class="invoice-title">
+
+    SALES INVOICE
+
+    </div>
+
+
+    <div class="invoice-info">
+
+    <div>
+
+    <b>Invoice No:</b>
+    ${sale.invoice}
+
+    </div>
+
+
+    <div>
+
+    <b>Date:</b>
+
+    ${new Date(sale.date)
+    .toLocaleDateString("en-BD")}
+
+    </div>
+
+
+    <div>
+
+    <b>Customer:</b>
+
+    ${customer.name}
+
+    </div>
+
+
+    <div>
+
+    <b>Mobile:</b>
+
+    ${customer.phone||"-"}
+
+    </div>
+
+
+    <div>
+
+    <b>Address:</b>
+
+    ${customer.address||"-"}
+
+    </div>
+
+    </div>
+
+
+    <table>
+
+    <thead>
+
+    <tr>
+
+    <th>SL</th>
+
+    <th>Product</th>
+
+    <th>Qty</th>
+
+    <th>Rate</th>
+
+    <th>Total</th>
+
+    </tr>
+
+    </thead>
+
+
+    <tbody>
+
+    ${itemRows}
+
+    </tbody>
+
+    </table>
+
+
+    <div class="invoice-total">
+
+    <div class="invoice-row">
+
+    <span>
+    Previous Due
+    </span>
+
+    <b>
+    ৳ ${money(
+    sale.previousDue
+    )}
+    </b>
+
+    </div>
+
+
+    <div class="invoice-row">
+
+    <span>
+    Invoice Amount
+    </span>
+
+    <b>
+    ৳ ${money(
+    sale.subtotal
+    )}
+    </b>
+
+    </div>
+
+
+    <div class="invoice-row">
+
+    <span>
+    Paid
+    </span>
+
+    <b>
+    ৳ ${money(
+    sale.paid
+    )}
+    </b>
+
+    </div>
+
+
+    <div
+    class="
+    invoice-row
+    invoice-grand">
+
+    <span>
+    Current Due
+    </span>
+
+    <b>
+    ৳ ${money(
+    customer.due
+    )}
+    </b>
+
+    </div>
+
+    </div>
+
+
+    <div class="invoice-contact">
+
+    📞 01819193289
+    |
+    01645140156
+
+    <br>
+
+    ✉️
+    masud.chauddagram2825@gmail.com
+
+    </div>
+
+    `;
+
+
+    openModal(
+    "invoiceModal"
+    );
+
+
+    setTimeout(
+    function(){
+
+        speakInvoice(
+        customer
+        );
+
+    },
+    500
+    );
 
 }
 
-el("invoiceContent").innerHTML=`
 
-<div class="invoice-header">
-
-<div class="invoice-company">
-🐔 আখন্দ পোল্ট্রি ফিড
-</div>
-
-<div class="invoice-company-en">
-AKHONDO POULTRY FEED
-</div>
-
-<div class="muted" style="margin-top:5px">
-উপজেলা প্রাণিসম্পদ দপ্তর ও ভেটেনারি হাসপাতালের সামনে,
-লাকসাম রোড, চৌদ্দগ্রাম, কুমিল্লা
-</div>
-
-</div>
-
-
-<div class="invoice-title">
-INVOICE
-</div>
-
-
-<div class="invoice-info">
-
-<div>
-<b>Invoice:</b> ${sale.invoice}
-</div>
-
-<div>
-<b>Date:</b>
-${new Date(sale.date).toLocaleDateString("en-BD")}
-</div>
-
-<div>
-<b>Customer:</b> ${customer.name}
-</div>
-
-<div>
-<b>Mobile:</b> ${customer.phone||"-"}
-</div>
-
-<div>
-<b>Address:</b> ${customer.address||"-"}
-</div>
-
-</div>
-
-
-<table>
-
-<thead>
-
-<tr>
-<th>SL</th>
-<th>Product</th>
-<th>Qty</th>
-<th>Rate</th>
-<th>Total</th>
-</tr>
-
-</thead>
-
-<tbody>
-
-${itemRows}
-
-</tbody>
-
-</table>
-
-
-<div class="invoice-total">
-
-<div class="invoice-row">
-<span>Previous Due</span>
-<b>৳ ${money(sale.previousDue)}</b>
-</div>
-
-<div class="invoice-row">
-<span>Invoice Amount</span>
-<b>৳ ${money(sale.subtotal)}</b>
-</div>
-
-<div class="invoice-row">
-<span>Paid</span>
-<b>৳ ${money(sale.paid)}</b>
-</div>
-
-<div class="invoice-row invoice-grand">
-<span>Current Due</span>
-<b>৳ ${money(customer.due)}</b>
-</div>
-
-</div>
-
-
-<div class="invoice-contact">
-
-📞 01819193289 | 01645140156<br>
-
-✉️ masud.chauddagram2825@gmail.com
-
-</div>
-
-`;
-
-openModal("invoiceModal");
-
-setTimeout(()=>speakInvoice(customer),500);
-
-}
-
-
-/* BANGLA VOICE */
+/* =========================
+BANGLA VOICE
+========================= */
 
 function speakInvoice(customer){
 
-let due=Number(customer.due||0);
+    let due=
 
-let text="আসসালামু আলাইকুম। ";
+    Number(
+    customer.due||0
+    );
 
-text+="কাস্টমারের নাম "+customer.name+"। ";
 
-if(due>0){
+    let text=
 
-text+="বর্তমান বকেয়া "+due+" টাকা।";
+    "আসসালামু আলাইকুম। ";
 
-}else{
 
-text+="এই কাস্টমারের কোনো বকেয়া নেই।";
+    text+=
 
-}
+    "কাস্টমারের নাম " +
 
-speechSynthesis.cancel();
+    customer.name +
 
-let speech=new SpeechSynthesisUtterance(text);
+    "। ";
 
-speech.lang="bn-BD";
 
-speech.rate=.85;
+    if(due>0){
 
-speech.pitch=1;
+        text+=
 
-speechSynthesis.speak(speech);
+        "বর্তমান বকেয়া " +
+
+        due +
+
+        " টাকা।";
+
+    }else{
+
+        text+=
+
+        "এই কাস্টমারের কোনো বকেয়া নেই।";
+
+    }
+
+
+    speechSynthesis.cancel();
+
+
+    let speech=
+
+    new SpeechSynthesisUtterance(
+    text
+    );
+
+
+    speech.lang=
+    "bn-BD";
+
+
+    speech.rate=
+    0.85;
+
+
+    speech.pitch=
+    1;
+
+
+    speechSynthesis.speak(
+    speech
+    );
 
 }
 
 
 function repeatInvoiceVoice(){
 
-if(!currentInvoice)return;
+    if(!currentInvoice){
 
-let customer=customers.find(c=>c.id===currentInvoice.customerId);
+        return;
 
-if(customer)speakInvoice(customer);
+    }
+
+
+    let customer=
+
+    customers.find(function(c){
+
+        return c.id===
+        currentInvoice.customerId;
+
+    });
+
+
+    if(customer){
+
+        speakInvoice(
+        customer
+        );
+
+    }
 
 }
 
 
-/* SALES HISTORY */
+/* =========================
+SALES HISTORY
+========================= */
 
 function renderSalesHistory(){
 
-let html="";
+    let html="";
 
-sales.slice().reverse().forEach(s=>{
 
-let customer=customers.find(c=>c.id===s.customerId);
+    sales
+    .slice()
+    .reverse()
+    .forEach(function(sale){
 
-html+=`
+        let customer=
 
-<div class="history-card" onclick="openInvoiceById(${s.id})" style="cursor:pointer">
+        customers.find(function(c){
 
-<div class="card-top">
+            return c.id===
+            sale.customerId;
 
-<div>
+        });
 
-<b>🧾 ${s.invoice}</b>
 
-<div class="muted">
-${customer?customer.name:"Customer"}
-</div>
+        html+=`
 
-</div>
+        <div
+        class="history-card"
+        onclick="openInvoiceById(
+        ${sale.id}
+        )"
+        style="cursor:pointer">
 
-<div class="stock">
-৳ ${money(s.subtotal)}
-</div>
+        <div class="card-top">
 
-</div>
+        <div>
 
-<div class="muted" style="margin-top:7px">
-${new Date(s.date).toLocaleDateString("en-BD")}
-</div>
+        <b>
 
-</div>
+        🧾 ${sale.invoice}
 
-`;
+        </b>
 
-});
 
-el("salesHistoryList").innerHTML=html||`<div class="empty">এখনও কোন Sale হয়নি</div>`;
+        <div class="muted">
+
+        ${customer
+        ?
+        customer.name
+        :
+        "Customer"}
+
+        </div>
+
+        </div>
+
+
+        <div class="stock">
+
+        ৳ ${money(
+        sale.subtotal
+        )}
+
+        </div>
+
+        </div>
+
+
+        <div
+        class="muted"
+        style="margin-top:7px">
+
+        ${new Date(sale.date)
+        .toLocaleDateString("en-BD")}
+
+        </div>
+
+        </div>
+
+        `;
+
+    });
+
+
+    el("salesHistoryList").innerHTML=
+
+    html ||
+
+    `<div class="empty">
+
+    এখনও কোন Sale হয়নি
+
+    </div>`;
 
 }
 
 
 function openInvoiceById(id){
 
-let sale=sales.find(s=>s.id===Number(id));
+    let sale=
 
-if(sale)openInvoice(sale);
+    sales.find(function(s){
+
+        return s.id===
+        Number(id);
+
+    });
+
+
+    if(sale){
+
+        openInvoice(sale);
+
+    }
 
 }
 
 
-/* DASHBOARD */
+/* =========================
+DASHBOARD
+========================= */
 
 function updateDashboard(){
 
-let today=new Date().toISOString().slice(0,10);
+    let today=
 
-let todaySales=sales
-.filter(s=>s.date.slice(0,10)===today)
-.reduce((a,b)=>a+Number(b.subtotal),0);
+    new Date()
+    .toISOString()
+    .slice(0,10);
 
-let totalSales=sales.reduce((a,b)=>a+Number(b.subtotal),0);
 
-let totalDue=customers.reduce((a,b)=>a+Number(b.due),0);
+    let todaySales=
 
-el("todaySale").textContent=money(todaySales);
+    sales
+    .filter(function(sale){
 
-el("totalSale").textContent=money(totalSales);
+        return sale.date
+        .slice(0,10)
+        ===today;
 
-el("totalDue").textContent=money(totalDue);
+    })
+    .reduce(function(total,sale){
 
-el("totalCustomer").textContent=customers.length;
+        return total+
+        Number(sale.subtotal);
 
-el("totalProduct").textContent=products.length;
+    },0);
 
-el("totalInvoice").textContent=sales.length;
+
+    let totalSales=
+
+    sales.reduce(function(total,sale){
+
+        return total+
+        Number(sale.subtotal);
+
+    },0);
+
+
+    let totalDue=
+
+    customers.reduce(
+    function(total,customer){
+
+        return total+
+        Number(customer.due);
+
+    },0);
+
+
+    el("todaySale").textContent=
+    money(todaySales);
+
+
+    el("totalSale").textContent=
+    money(totalSales);
+
+
+    el("totalDue").textContent=
+    money(totalDue);
+
+
+    el("totalCustomer").textContent=
+    customers.length;
+
+
+    el("totalProduct").textContent=
+    products.length;
+
+
+    el("totalInvoice").textContent=
+    sales.length;
 
 }
 
 
-/* BACKUP */
+/* =========================
+BACKUP
+========================= */
 
 function downloadBackup(){
 
-let data={
-customers,
-products,
-sales,
-payments
-};
+    let data={
 
-let blob=new Blob(
-[JSON.stringify(data,null,2)],
-{type:"application/json"}
-);
+        customers:
+        customers,
 
-let a=document.createElement("a");
+        products:
+        products,
 
-a.href=URL.createObjectURL(blob);
+        sales:
+        sales,
 
-a.download="Akhondo-Poultry-Backup.json";
+        payments:
+        payments,
 
-a.click();
+        customerRates:
+        customerRates
+
+    };
+
+
+    let blob=
+
+    new Blob(
+
+        [
+            JSON.stringify(
+                data,
+                null,
+                2
+            )
+        ],
+
+        {
+            type:
+            "application/json"
+        }
+
+    );
+
+
+    let a=
+
+    document.createElement(
+    "a"
+    );
+
+
+    a.href=
+
+    URL.createObjectURL(
+    blob
+    );
+
+
+    a.download=
+
+    "Akhondo-Poultry-Backup.json";
+
+
+    a.click();
 
 }
 
 
-/* CLEAR */
+/* =========================
+CLEAR
+========================= */
 
 function clearAllData(){
 
-if(!confirm("সব Data Delete করতে চান?"))return;
+    let confirmDelete=
 
-localStorage.clear();
+    confirm(
 
-location.reload();
+    "সব Data Delete করতে চান?"
+
+    );
+
+
+    if(!confirmDelete){
+
+        return;
+
+    }
+
+
+    localStorage.clear();
+
+
+    location.reload();
 
 }
 
 
-/* START */
+/* =========================
+START APP
+========================= */
 
 updateDashboard();
 

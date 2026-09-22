@@ -10,28 +10,36 @@
 :root{
   --primary:#0b6b4d;
   --primary2:#13a673;
-  --dark:#12352b;
+  --dark:#12372b;
   --bg:#f4f7f6;
   --card:#fff;
-  --text:#172b24;
-  --muted:#71817b;
-  --border:#dce7e2;
-  --danger:#c62828;
-  --warning:#a86600;
-  --blue:#175cd3;
-  --shadow:0 8px 25px rgba(15,55,42,.08);
+  --text:#1d2925;
+  --muted:#718079;
+  --border:#dfe8e4;
+  --danger:#d93025;
+  --warning:#d88900;
+  --blue:#1769aa;
+  --shadow:0 5px 20px rgba(0,0,0,.07);
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
-  font-family:Arial,"Noto Sans Bengali",sans-serif;
+  font-family:
+    Arial,
+    "Noto Sans Bengali",
+    sans-serif;
   background:var(--bg);
   color:var(--text);
 }
 
-button,input,select,textarea{
+button,
+input,
+select,
+textarea{
   font:inherit;
 }
 
@@ -39,96 +47,71 @@ button{
   cursor:pointer;
 }
 
-.app{
-  min-height:100vh;
-}
-
-/* HEADER */
-.topbar{
+.header{
+  background:linear-gradient(135deg,var(--dark),var(--primary2));
+  color:#fff;
+  padding:18px;
   position:sticky;
   top:0;
-  z-index:50;
-  background:linear-gradient(135deg,var(--primary),var(--primary2));
-  color:#fff;
-  padding:14px 16px;
-  box-shadow:0 4px 18px rgba(0,0,0,.15);
+  z-index:100;
+  box-shadow:0 4px 15px rgba(0,0,0,.12);
 }
 
-.topbar-inner{
-  max-width:1200px;
+.header-inner{
+  max-width:1400px;
   margin:auto;
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  gap:12px;
+  gap:15px;
 }
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.brand-logo{
-  width:44px;
-  height:44px;
-  border-radius:12px;
-  background:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:var(--primary);
-  font-size:23px;
-  font-weight:900;
-  overflow:hidden;
-}
-
-.brand-logo img{
-  width:100%;
-  height:100%;
+.logo-small{
+  width:55px;
+  height:55px;
+  border-radius:14px;
   object-fit:cover;
+  background:#fff;
+  padding:3px;
 }
 
-.brand h1{
+.header h1{
   margin:0;
-  font-size:18px;
+  font-size:23px;
 }
 
-.brand small{
-  opacity:.85;
+.header p{
+  margin:5px 0 0;
+  opacity:.9;
+  font-size:13px;
 }
 
-/* NAV */
+.container{
+  max-width:1400px;
+  margin:auto;
+  padding:20px;
+}
+
 .nav{
-  max-width:1200px;
-  margin:12px auto;
   display:flex;
   gap:8px;
-  overflow-x:auto;
-  padding:0 8px 3px;
+  flex-wrap:wrap;
+  margin-bottom:20px;
 }
 
 .nav button{
-  border:0;
+  border:1px solid var(--border);
   background:#fff;
   color:var(--dark);
-  border-radius:12px;
-  padding:10px 13px;
-  white-space:nowrap;
-  box-shadow:var(--shadow);
+  padding:10px 14px;
+  border-radius:10px;
   font-weight:700;
 }
 
-.nav button.active{
+.nav button.active,
+.nav button:hover{
   background:var(--primary);
   color:#fff;
-}
-
-/* MAIN */
-.container{
-  max-width:1200px;
-  margin:auto;
-  padding:0 12px 40px;
+  border-color:var(--primary);
 }
 
 .page{
@@ -139,25 +122,25 @@ button{
   display:block;
 }
 
-/* CARDS */
 .card{
   background:var(--card);
   border:1px solid var(--border);
-  border-radius:18px;
-  padding:16px;
+  border-radius:16px;
+  padding:18px;
+  margin-bottom:18px;
   box-shadow:var(--shadow);
-  margin-bottom:14px;
 }
 
 .card-title{
-  font-weight:900;
-  margin-bottom:13px;
-  font-size:17px;
+  font-size:18px;
+  font-weight:800;
+  color:var(--dark);
+  margin-bottom:15px;
 }
 
 .grid{
   display:grid;
-  gap:12px;
+  gap:15px;
 }
 
 .grid-2{
@@ -172,86 +155,52 @@ button{
   grid-template-columns:repeat(4,minmax(0,1fr));
 }
 
-@media(max-width:700px){
-  .grid-2,
-  .grid-3,
-  .grid-4{
-    grid-template-columns:1fr;
-  }
-}
-
-/* DASHBOARD */
-.stat{
-  padding:16px;
-  border-radius:16px;
-  color:#fff;
-  min-height:105px;
-}
-
-.stat:nth-child(1){
-  background:linear-gradient(135deg,#0b6b4d,#13a673);
-}
-
-.stat:nth-child(2){
-  background:linear-gradient(135deg,#175cd3,#4b8cff);
-}
-
-.stat:nth-child(3){
-  background:linear-gradient(135deg,#a86600,#d99419);
-}
-
-.stat:nth-child(4){
-  background:linear-gradient(135deg,#9e2a2b,#d9534f);
-}
-
-.stat-label{
-  font-size:13px;
-  opacity:.9;
-}
-
-.stat-value{
-  font-size:25px;
-  font-weight:900;
-  margin-top:8px;
-}
-
-/* FORM */
 label{
   display:block;
   font-size:13px;
-  font-weight:800;
+  font-weight:700;
   margin-bottom:6px;
+  color:#41534c;
 }
 
-input,select,textarea{
+input,
+select,
+textarea{
   width:100%;
-  border:1px solid var(--border);
-  border-radius:11px;
+  border:1px solid #ccd9d4;
+  border-radius:10px;
   padding:11px 12px;
-  outline:none;
   background:#fff;
-  color:var(--text);
+  outline:none;
 }
 
-input:focus,select:focus,textarea:focus{
+input:focus,
+select:focus,
+textarea:focus{
   border-color:var(--primary2);
   box-shadow:0 0 0 3px rgba(19,166,115,.1);
 }
 
 textarea{
-  min-height:80px;
+  min-height:85px;
   resize:vertical;
 }
 
 .form-group{
-  margin-bottom:11px;
+  margin-bottom:5px;
 }
 
-/* BUTTONS */
+.actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:15px;
+}
+
 .btn{
   border:0;
-  border-radius:11px;
-  padding:11px 15px;
+  border-radius:10px;
+  padding:10px 15px;
   font-weight:800;
 }
 
@@ -260,387 +209,349 @@ textarea{
   color:#fff;
 }
 
-.btn-green{
-  background:var(--primary2);
+.btn-success{
+  background:#198754;
+  color:#fff;
+}
+
+.btn-danger{
+  background:var(--danger);
+  color:#fff;
+}
+
+.btn-warning{
+  background:#f0a000;
+  color:#fff;
+}
+
+.btn-blue{
+  background:var(--blue);
   color:#fff;
 }
 
 .btn-light{
-  background:#eef5f2;
+  background:#edf3f0;
   color:var(--dark);
 }
 
-.btn-danger{
-  background:#ffe8e8;
-  color:var(--danger);
+.btn:hover{
+  opacity:.9;
+  transform:translateY(-1px);
 }
 
-.btn-blue{
-  background:#eaf2ff;
-  color:var(--blue);
+.stat-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
 }
 
-.btn-warning{
-  background:#fff3db;
-  color:var(--warning);
+.stat{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:18px;
+  box-shadow:var(--shadow);
 }
 
-.actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
+.stat .icon{
+  font-size:25px;
 }
 
-/* TABLE */
+.stat .label{
+  margin-top:8px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.stat .value{
+  margin-top:4px;
+  font-size:24px;
+  font-weight:900;
+  color:var(--dark);
+}
+
 .table-wrap{
-  overflow:auto;
+  width:100%;
+  overflow-x:auto;
 }
 
 table{
   width:100%;
   border-collapse:collapse;
-  min-width:650px;
+  min-width:700px;
 }
 
-th,td{
-  padding:10px 9px;
+th,
+td{
+  padding:11px;
   border-bottom:1px solid var(--border);
   text-align:left;
-  font-size:13px;
+  vertical-align:middle;
 }
 
 th{
-  background:#f2f7f5;
-  font-weight:900;
+  background:#f0f6f3;
+  color:var(--dark);
+  font-size:13px;
+}
+
+td{
+  font-size:14px;
 }
 
 .empty{
-  padding:30px;
+  padding:25px;
   text-align:center;
   color:var(--muted);
+  background:#f8faf9;
+  border-radius:12px;
 }
 
-/* BADGE */
 .badge{
   display:inline-flex;
   align-items:center;
   gap:5px;
-  padding:5px 9px;
-  border-radius:999px;
-  font-size:11px;
+  padding:6px 10px;
+  border-radius:30px;
+  font-size:12px;
   font-weight:900;
 }
 
-.badge-green{
-  background:#e7f7ef;
-  color:#087443;
-}
-
-.badge-red{
-  background:#fdeaea;
-  color:#b42318;
-}
-
-.badge-orange{
-  background:#fff3dc;
-  color:#9a5b00;
-}
-
 .badge-blue{
-  background:#eaf2ff;
-  color:#175cd3;
+  background:#e7f1fb;
+  color:#1769aa;
 }
 
-/* INVOICE STATUS */
 .payment-status{
   display:inline-flex;
   align-items:center;
-  justify-content:center;
-  gap:7px;
-  padding:8px 15px;
-  border-radius:999px;
+  gap:5px;
+  padding:7px 11px;
+  border-radius:30px;
+  font-weight:900;
   font-size:12px;
-  font-weight:950;
-  letter-spacing:.4px;
-  border:2px solid currentColor;
-  white-space:nowrap;
 }
 
 .status-paid{
-  background:#e8f7ef;
-  color:#087443;
+  background:#dff7e9;
+  color:#087a3d;
 }
 
 .status-baki{
-  background:#fff4df;
-  color:#9a5b00;
+  background:#fff0c7;
+  color:#986000;
 }
 
 .status-unpaid{
-  background:#fdeaea;
+  background:#ffe0e0;
   color:#b42318;
 }
 
 .status-advance{
-  background:#eaf3ff;
-  color:#175cd3;
+  background:#e7e2ff;
+  color:#5b35a5;
 }
 
-/* INVOICE */
-.invoice-box{
+.invoice-preview{
   background:#fff;
   max-width:900px;
   margin:auto;
-  border:1px solid #d8e2de;
-  box-shadow:0 10px 35px rgba(0,0,0,.08);
-  border-radius:18px;
-  overflow:hidden;
+  padding:28px;
+  border:1px solid #ddd;
 }
 
 .invoice-head{
-  padding:22px;
-  border-bottom:3px solid var(--primary);
-}
-
-.invoice-head-top{
   display:flex;
   justify-content:space-between;
-  gap:15px;
+  gap:20px;
+  border-bottom:2px solid var(--primary);
+  padding-bottom:15px;
+  margin-bottom:15px;
+}
+
+.invoice-business{
+  display:flex;
+  gap:12px;
   align-items:flex-start;
 }
 
-.invoice-company{
-  display:flex;
-  gap:12px;
-  align-items:center;
-}
-
 .invoice-logo{
-  width:65px;
-  height:65px;
-  border-radius:14px;
-  background:#eef6f2;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  font-size:30px;
-}
-
-.invoice-logo img{
-  width:100%;
-  height:100%;
+  width:75px;
+  height:75px;
   object-fit:cover;
+  border-radius:12px;
 }
 
-.invoice-company h2{
-  margin:0 0 5px;
-  color:var(--primary);
-  font-size:23px;
-}
-
-.invoice-company p{
-  margin:2px 0;
-  font-size:12px;
-  color:#52625d;
-}
-
-.invoice-meta{
+.invoice-title{
   text-align:right;
-  font-size:12px;
 }
 
-.invoice-meta strong{
-  display:block;
-  font-size:18px;
-  margin-bottom:5px;
+.invoice-title h2{
+  margin:0;
+  color:var(--primary);
 }
 
-.invoice-status-area{
-  margin-top:15px;
-  display:flex;
-  justify-content:flex-end;
-}
-
-.invoice-parties{
-  padding:18px 22px;
+.invoice-info{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:20px;
+  gap:10px;
+  margin-bottom:15px;
 }
 
-.party-title{
-  color:var(--primary);
-  font-size:11px;
-  font-weight:900;
-  text-transform:uppercase;
-  margin-bottom:5px;
+.invoice-total{
+  margin-left:auto;
+  max-width:350px;
+  margin-top:15px;
 }
 
-.party-name{
-  font-size:17px;
-  font-weight:900;
-}
-
-.invoice-table{
-  padding:0 22px;
-}
-
-.invoice-table table{
-  min-width:0;
-}
-
-.invoice-summary{
-  padding:18px 22px;
-  display:flex;
-  justify-content:flex-end;
-}
-
-.summary-box{
-  width:310px;
-}
-
-.summary-row{
+.invoice-total div{
   display:flex;
   justify-content:space-between;
-  padding:7px 0;
-  border-bottom:1px solid #e8eeeb;
+  padding:8px;
+  border-bottom:1px solid #ddd;
 }
 
-.summary-row.total{
-  font-size:18px;
-  font-weight:950;
+.invoice-total .grand{
+  font-size:20px;
+  font-weight:900;
   color:var(--primary);
 }
 
-.summary-row.paid{
-  color:#087443;
-  font-weight:900;
-}
-
-.summary-row.due{
-  color:#b42318;
-  font-weight:950;
-}
-
-.invoice-footer{
-  padding:18px 22px;
-  background:#f7faf9;
-  border-top:1px solid var(--border);
-  font-size:11px;
-  color:#64736e;
-  display:flex;
-  justify-content:space-between;
-  gap:15px;
-}
-
-.status-stamp{
-  margin:10px 0 0;
-  padding:12px;
+.invoice-stamp{
+  margin-top:30px;
   text-align:center;
-  border-radius:12px;
-  font-size:18px;
-  font-weight:950;
-  border:3px dashed currentColor;
 }
 
-@media(max-width:650px){
-  .invoice-head-top,
-  .invoice-parties,
-  .invoice-footer{
+.invoice-stamp span{
+  display:inline-block;
+  padding:10px 25px;
+  border:4px solid currentColor;
+  border-radius:10px;
+  font-size:25px;
+  font-weight:900;
+  transform:rotate(-5deg);
+}
+
+.search-box{
+  margin-bottom:15px;
+}
+
+.logo-upload{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+}
+
+.logo-preview{
+  width:100px;
+  height:100px;
+  object-fit:cover;
+  border:1px solid var(--border);
+  border-radius:15px;
+  background:#fff;
+}
+
+.note{
+  padding:12px;
+  background:#eef8f4;
+  border-left:4px solid var(--primary);
+  border-radius:8px;
+  margin-top:10px;
+  font-size:13px;
+}
+
+.rate-highlight{
+  padding:10px 12px;
+  background:#eef8f4;
+  border-radius:10px;
+  margin-top:8px;
+  font-size:13px;
+}
+
+.footer{
+  text-align:center;
+  padding:30px 10px;
+  color:var(--muted);
+}
+
+@media(max-width:900px){
+  .stat-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .grid-4{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .grid-3{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:600px){
+  .container{
+    padding:12px;
+  }
+
+  .header{
+    padding:13px;
+  }
+
+  .header h1{
+    font-size:18px;
+  }
+
+  .stat-grid,
+  .grid-2,
+  .grid-3,
+  .grid-4{
+    grid-template-columns:1fr;
+  }
+
+  .invoice-head,
+  .invoice-info{
     grid-template-columns:1fr;
     flex-direction:column;
   }
 
-  .invoice-meta{
+  .invoice-title{
     text-align:left;
   }
 
-  .invoice-status-area{
-    justify-content:flex-start;
+  .invoice-preview{
+    padding:15px;
   }
 
-  .summary-box{
-    width:100%;
+  .nav button{
+    flex:1 1 auto;
   }
 }
 
-/* MODAL */
-.modal{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.55);
-  z-index:100;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:15px;
-}
-
-.modal.show{
-  display:flex;
-}
-
-.modal-box{
-  background:#fff;
-  width:min(700px,100%);
-  max-height:92vh;
-  overflow:auto;
-  border-radius:20px;
-  padding:18px;
-}
-
-.modal-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:15px;
-}
-
-.close{
-  border:0;
-  background:#f1f4f3;
-  border-radius:50%;
-  width:35px;
-  height:35px;
-  font-size:20px;
-}
-
-/* PRINT */
 @media print{
+
   body{
     background:#fff;
   }
 
-  .topbar,
-  .nav,
+  body *{
+    visibility:hidden;
+  }
+
+  #invoicePrint,
+  #invoicePrint *{
+    visibility:visible;
+  }
+
+  #invoicePrint{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+  }
+
   .no-print{
     display:none!important;
-  }
-
-  .container{
-    padding:0;
-    max-width:none;
-  }
-
-  .page{
-    display:none!important;
-  }
-
-  #invoicePage{
-    display:block!important;
-  }
-
-  .invoice-box{
-    box-shadow:none;
-    border:0;
-    border-radius:0;
-    max-width:none;
-  }
-
-  @page{
-    size:A4;
-    margin:10mm;
   }
 }
 </style>
@@ -648,1266 +559,1610 @@ th{
 
 <body>
 
-<div class="app">
+<header class="header">
+  <div class="header-inner">
 
-<header class="topbar no-print">
-  <div class="topbar-inner">
-    <div class="brand">
-      <div class="brand-logo" id="topLogo">🐔</div>
-      <div>
-        <h1 id="topBusinessName">Akhondo Smart Business Manager</h1>
-        <small>Business • Sales • Due • Stock</small>
-      </div>
+    <img
+      id="headerLogo"
+      class="logo-small"
+      src=""
+      alt="Logo"
+    >
+
+    <div>
+      <h1 id="headerBusinessName">
+        Akhondo Smart Business Manager
+      </h1>
+
+      <p>
+        Sales • Customer • Due • Payment • Stock • Invoice
+      </p>
     </div>
+
   </div>
 </header>
 
-<nav class="nav no-print">
-  <button class="active" onclick="showPage('dashboardPage',this)">🏠 Dashboard</button>
-  <button onclick="showPage('salePage',this)">🧾 New Sale</button>
-  <button onclick="showPage('customerPage',this)">👥 Customers</button>
-  <button onclick="showPage('productPage',this)">📦 Products</button>
-  <button onclick="showPage('paymentPage',this)">💰 Payment</button>
-  <button onclick="showPage('historyPage',this)">📜 History</button>
-  <button onclick="showPage('reportPage',this)">📊 Reports</button>
-  <button onclick="showPage('settingsPage',this)">⚙️ Settings</button>
+
+<div class="container">
+
+<nav class="nav">
+
+  <button
+    class="active"
+    onclick="showPage('dashboard',this)"
+  >
+    🏠 Dashboard
+  </button>
+
+  <button
+    onclick="showPage('sale',this)"
+  >
+    🧾 New Sale
+  </button>
+
+  <button
+    onclick="showPage('customers',this)"
+  >
+    👥 Customers
+  </button>
+
+  <button
+    onclick="showPage('products',this)"
+  >
+    📦 Products & Stock
+  </button>
+
+  <button
+    onclick="showPage('rates',this)"
+  >
+    💵 Customer Rates
+  </button>
+
+  <button
+    onclick="showPage('payments',this)"
+  >
+    💰 Payment
+  </button>
+
+  <button
+    onclick="showPage('history',this)"
+  >
+    📋 Invoice History
+  </button>
+
+  <button
+    onclick="showPage('reports',this)"
+  >
+    📊 Reports
+  </button>
+
+  <button
+    onclick="showPage('settings',this)"
+  >
+    ⚙️ Settings
+  </button>
+
+  <button
+    onclick="showPage('backup',this)"
+  >
+    💾 Backup
+  </button>
+
 </nav>
 
-<main class="container">
 
-<!-- DASHBOARD -->
-<section id="dashboardPage" class="page active">
+<!-- ================= DASHBOARD ================= -->
 
-  <div class="grid grid-4">
-    <div class="stat">
-      <div class="stat-label">আজকের বিক্রি</div>
-      <div class="stat-value" id="dashTodaySales">৳0</div>
-    </div>
+<section id="dashboard" class="page active">
+
+  <div class="stat-grid">
 
     <div class="stat">
-      <div class="stat-label">আজকের Paid</div>
-      <div class="stat-value" id="dashTodayPaid">৳0</div>
+      <div class="icon">🧾</div>
+      <div class="label">Total Sales</div>
+      <div id="dashSales" class="value">৳0</div>
     </div>
 
     <div class="stat">
-      <div class="stat-label">মোট বাকি</div>
-      <div class="stat-value" id="dashTotalDue">৳0</div>
+      <div class="icon">💰</div>
+      <div class="label">Collected</div>
+      <div id="dashCollected" class="value">৳0</div>
     </div>
 
     <div class="stat">
-      <div class="stat-label">Customer</div>
-      <div class="stat-value" id="dashCustomers">0</div>
+      <div class="icon">⚠️</div>
+      <div class="label">Customer Due</div>
+      <div id="dashDue" class="value">৳0</div>
     </div>
-  </div>
 
-  <div class="card" style="margin-top:14px">
-    <div class="card-title">Quick Actions</div>
-    <div class="actions">
-      <button class="btn btn-primary" onclick="goPage('salePage')">＋ New Sale</button>
-      <button class="btn btn-green" onclick="goPage('customerPage')">＋ Customer</button>
-      <button class="btn btn-light" onclick="goPage('productPage')">＋ Product</button>
-      <button class="btn btn-blue" onclick="goPage('paymentPage')">＋ Payment</button>
+    <div class="stat">
+      <div class="icon">👥</div>
+      <div class="label">Customers</div>
+      <div id="dashCustomers" class="value">0</div>
     </div>
+
   </div>
 
   <div class="card">
-    <div class="card-title">Recent Sales</div>
-    <div id="recentSales"></div>
+    <div class="card-title">
+      📌 Recent Invoices
+    </div>
+
+    <div id="dashboardRecent"></div>
   </div>
 
 </section>
 
 
-<!-- SALE -->
-<section id="salePage" class="page">
+<!-- ================= SALE ================= -->
+
+<section id="sale" class="page">
 
   <div class="card">
-    <div class="card-title">🧾 New Sale / Invoice</div>
+
+    <div class="card-title">
+      🧾 Create New Invoice
+    </div>
 
     <div class="grid grid-3">
 
       <div class="form-group">
         <label>Customer</label>
-        <select id="saleCustomer" onchange="customerSelected()"></select>
+
+        <select
+          id="saleCustomer"
+          onchange="customerSelected()"
+        >
+          <option value="">
+            Walk-in / New Customer
+          </option>
+        </select>
       </div>
 
       <div class="form-group">
         <label>Customer Name</label>
-        <input id="saleCustomerName" placeholder="Customer name">
+
+        <input
+          id="saleCustomerName"
+          placeholder="Customer name"
+        >
       </div>
 
       <div class="form-group">
         <label>Date</label>
-        <input id="saleDate" type="date">
+
+        <input
+          id="saleDate"
+          type="date"
+        >
       </div>
 
+    </div>
+
+    <hr>
+
+    <div class="card-title">
+      ➕ Add Product
     </div>
 
     <div class="grid grid-4">
 
       <div class="form-group">
         <label>Product</label>
-        <select id="saleProduct" onchange="productSelected()"></select>
-      </div>
 
-      <div class="form-group">
-        <label>Quantity</label>
-        <input id="saleQty" type="number" min="0" step="0.01" value="1">
-      </div>
-
-      <div class="form-group">
-        <label>Unit / Bag Price</label>
-        <input id="saleRate" type="number" min="0" step="0.01">
-      </div>
-
-      <div class="form-group">
-        <label>Kg per Unit</label>
-        <input id="saleKg" type="number" min="0" step="0.01" value="50">
-      </div>
-
-    </div>
-
-    <div class="actions">
-      <button class="btn btn-green" onclick="addSaleItem()">＋ Add Item</button>
-      <button class="btn btn-light" onclick="clearSaleItems()">Clear Items</button>
-    </div>
-
-    <div id="saleItems" style="margin-top:15px"></div>
-
-    <div class="grid grid-3" style="margin-top:15px">
-
-      <div class="form-group">
-        <label>Paid Amount</label>
-        <input id="salePaid" type="number" min="0" step="0.01" value="0" oninput="updateSaleTotals()">
-      </div>
-
-      <div class="form-group">
-        <label>Payment Method</label>
-        <select id="salePaymentMethod">
-          <option>Cash</option>
-          <option>bKash</option>
-          <option>Nagad</option>
-          <option>Pubali Bank</option>
-          <option>Bank</option>
-          <option>Other</option>
+        <select
+          id="saleProduct"
+          onchange="productSelected()"
+        >
+          <option value="">
+            Select Product
+          </option>
         </select>
       </div>
 
       <div class="form-group">
-        <label>Note</label>
-        <input id="saleNote" placeholder="Optional note">
+        <label>Quantity / Bag</label>
+
+        <input
+          id="saleQty"
+          type="number"
+          min="1"
+          step="1"
+          value="1"
+        >
       </div>
 
-    </div>
+      <div class="form-group">
+        <label>Rate</label>
 
-    <div class="card" style="background:#f7faf9">
-      <div class="summary-row">
-        <span>Total</span>
-        <strong id="saleTotal">৳0</strong>
+        <input
+          id="saleRate"
+          type="number"
+          min="0"
+          step="0.01"
+          placeholder="Rate"
+        >
+
+        <div
+          id="saleRateInfo"
+          class="rate-highlight"
+        >
+          Customer select করলে saved rate automatically আসবে।
+        </div>
       </div>
 
-      <div class="summary-row paid">
-        <span>Paid</span>
-        <strong id="salePaidPreview">৳0</strong>
+      <div class="form-group">
+        <label>Total KG</label>
+
+        <input
+          id="saleKg"
+          type="number"
+          min="0"
+          step="0.01"
+          placeholder="Optional"
+        >
       </div>
 
-      <div class="summary-row due">
-        <span>Due</span>
-        <strong id="saleDue">৳0</strong>
-      </div>
-
-      <div style="margin-top:12px" id="saleStatusPreview"></div>
     </div>
 
     <div class="actions">
-      <button class="btn btn-primary" onclick="saveSale()">💾 Save & Generate Invoice</button>
-      <button class="btn btn-light" onclick="resetSaleForm()">Reset</button>
+
+      <button
+        class="btn btn-primary"
+        onclick="addSaleItem()"
+      >
+        ➕ Add Item
+      </button>
+
+      <button
+        class="btn btn-blue"
+        onclick="saveCurrentSaleRate()"
+      >
+        💾 Save Customer Rate
+      </button>
+
     </div>
+
   </div>
 
-</section>
-
-
-<!-- CUSTOMER -->
-<section id="customerPage" class="page">
 
   <div class="card">
-    <div class="card-title">👥 Add Customer</div>
+
+    <div class="card-title">
+      🛒 Invoice Items
+    </div>
+
+    <div id="saleItems"></div>
+
+  </div>
+
+
+  <div class="card">
 
     <div class="grid grid-3">
 
-      <div class="form-group">
-        <label>Name</label>
-        <input id="customerName" placeholder="Customer name">
+      <div>
+        <label>Total Amount</label>
+        <input
+          id="saleTotal"
+          readonly
+          value="0"
+        >
       </div>
 
-      <div class="form-group">
-        <label>Phone</label>
-        <input id="customerPhone" placeholder="01XXXXXXXXX">
+      <div>
+        <label>Paid Amount</label>
+        <input
+          id="salePaid"
+          type="number"
+          min="0"
+          step="0.01"
+          value="0"
+          oninput="updateSaleTotals()"
+        >
       </div>
 
-      <div class="form-group">
-        <label>Opening Due</label>
-        <input id="customerOpeningDue" type="number" value="0">
-      </div>
+      <div>
+        <label>Payment Method</label>
 
-    </div>
+        <select id="salePaymentMethod">
 
-    <div class="form-group">
-      <label>Address</label>
-      <input id="customerAddress" placeholder="Address">
-    </div>
-
-    <button class="btn btn-primary" onclick="saveCustomer()">＋ Save Customer</button>
-  </div>
-
-  <div class="card">
-    <div class="card-title">Customer List</div>
-    <div id="customerList"></div>
-  </div>
-
-</section>
-
-
-<!-- PRODUCT -->
-<section id="productPage" class="page">
-
-  <div class="card">
-    <div class="card-title">📦 Add Product</div>
-
-    <div class="grid grid-4">
-
-      <div class="form-group">
-        <label>Product Name</label>
-        <input id="productName" placeholder="Feed / Medicine / Chick">
-      </div>
-
-      <div class="form-group">
-        <label>Category</label>
-        <select id="productCategory">
-          <option>Feed</option>
-          <option>Medicine</option>
-          <option>Vaccine</option>
-          <option>Chick</option>
-          <option>Other</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label>Price</label>
-        <input id="productPrice" type="number" value="0">
-      </div>
-
-      <div class="form-group">
-        <label>Stock</label>
-        <input id="productStock" type="number" value="0">
-      </div>
-
-    </div>
-
-    <button class="btn btn-primary" onclick="saveProduct()">＋ Save Product</button>
-  </div>
-
-  <div class="card">
-    <div class="card-title">Product & Stock</div>
-    <div id="productList"></div>
-  </div>
-
-</section>
-
-
-<!-- PAYMENT -->
-<section id="paymentPage" class="page">
-
-  <div class="card">
-    <div class="card-title">💰 Payment Collection</div>
-
-    <div class="grid grid-4">
-
-      <div class="form-group">
-        <label>Customer</label>
-        <select id="paymentCustomer"></select>
-      </div>
-
-      <div class="form-group">
-        <label>Amount</label>
-        <input id="paymentAmount" type="number" min="0">
-      </div>
-
-      <div class="form-group">
-        <label>Method</label>
-        <select id="paymentMethod">
           <option>Cash</option>
           <option>bKash</option>
           <option>Nagad</option>
           <option>Pubali Bank</option>
           <option>Bank</option>
-          <option>Other</option>
+          <option>Credit</option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+    <div style="margin-top:15px">
+
+      <label>Note</label>
+
+      <textarea
+        id="saleNote"
+        placeholder="Invoice note..."
+      ></textarea>
+
+    </div>
+
+    <div class="actions">
+
+      <button
+        class="btn btn-success"
+        onclick="saveSale()"
+      >
+        💾 Save Invoice
+      </button>
+
+      <button
+        class="btn btn-light"
+        onclick="clearSale()"
+      >
+        Clear
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= CUSTOMERS ================= -->
+
+<section id="customers" class="page">
+
+  <div class="card">
+
+    <div class="card-title">
+      👥 Add Customer
+    </div>
+
+    <div class="grid grid-4">
+
+      <div>
+        <label>Name</label>
+        <input
+          id="customerName"
+          placeholder="Customer name"
+        >
+      </div>
+
+      <div>
+        <label>Phone</label>
+        <input
+          id="customerPhone"
+          placeholder="01XXXXXXXXX"
+        >
+      </div>
+
+      <div>
+        <label>Address</label>
+        <input
+          id="customerAddress"
+          placeholder="Address"
+        >
+      </div>
+
+      <div>
+        <label>Opening Due</label>
+        <input
+          id="customerOpeningDue"
+          type="number"
+          value="0"
+        >
+      </div>
+
+    </div>
+
+    <div class="actions">
+
+      <button
+        class="btn btn-primary"
+        onclick="saveCustomer()"
+      >
+        ➕ Add Customer
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">
+      Customer List
+    </div>
+
+    <input
+      class="search-box"
+      id="customerSearch"
+      oninput="renderCustomers()"
+      placeholder="🔎 Search customer..."
+    >
+
+    <div id="customerList"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= RATES ================= -->
+
+<section id="rates" class="page">
+
+  <div class="card">
+
+    <div class="card-title">
+      💵 Customer-wise Product Rate Management
+    </div>
+
+    <div class="note">
+      একই product-এর জন্য আলাদা customer-এর আলাদা rate
+      সেট করতে পারবেন। Sale করার সময় customer + product
+      select করলে এই rate automatically invoice-এ বসবে।
+    </div>
+
+    <br>
+
+    <div class="grid grid-3">
+
+      <div>
+        <label>Customer</label>
+
+        <select
+          id="rateCustomer"
+          onchange="loadCustomerRateForManager()"
+        >
+          <option value="">
+            -- Customer Select --
+          </option>
         </select>
       </div>
 
-      <div class="form-group">
-        <label>Date</label>
-        <input id="paymentDate" type="date">
+      <div>
+        <label>Product</label>
+
+        <select
+          id="rateProduct"
+          onchange="loadCustomerRateForManager()"
+        >
+          <option value="">
+            -- Product Select --
+          </option>
+        </select>
+      </div>
+
+      <div>
+        <label>Customer Rate</label>
+
+        <input
+          id="customerRate"
+          type="number"
+          min="0"
+          step="0.01"
+          placeholder="যেমন 3500"
+        >
+
+        <div
+          id="customerRateHint"
+          class="rate-highlight"
+        >
+          Customer এবং Product select করুন।
+        </div>
       </div>
 
     </div>
 
-    <div class="form-group">
-      <label>Note</label>
-      <input id="paymentNote" placeholder="Payment note">
+    <div class="actions">
+
+      <button
+        class="btn btn-primary"
+        onclick="saveCustomerRate()"
+      >
+        💾 Save Customer Rate
+      </button>
+
+      <button
+        class="btn btn-light"
+        onclick="clearCustomerRateForm()"
+      >
+        Clear
+      </button>
+
     </div>
 
-    <button class="btn btn-primary" onclick="savePayment()">💾 Save Payment</button>
   </div>
 
+
   <div class="card">
-    <div class="card-title">Payment History</div>
+
+    <div class="card-title">
+      📋 Saved Customer Rates
+    </div>
+
+    <div id="customerRateList"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= PRODUCTS ================= -->
+
+<section id="products" class="page">
+
+  <div class="card">
+
+    <div class="card-title">
+      📦 Add Product
+    </div>
+
+    <div class="grid grid-4">
+
+      <div>
+        <label>Product Name</label>
+
+        <input
+          id="productName"
+          placeholder="Product name"
+        >
+      </div>
+
+      <div>
+        <label>Category</label>
+
+        <input
+          id="productCategory"
+          placeholder="Feed / Medicine / Chick"
+        >
+      </div>
+
+      <div>
+        <label>Default Rate</label>
+
+        <input
+          id="productPrice"
+          type="number"
+          min="0"
+          step="0.01"
+        >
+      </div>
+
+      <div>
+        <label>Stock</label>
+
+        <input
+          id="productStock"
+          type="number"
+          min="0"
+          step="0.01"
+          value="0"
+        >
+      </div>
+
+    </div>
+
+    <div class="actions">
+
+      <button
+        class="btn btn-primary"
+        onclick="saveProduct()"
+      >
+        ➕ Add Product
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">
+      Product & Stock
+    </div>
+
+    <div id="productList"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= PAYMENTS ================= -->
+
+<section id="payments" class="page">
+
+  <div class="card">
+
+    <div class="card-title">
+      💰 Payment Collection
+    </div>
+
+    <div class="grid grid-4">
+
+      <div>
+        <label>Customer</label>
+
+        <select id="paymentCustomer">
+          <option value="">
+            Select Customer
+          </option>
+        </select>
+      </div>
+
+      <div>
+        <label>Amount</label>
+
+        <input
+          id="paymentAmount"
+          type="number"
+          min="0"
+          step="0.01"
+        >
+      </div>
+
+      <div>
+        <label>Method</label>
+
+        <select id="paymentMethod">
+
+          <option>Cash</option>
+          <option>bKash</option>
+          <option>Nagad</option>
+          <option>Pubali Bank</option>
+          <option>Bank</option>
+
+        </select>
+      </div>
+
+      <div>
+        <label>Date</label>
+
+        <input
+          id="paymentDate"
+          type="date"
+        >
+      </div>
+
+    </div>
+
+    <br>
+
+    <label>Note</label>
+
+    <textarea
+      id="paymentNote"
+      placeholder="Payment note..."
+    ></textarea>
+
+    <div class="actions">
+
+      <button
+        class="btn btn-success"
+        onclick="savePayment()"
+      >
+        💰 Save Payment
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-title">
+      Payment History
+    </div>
+
     <div id="paymentList"></div>
+
   </div>
 
 </section>
 
 
-<!-- HISTORY -->
-<section id="historyPage" class="page">
+<!-- ================= HISTORY ================= -->
+
+<section id="history" class="page">
 
   <div class="card">
-    <div class="card-title">📜 Sales / Invoice History</div>
+
+    <div class="card-title">
+      📋 Invoice History
+    </div>
+
+    <input
+      id="historySearch"
+      class="search-box"
+      oninput="renderHistory()"
+      placeholder="🔎 Search invoice/customer..."
+    >
+
     <div id="historyList"></div>
+
   </div>
 
 </section>
 
 
-<!-- REPORT -->
-<section id="reportPage" class="page">
+<!-- ================= REPORTS ================= -->
 
-  <div class="grid grid-3">
+<section id="reports" class="page">
+
+  <div class="stat-grid">
 
     <div class="stat">
-      <div class="stat-label">Total Sales</div>
-      <div class="stat-value" id="reportSales">৳0</div>
+      <div class="label">
+        Total Invoice
+      </div>
+      <div
+        id="reportInvoiceCount"
+        class="value"
+      >
+        0
+      </div>
     </div>
 
     <div class="stat">
-      <div class="stat-label">Total Paid</div>
-      <div class="stat-value" id="reportPaid">৳0</div>
+      <div class="label">
+        Total Sales
+      </div>
+      <div
+        id="reportSales"
+        class="value"
+      >
+        ৳0
+      </div>
     </div>
 
     <div class="stat">
-      <div class="stat-label">Total Due</div>
-      <div class="stat-value" id="reportDue">৳0</div>
+      <div class="label">
+        Total Paid
+      </div>
+      <div
+        id="reportPaid"
+        class="value"
+      >
+        ৳0
+      </div>
+    </div>
+
+    <div class="stat">
+      <div class="label">
+        Total Due
+      </div>
+      <div
+        id="reportDue"
+        class="value"
+      >
+        ৳0
+      </div>
     </div>
 
   </div>
-
-  <div class="card" style="margin-top:14px">
-    <div class="card-title">Customer Due Report</div>
-    <div id="dueReport"></div>
-  </div>
-
-</section>
-
-
-<!-- SETTINGS -->
-<section id="settingsPage" class="page">
 
   <div class="card">
-    <div class="card-title">⚙️ Business Settings</div>
+
+    <div class="card-title">
+      📊 Sales Report
+    </div>
+
+    <div id="reportTable"></div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= SETTINGS ================= -->
+
+<section id="settings" class="page">
+
+  <div class="card">
+
+    <div class="card-title">
+      ⚙️ Business Settings
+    </div>
 
     <div class="grid grid-2">
 
-      <div class="form-group">
+      <div>
         <label>Business Name</label>
-        <input id="settingBusinessName">
+
+        <input
+          id="setBusinessName"
+        >
       </div>
 
-      <div class="form-group">
+      <div>
         <label>Phone</label>
-        <input id="settingPhone">
+
+        <input
+          id="setPhone"
+        >
       </div>
 
-      <div class="form-group">
+      <div>
         <label>Email</label>
-        <input id="settingEmail">
+
+        <input
+          id="setEmail"
+        >
       </div>
 
-      <div class="form-group">
+      <div>
         <label>Invoice Prefix</label>
-        <input id="settingPrefix" value="AKH">
+
+        <input
+          id="setPrefix"
+          placeholder="AKH"
+        >
       </div>
 
     </div>
 
-    <div class="form-group">
-      <label>Address</label>
-      <textarea id="settingAddress"></textarea>
+    <br>
+
+    <label>Address</label>
+
+    <textarea id="setAddress"></textarea>
+
+    <br>
+
+    <div class="logo-upload">
+
+      <img
+        id="logoPreview"
+        class="logo-preview"
+        src=""
+        alt="Logo"
+      >
+
+      <div>
+
+        <label>
+          Upload Business Logo
+        </label>
+
+        <input
+          type="file"
+          id="logoInput"
+          accept="image/*"
+          onchange="uploadLogo(event)"
+        >
+
+      </div>
+
     </div>
-
-    <div class="form-group">
-      <label>Logo</label>
-      <input id="logoInput" type="file" accept="image/*" onchange="uploadLogo(event)">
-    </div>
-
-    <div id="logoPreview" style="margin-bottom:12px"></div>
-
-    <button class="btn btn-primary" onclick="saveSettings()">💾 Save Settings</button>
-  </div>
-
-
-  <div class="card">
-    <div class="card-title">💾 Backup & Restore</div>
 
     <div class="actions">
-      <button class="btn btn-green" onclick="backupData()">⬇️ Export Backup</button>
 
-      <label class="btn btn-light" style="display:inline-block;cursor:pointer">
-        ⬆️ Restore Backup
-        <input type="file" accept=".json" onchange="restoreData(event)" style="display:none">
-      </label>
+      <button
+        class="btn btn-primary"
+        onclick="saveSettings()"
+      >
+        💾 Save Settings
+      </button>
 
-      <button class="btn btn-blue" onclick="exportCSV()">Export CSV</button>
-
-      <button class="btn btn-danger" onclick="clearAllData()">Delete All Data</button>
     </div>
+
   </div>
 
 </section>
 
 
-<!-- INVOICE PAGE -->
-<section id="invoicePage" class="page">
+<!-- ================= BACKUP ================= -->
 
-  <div class="actions no-print" style="margin-bottom:12px">
-    <button class="btn btn-primary" onclick="window.print()">🖨️ Print / PDF</button>
-    <button class="btn btn-green" onclick="shareInvoice()">📤 Share</button>
-    <button class="btn btn-light" onclick="goPage('historyPage')">← Back</button>
+<section id="backup" class="page">
+
+  <div class="card">
+
+    <div class="card-title">
+      💾 Backup & Restore
+    </div>
+
+    <div class="note">
+      আপনার customer, product, invoice, payment এবং
+      customer-wise rate সব backup-এর মধ্যে থাকবে।
+    </div>
+
+    <div class="actions">
+
+      <button
+        class="btn btn-primary"
+        onclick="downloadBackup()"
+      >
+        ⬇️ Download Backup
+      </button>
+
+      <button
+        class="btn btn-blue"
+        onclick="exportCSV()"
+      >
+        📊 Export CSV
+      </button>
+
+    </div>
+
+    <br>
+
+    <label>
+      Restore Backup
+    </label>
+
+    <input
+      type="file"
+      id="restoreFile"
+      accept=".json"
+      onchange="restoreBackup(event)"
+    >
+
   </div>
-
-  <div id="invoiceContainer"></div>
 
 </section>
 
-</main>
-</div>
 
+<!-- ================= INVOICE MODAL ================= -->
 
-<!-- CUSTOMER MODAL -->
-<div class="modal" id="customerModal">
-  <div class="modal-box">
-    <div class="modal-head">
-      <strong>Customer Details</strong>
-      <button class="close" onclick="closeModal('customerModal')">×</button>
+<section
+  id="invoiceSection"
+  class="page"
+>
+
+  <div class="card no-print">
+
+    <div class="actions">
+
+      <button
+        class="btn btn-primary"
+        onclick="showPage('history',document.querySelector('.nav button:nth-child(7)'))"
+      >
+        ← Back
+      </button>
+
+      <button
+        class="btn btn-success"
+        onclick="printInvoice()"
+      >
+        🖨️ Print Invoice
+      </button>
+
+      <button
+        class="btn btn-blue"
+        onclick="shareInvoice()"
+      >
+        📤 Share
+      </button>
+
     </div>
-    <div id="customerModalContent"></div>
+
   </div>
+
+  <div
+    id="invoicePrint"
+    class="invoice-preview"
+  ></div>
+
+</section>
+
+
+<footer class="footer">
+  Akhondo Smart Business Manager
+  <br>
+  ধন্যবাদ। আবার আসবেন।
+</footer>
+
 </div>
 
 
 <script>
-/* =========================
+
+/* ==========================================
    DATABASE
-========================= */
+========================================== */
 
-const DB_KEY = "akhondo_smart_business_v1";
+const DB_KEY="akhondo_smart_business_v1";
 
-let db = JSON.parse(localStorage.getItem(DB_KEY) || "null") || {
-  settings:{
-    businessName:"Akhondo Smart Business Manager",
-    phone:"",
-    email:"",
-    address:"",
-    prefix:"AKH",
-    logo:""
-  },
-  customers:[],
-  products:[],
-  sales:[],
-  payments:[]
-};
+let db=JSON.parse(
+  localStorage.getItem(DB_KEY) || "null"
+);
+
+if(!db){
+
+  db={
+    settings:{
+      businessName:"Akhondo Poultry Feed",
+      phone:"01645140156",
+      email:"masud.chauddagram2025@gmail.com",
+      address:"উপজেলা প্রাণিসম্পদ দপ্তর ও ভেটেনারি হাসপাতালের সামনে, লাকসাম রোড, চৌদ্দগ্রাম, কুমিল্লা",
+      prefix:"AKH",
+      logo:""
+    },
+
+    customers:[],
+    products:[],
+    sales:[],
+    payments:[]
+  };
+
+  saveDB();
+}
+
+
+/* ==========================================
+   MIGRATION
+========================================== */
+
+db.settings=db.settings || {};
+
+db.settings.businessName=
+  db.settings.businessName ||
+  "Akhondo Poultry Feed";
+
+db.settings.phone=
+  db.settings.phone ||
+  "01645140156";
+
+db.settings.email=
+  db.settings.email ||
+  "masud.chauddagram2025@gmail.com";
+
+db.settings.address=
+  db.settings.address ||
+  "উপজেলা প্রাণিসম্পদ দপ্তর ও ভেটেনারি হাসপাতালের সামনে, লাকসাম রোড, চৌদ্দগ্রাম, কুমিল্লা";
+
+db.settings.prefix=
+  db.settings.prefix ||
+  "AKH";
+
+db.customers=db.customers || [];
+db.products=db.products || [];
+db.sales=db.sales || [];
+db.payments=db.payments || [];
+
+
+/*
+  Customer-wise rates are stored inside
+  each customer:
+
+  customer.rates = {
+    productId: rate
+  }
+*/
+
+db.customers.forEach(c=>{
+
+  if(!c.rates ||
+     typeof c.rates!=="object"){
+
+    c.rates={};
+  }
+
+});
+
+
+saveDB();
+
+
+/* ==========================================
+   BASIC FUNCTIONS
+========================================== */
 
 function saveDB(){
-  localStorage.setItem(DB_KEY,JSON.stringify(db));
+
+  localStorage.setItem(
+    DB_KEY,
+    JSON.stringify(db)
+  );
 }
+
 
 function num(v){
-  return Number(v)||0;
+
+  const n=parseFloat(v);
+
+  return isNaN(n) ? 0 : n;
 }
+
 
 function money(v){
-  return "৳"+num(v).toLocaleString("en-BD",{
-    minimumFractionDigits:2,
-    maximumFractionDigits:2
-  });
+
+  return "৳"+num(v).toLocaleString(
+    "en-BD",
+    {
+      minimumFractionDigits:2,
+      maximumFractionDigits:2
+    }
+  );
 }
+
+
+function esc(v){
+
+  return String(v ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+}
+
+
+function id(){
+
+  return Date.now().toString(36)+
+    Math.random()
+      .toString(36)
+      .substring(2,8);
+}
+
 
 function today(){
-  return new Date().toISOString().slice(0,10);
+
+  return new Date()
+    .toISOString()
+    .slice(0,10);
 }
 
 
-/* =========================
-   PAGE NAVIGATION
-========================= */
+function customerById(cid){
 
-function showPage(id,btn){
-  document.querySelectorAll(".page").forEach(p=>{
-    p.classList.remove("active");
-  });
-
-  document.getElementById(id).classList.add("active");
-
-  document.querySelectorAll(".nav button").forEach(b=>{
-    b.classList.remove("active");
-  });
-
-  if(btn) btn.classList.add("active");
-
-  refreshAll();
-}
-
-function goPage(id){
-  const btn=[...document.querySelectorAll(".nav button")]
-    .find(b=>b.getAttribute("onclick")?.includes(id));
-
-  showPage(id,btn);
+  return db.customers.find(
+    c=>c.id===cid
+  );
 }
 
 
-/* =========================
+function productById(pid){
+
+  return db.products.find(
+    p=>p.id===pid
+  );
+}
+
+
+/* ==========================================
+   NAVIGATION
+========================================== */
+
+function showPage(page,btn){
+
+  document.querySelectorAll(".page")
+    .forEach(p=>{
+      p.classList.remove("active");
+    });
+
+  const el=document.getElementById(page);
+
+  if(el){
+    el.classList.add("active");
+  }
+
+  document.querySelectorAll(".nav button")
+    .forEach(b=>{
+      b.classList.remove("active");
+    });
+
+  if(btn){
+    btn.classList.add("active");
+  }
+
+  if(page==="rates"){
+    populateRateSelects();
+    renderCustomerRateList();
+  }
+}
+
+
+/* ==========================================
    CUSTOMER
-========================= */
+========================================== */
 
 function saveCustomer(){
 
-  const name=document.getElementById("customerName").value.trim();
+  const name=
+    document.getElementById(
+      "customerName"
+    ).value.trim();
 
   if(!name){
+
     alert("Customer name দিন");
     return;
   }
 
   const customer={
-    id:Date.now().toString(),
-    name,
-    phone:document.getElementById("customerPhone").value.trim(),
-    address:document.getElementById("customerAddress").value.trim(),
-    openingDue:num(document.getElementById("customerOpeningDue").value),
-    createdAt:new Date().toISOString()
+    id:id(),
+    name:name,
+    phone:
+      document.getElementById(
+        "customerPhone"
+      ).value.trim(),
+
+    address:
+      document.getElementById(
+        "customerAddress"
+      ).value.trim(),
+
+    openingDue:
+      num(
+        document.getElementById(
+          "customerOpeningDue"
+        ).value
+      ),
+
+    rates:{},
+
+    createdAt:
+      new Date().toISOString()
   };
 
   db.customers.push(customer);
+
   saveDB();
 
-  document.getElementById("customerName").value="";
-  document.getElementById("customerPhone").value="";
-  document.getElementById("customerAddress").value="";
-  document.getElementById("customerOpeningDue").value="0";
+  document.getElementById(
+    "customerName"
+  ).value="";
+
+  document.getElementById(
+    "customerPhone"
+  ).value="";
+
+  document.getElementById(
+    "customerAddress"
+  ).value="";
+
+  document.getElementById(
+    "customerOpeningDue"
+  ).value="0";
 
   refreshAll();
 
-  alert("Customer saved");
+  alert("Customer added successfully");
 }
 
-function customerById(id){
-  return db.customers.find(c=>c.id===id);
-}
 
-function customerStats(customerId){
+function customerStats(cid){
 
-  const c=customerById(customerId);
+  const c=customerById(cid);
 
   let totalSales=0;
   let salePaid=0;
   let payments=0;
 
   db.sales
-    .filter(s=>s.customerId===customerId)
+    .filter(s=>s.customerId===cid)
     .forEach(s=>{
+
       totalSales+=num(s.total);
       salePaid+=num(s.paid);
+
     });
 
   db.payments
-    .filter(p=>p.customerId===customerId)
+    .filter(p=>p.customerId===cid)
     .forEach(p=>{
+
       payments+=num(p.amount);
+
     });
 
-  const openingDue=c ? num(c.openingDue) : 0;
+  const openingDue=
+    c ? num(c.openingDue) : 0;
 
-  const totalDue=Math.max(
+  const due=Math.max(
     0,
-    openingDue + totalSales - salePaid - payments
+    openingDue+
+    totalSales-
+    salePaid-
+    payments
   );
 
-  return {
+  return{
     totalSales,
     salePaid,
     payments,
     openingDue,
-    due:totalDue
+    due
   };
 }
 
+
 function renderCustomers(){
 
-  const box=document.getElementById("customerList");
+  const box=
+    document.getElementById(
+      "customerList"
+    );
 
-  if(!db.customers.length){
-    box.innerHTML='<div class="empty">কোনো customer নেই</div>';
+  const search=
+    (
+      document.getElementById(
+        "customerSearch"
+      )?.value || ""
+    ).toLowerCase();
+
+  const list=
+    db.customers.filter(c=>
+      c.name.toLowerCase().includes(search) ||
+      (c.phone||"").includes(search)
+    );
+
+  if(!list.length){
+
+    box.innerHTML=
+      `<div class="empty">
+        কোনো customer পাওয়া যায়নি
+      </div>`;
+
     return;
   }
 
   box.innerHTML=`
     <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>Customer</th>
-          <th>Phone</th>
-          <th>Total Sales</th>
-          <th>Paid</th>
-          <th>Due</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${db.customers.map(c=>{
-          const st=customerStats(c.id);
-
-          return `
-          <tr>
-            <td><strong>${esc(c.name)}</strong></td>
-            <td>${esc(c.phone||"-")}</td>
-            <td>${money(st.totalSales)}</td>
-            <td>${money(st.salePaid+st.payments)}</td>
-            <td>
-              <span class="badge ${st.due>0?'badge-red':'badge-green'}">
-                ${money(st.due)}
-              </span>
-            </td>
-            <td>
-              <div class="actions">
-                <button class="btn btn-light" onclick="viewCustomer('${c.id}')">View</button>
-                <button class="btn btn-danger" onclick="deleteCustomer('${c.id}')">Delete</button>
-              </div>
-            </td>
-          </tr>
-          `;
-        }).join("")}
-      </tbody>
-    </table>
-    </div>
-  `;
-}
-
-function viewCustomer(id){
-
-  const c=customerById(id);
-  if(!c)return;
-
-  const st=customerStats(id);
-
-  const sales=db.sales.filter(s=>s.customerId===id);
-  const pays=db.payments.filter(p=>p.customerId===id);
-
-  document.getElementById("customerModalContent").innerHTML=`
-    <h2 style="margin:0">${esc(c.name)}</h2>
-    <p>${esc(c.phone||"")}</p>
-    <p>${esc(c.address||"")}</p>
-
-    <div class="grid grid-3">
-      <div class="card">
-        <small>Total Sales</small>
-        <h3>${money(st.totalSales)}</h3>
-      </div>
-      <div class="card">
-        <small>Collected</small>
-        <h3>${money(st.salePaid+st.payments)}</h3>
-      </div>
-      <div class="card">
-        <small>Current Due</small>
-        <h3 style="color:#b42318">${money(st.due)}</h3>
-      </div>
-    </div>
-
-    <h3>Sales</h3>
-    ${
-      sales.length
-      ? sales.map(s=>`
-        <div class="card">
-          <strong>${esc(s.invoiceNo)}</strong>
-          <div>${s.date}</div>
-          <div>Total: ${money(s.total)}</div>
-          <div>Paid: ${money(s.paid)}</div>
-          <div>Due: ${money(Math.max(0,num(s.total)-num(s.paid)))}</div>
-        </div>
-      `).join("")
-      : "<p>No sales</p>"
-    }
-
-    <h3>Payments</h3>
-    ${
-      pays.length
-      ? pays.map(p=>`
-        <div class="card">
-          ${p.date} — ${money(p.amount)} — ${esc(p.method)}
-        </div>
-      `).join("")
-      : "<p>No payment</p>"
-    }
-  `;
-
-  document.getElementById("customerModal").classList.add("show");
-}
-
-function closeModal(id){
-  document.getElementById(id).classList.remove("show");
-}
-
-function deleteCustomer(id){
-
-  if(!confirm("এই customer delete করবেন?"))return;
-
-  db.customers=db.customers.filter(c=>c.id!==id);
-  saveDB();
-  refreshAll();
-}
-
-
-/* =========================
-   PRODUCTS
-========================= */
-
-function saveProduct(){
-
-  const name=document.getElementById("productName").value.trim();
-
-  if(!name){
-    alert("Product name দিন");
-    return;
-  }
-
-  db.products.push({
-    id:Date.now().toString(),
-    name,
-    category:document.getElementById("productCategory").value,
-    price:num(document.getElementById("productPrice").value),
-    stock:num(document.getElementById("productStock").value),
-    createdAt:new Date().toISOString()
-  });
-
-  saveDB();
-
-  document.getElementById("productName").value="";
-  document.getElementById("productPrice").value="0";
-  document.getElementById("productStock").value="0";
-
-  refreshAll();
-
-  alert("Product saved");
-}
-
-function productById(id){
-  return db.products.find(p=>p.id===id);
-}
-
-function renderProducts(){
-
-  const box=document.getElementById("productList");
-
-  if(!db.products.length){
-    box.innerHTML='<div class="empty">কোনো product নেই</div>';
-    return;
-  }
-
-  box.innerHTML=`
-  <div class="table-wrap">
-  <table>
-    <thead>
-      <tr>
-        <th>Product</th>
-        <th>Category</th>
-        <th>Price</th>
-        <th>Stock</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      ${db.products.map(p=>`
-        <tr>
-          <td><strong>${esc(p.name)}</strong></td>
-          <td>${esc(p.category)}</td>
-          <td>${money(p.price)}</td>
-          <td>
-            <span class="badge ${p.stock>0?'badge-green':'badge-red'}">
-              ${p.stock}
-            </span>
-          </td>
-          <td>
-            <button class="btn btn-danger" onclick="deleteProduct('${p.id}')">Delete</button>
-          </td>
-        </tr>
-      `).join("")}
-    </tbody>
-  </table>
-  </div>
-  `;
-}
-
-function deleteProduct(id){
-
-  if(!confirm("Product delete করবেন?"))return;
-
-  db.products=db.products.filter(p=>p.id!==id);
-  saveDB();
-  refreshAll();
-}
-
-
-/* =========================
-   SALE
-========================= */
-
-let saleItems=[];
-
-function populateSelects(){
-
-  const customerOptions=
-    `<option value="">-- Customer Select --</option>`+
-    db.customers.map(c=>`
-      <option value="${c.id}">${esc(c.name)} ${c.phone?"("+esc(c.phone)+")":""}</option>
-    `).join("");
-
-  document.getElementById("saleCustomer").innerHTML=customerOptions;
-  document.getElementById("paymentCustomer").innerHTML=customerOptions;
-
-  const productOptions=
-    `<option value="">-- Product Select --</option>`+
-    db.products.map(p=>`
-      <option value="${p.id}">${esc(p.name)} — ${money(p.price)}</option>
-    `).join("");
-
-  document.getElementById("saleProduct").innerHTML=productOptions;
-}
-
-function customerSelected(){
-
-  const id=document.getElementById("saleCustomer").value;
-  const c=customerById(id);
-
-  if(c){
-    document.getElementById("saleCustomerName").value=c.name;
-  }
-}
-
-function productSelected(){
-
-  const id=document.getElementById("saleProduct").value;
-  const p=productById(id);
-
-  if(p){
-    document.getElementById("saleRate").value=p.price;
-  }
-}
-
-function addSaleItem(){
-
-  const productId=document.getElementById("saleProduct").value;
-
-  if(!productId){
-    alert("Product select করুন");
-    return;
-  }
-
-  const p=productById(productId);
-
-  const qty=num(document.getElementById("saleQty").value);
-  const rate=num(document.getElementById("saleRate").value);
-  const kg=num(document.getElementById("saleKg").value);
-
-  if(qty<=0){
-    alert("Quantity দিন");
-    return;
-  }
-
-  saleItems.push({
-    id:Date.now().toString()+Math.random(),
-    productId,
-    name:p.name,
-    qty,
-    rate,
-    kg,
-    total:qty*rate,
-    totalKg:qty*kg
-  });
-
-  renderSaleItems();
-  updateSaleTotals();
-}
-
-function renderSaleItems(){
-
-  const box=document.getElementById("saleItems");
-
-  if(!saleItems.length){
-    box.innerHTML='<div class="empty">Invoice-এ কোনো item যোগ করা হয়নি</div>';
-    return;
-  }
-
-  box.innerHTML=`
-  <div class="table-wrap">
-  <table>
-    <thead>
-      <tr>
-        <th>Product</th>
-        <th>Qty</th>
-        <th>Kg</th>
-        <th>Rate</th>
-        <th>Total</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      ${saleItems.map((item,i)=>`
-        <tr>
-          <td><strong>${esc(item.name)}</strong></td>
-          <td>${item.qty}</td>
-          <td>${item.totalKg}</td>
-          <td>${money(item.rate)}</td>
-          <td>${money(item.total)}</td>
-          <td>
-            <button class="btn btn-danger" onclick="removeSaleItem(${i})">×</button>
-          </td>
-        </tr>
-      `).join("")}
-    </tbody>
-  </table>
-  </div>
-  `;
-}
-
-function removeSaleItem(i){
-  saleItems.splice(i,1);
-  renderSaleItems();
-  updateSaleTotals();
-}
-
-function clearSaleItems(){
-  saleItems=[];
-  renderSaleItems();
-  updateSaleTotals();
-}
-
-function getSaleTotal(){
-  return saleItems.reduce((sum,item)=>sum+num(item.total),0);
-}
-
-function getInvoiceStatus(total,paid,paymentMethod){
-
-  total=num(total);
-  paid=num(paid);
-
-  if(paid>total && total>0){
-    return {
-      text:"ADVANCE",
-      icon:"↗",
-      cls:"status-advance"
-    };
-  }
-
-  if(total>0 && paid>=total){
-    return {
-      text:paymentMethod==="Cash" ? "CASH PAID" : "PAID",
-      icon:"✓",
-      cls:"status-paid"
-    };
-  }
-
-  if(paid>0 && paid<total){
-    return {
-      text:"BAKI / PARTIAL",
-      icon:"⚠",
-      cls:"status-baki"
-    };
-  }
-
-  return {
-    text:"UNPAID",
-    icon:"✕",
-    cls:"status-unpaid"
-  };
-}
-
-function updateSaleTotals(){
-
-  const total=getSaleTotal();
-  const paid=num(document.getElementById("salePaid").value);
-  const due=Math.max(0,total-paid);
-
-  document.getElementById("saleTotal").textContent=money(total);
-  document.getElementById("salePaidPreview").textContent=money(paid);
-  document.getElementById("saleDue").textContent=money(due);
-
-  const method=document.getElementById("salePaymentMethod").value;
-  const status=getInvoiceStatus(total,paid,method);
-
-  document.getElementById("saleStatusPreview").innerHTML=`
-    <span class="payment-status ${status.cls}">
-      ${status.icon} ${status.text}
-    </span>
-  `;
-}
-
-function generateInvoiceNo(){
-
-  const prefix=db.settings.prefix || "AKH";
-  const n=db.sales.length+1;
-
-  return prefix+"-"+new Date().getFullYear()+"-"+String(n).padStart(5,"0");
-}
-
-function saveSale(){
-
-  if(!saleItems.length){
-    alert("কমপক্ষে একটি item যোগ করুন");
-    return;
-  }
-
-  let customerId=document.getElementById("saleCustomer").value;
-  const customerName=document.getElementById("saleCustomerName").value.trim();
-
-  if(!customerName){
-    alert("Customer name দিন");
-    return;
-  }
-
-  if(!customerId){
-
-    const existing=db.customers.find(
-      c=>c.name.toLowerCase()===customerName.toLowerCase()
-    );
-
-    if(existing){
-      customerId=existing.id;
-    }else{
-
-      customerId=Date.now().toString();
-
-      db.customers.push({
-        id:customerId,
-        name:customerName,
-        phone:"",
-        address:"",
-        openingDue:0,
-        createdAt:new Date().toISOString()
-      });
-    }
-  }
-
-  const total=getSaleTotal();
-  const paid=num(document.getElementById("salePaid").value);
-  const paymentMethod=document.getElementById("salePaymentMethod").value;
-
-  const sale={
-    id:Date.now().toString(),
-    invoiceNo:generateInvoiceNo(),
-    customerId,
-    customerName,
-    date:document.getElementById("saleDate").value || today(),
-    items:JSON.parse(JSON.stringify(saleItems)),
-    total,
-    paid,
-    paymentMethod,
-    note:document.getElementById("saleNote").value.trim(),
-    createdAt:new Date().toISOString()
-  };
-
-  db.sales.unshift(sale);
-
-  /* stock reduce */
-  sale.items.forEach(item=>{
-    const p=productById(item.productId);
-
-    if(p){
-      p.stock=Math.max(0,num(p.stock)-num(item.qty));
-    }
-  });
-
-  /*
-    Sale-এর সময় Paid amount payment history-তে রাখা হচ্ছে না,
-    কারণ invoice-এর paid amount sale record-এর মধ্যেই আছে।
-    আলাদা customer payment শুধু Payment page থেকে যোগ হবে।
-  */
-
-  saveDB();
-
-  saleItems=[];
-
-  renderSaleItems();
-
-  showInvoice(sale.id);
-
-  refreshAll();
-}
-
-function resetSaleForm(){
-
-  saleItems=[];
-
-  document.getElementById("saleCustomer").value="";
-  document.getElementById("saleCustomerName").value="";
-  document.getElementById("saleProduct").value="";
-  document.getElementById("saleQty").value="1";
-  document.getElementById("saleRate").value="";
-  document.getElementById("saleKg").value="50";
-  document.getElementById("salePaid").value="0";
-  document.getElementById("salePaymentMethod").value="Cash";
-  document.getElementById("saleNote").value="";
-  document.getElementById("saleDate").value=today();
-
-  renderSaleItems();
-  updateSaleTotals();
-}
-
-
-/* =========================
-   INVOICE
-========================= */
-
-let currentInvoiceId=null;
-
-function showInvoice(id){
-
-  currentInvoiceId=id;
-  renderInvoice();
-
-  document.querySelectorAll(".page").forEach(p=>{
-    p.classList.remove("active");
-  });
-
-  document.getElementById("invoicePage").classList.add("active");
-
-  document.querySelectorAll(".nav button").forEach(b=>{
-    b.classList.remove("active");
-  });
-}
-
-function renderInvoice(){
-
-  const s=db.sales.find(x=>x.id===currentInvoiceId);
-
-  if(!s)return;
-
-  const c=customerById(s.customerId);
-  const status=getInvoiceStatus(s.total,s.paid,s.paymentMethod);
-
-  const due=Math.max(0,num(s.total)-num(s.paid));
-  const advance=Math.max(0,num(s.paid)-num(s.total));
-
-  const logo=db.settings.logo
-    ? `<img src="${db.settings.logo}" alt="Logo">`
-    : "🐔";
-
-  document.getElementById("invoiceContainer").innerHTML=`
-
-  <div class="invoice-box">
-
-    <div class="invoice-head">
-
-      <div class="invoice-head-top">
-
-        <div class="invoice-company">
-
-          <div class="invoice-logo">
-            ${logo}
-          </div>
-
-          <div>
-            <h2>${esc(db.settings.businessName)}</h2>
-            <p>${esc(db.settings.address||"")}</p>
-            <p>${db.settings.phone?"Phone: "+esc(db.settings.phone):""}</p>
-            <p>${db.settings.email?esc(db.settings.email):""}</p>
-          </div>
-
-        </div>
-
-        <div class="invoice-meta">
-
-          <strong>INVOICE</strong>
-
-          <div>Invoice No: <b>${esc(s.invoiceNo)}</b></div>
-          <div>Date: ${esc(s.date)}</div>
-
-        </div>
-
-      </div>
-
-      <div class="invoice-status-area">
-
-        <span class="payment-status ${status.cls}">
-          ${status.icon} ${status.text}
-        </span>
-
-      </div>
-
-    </div>
-
-
-    <div class="invoice-parties">
-
-      <div>
-        <div class="party-title">Bill To</div>
-        <div class="party-name">${esc(c?.name || s.customerName)}</div>
-        <div>${esc(c?.phone || "")}</div>
-        <div>${esc(c?.address || "")}</div>
-      </div>
-
-      <div>
-        <div class="party-title">Payment Information</div>
-        <div>Method: <strong>${esc(s.paymentMethod)}</strong></div>
-        <div>Status: <strong>${status.text}</strong></div>
-      </div>
-
-    </div>
-
-
-    <div class="invoice-table">
-
       <table>
 
         <thead>
           <tr>
-            <th>#</th>
-            <th>Product</th>
-            <th>Qty</th>
-            <th>Total Kg</th>
-            <th>Rate</th>
-            <th>Total</th>
+            <th>Customer</th>
+            <th>Phone</th>
+            <th>Sales</th>
+            <th>Due</th>
+            <th>Action</th>
           </tr>
         </thead>
 
         <tbody>
 
-          ${s.items.map((item,i)=>`
+        ${list.map(c=>{
+
+          const s=customerStats(c.id);
+
+          return `
+            <tr>
+
+              <td>
+                <strong>${esc(c.name)}</strong>
+              </td>
+
+              <td>${esc(c.phone)}</td>
+
+              <td>${money(s.totalSales)}</td>
+
+              <td>
+                <span class="payment-status ${
+                  s.due>0
+                    ?"status-baki"
+                    :"status-paid"
+                }">
+                  ${money(s.due)}
+                </span>
+              </td>
+
+              <td>
+
+                <button
+                  class="btn btn-blue"
+                  onclick="openCustomerRates('${c.id}')"
+                >
+                  💵 Rate
+                </button>
+
+                <button
+                  class="btn btn-danger"
+                  onclick="deleteCustomer('${c.id}')"
+                >
+                  Delete
+                </button>
+
+              </td>
+
+            </tr>
+          `;
+
+        }).join("")}
+
+        </tbody>
+
+      </table>
+    </div>
+  `;
+}
+
+
+function openCustomerRates(cid){
+
+  showPage(
+    "rates",
+    document.querySelector(
+      ".nav button:nth-child(5)"
+    )
+  );
+
+  populateRateSelects();
+
+  document.getElementById(
+    "rateCustomer"
+  ).value=cid;
+
+  loadCustomerRateForManager();
+}
+
+
+function deleteCustomer(cid){
+
+  const c=customerById(cid);
+
+  if(!c) return;
+
+  if(!confirm(
+    `"${c.name}" customer delete করবেন?`
+  )){
+    return;
+  }
+
+  db.customers=
+    db.customers.filter(
+      x=>x.id!==cid
+    );
+
+  saveDB();
+
+  refreshAll();
+}
+
+
+/* ==========================================
+   PRODUCTS
+========================================== */
+
+function saveProduct(){
+
+  const name=
+    document.getElementById(
+      "productName"
+    ).value.trim();
+
+  if(!name){
+
+    alert("Product name দিন");
+    return;
+  }
+
+  const product={
+    id:id(),
+
+    name:name,
+
+    category:
+      document.getElementById(
+        "productCategory"
+      ).value.trim(),
+
+    price:
+      num(
+        document.getElementById(
+          "productPrice"
+        ).value
+      ),
+
+    stock:
+      num(
+        document.getElementById(
+          "productStock"
+        ).value
+      ),
+
+    createdAt:
+      new Date().toISOString()
+  };
+
+  db.products.push(product);
+
+  saveDB();
+
+  document.getElementById(
+    "productName"
+  ).value="";
+
+  document.getElementById(
+    "productCategory"
+  ).value="";
+
+  document.getElementById(
+    "productPrice"
+  ).value="";
+
+  document.getElementById(
+    "productStock"
+  ).value="0";
+
+  refreshAll();
+
+  alert("Product added successfully");
+}
+
+
+function renderProducts(){
+
+  const box=
+    document.getElementById(
+      "productList"
+    );
+
+  if(!db.products.length){
+
+    box.innerHTML=
+      `<div class="empty">
+        কোনো product নেই
+      </div>`;
+
+    return;
+  }
+
+  box.innerHTML=`
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Product</th>
+            <th>Category</th>
+            <th>Default Rate</th>
+            <th>Stock</th>
+            <th>Action</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${db.products.map(p=>`
 
             <tr>
 
-              <td>${i+1}</td>
-
               <td>
-                <strong>${esc(item.name)}</strong>
+                <strong>
+                  ${esc(p.name)}
+                </strong>
               </td>
 
-              <td>${item.qty}</td>
+              <td>
+                ${esc(p.category)}
+              </td>
 
-              <td>${item.totalKg}</td>
+              <td>
+                ${money(p.price)}
+              </td>
 
-              <td>${money(item.rate)}</td>
+              <td>
+                ${num(p.stock)}
+              </td>
 
-              <td><strong>${money(item.total)}</strong></td>
+              <td>
+
+                <button
+                  class="btn btn-danger"
+                  onclick="deleteProduct('${p.id}')"
+                >
+                  Delete
+                </button>
+
+              </td>
 
             </tr>
 
@@ -1918,613 +2173,2584 @@ function renderInvoice(){
       </table>
 
     </div>
+  `;
+}
 
 
-    <div class="invoice-summary">
+function deleteProduct(pid){
 
-      <div class="summary-box">
+  const p=productById(pid);
 
-        <div class="summary-row total">
-          <span>Grand Total</span>
-          <span>${money(s.total)}</span>
-        </div>
+  if(!p) return;
 
-        <div class="summary-row paid">
-          <span>Paid</span>
-          <span>${money(s.paid)}</span>
-        </div>
+  if(!confirm(
+    `"${p.name}" product delete করবেন?`
+  )){
+    return;
+  }
+
+  db.products=
+    db.products.filter(
+      x=>x.id!==pid
+    );
+
+  /*
+    Delete customer-wise rates
+    for this product too.
+  */
+
+  db.customers.forEach(c=>{
+
+    if(c.rates){
+      delete c.rates[pid];
+    }
+
+  });
+
+  saveDB();
+
+  refreshAll();
+}
+
+
+/* ==========================================
+   CUSTOMER RATE MANAGEMENT
+========================================== */
+
+function getCustomerRate(
+  customerId,
+  productId
+){
+
+  const customer=
+    customerById(customerId);
+
+  if(
+    !customer ||
+    !customer.rates
+  ){
+    return null;
+  }
+
+  const rate=
+    customer.rates[productId];
+
+  if(
+    rate===undefined ||
+    rate===null ||
+    rate===""
+  ){
+    return null;
+  }
+
+  return num(rate);
+}
+
+
+function populateRateSelects(){
+
+  const cs=
+    document.getElementById(
+      "rateCustomer"
+    );
+
+  const ps=
+    document.getElementById(
+      "rateProduct"
+    );
+
+  if(!cs || !ps) return;
+
+  const oldCustomer=cs.value;
+  const oldProduct=ps.value;
+
+  cs.innerHTML=
+    `<option value="">
+      -- Customer Select --
+    </option>`+
+
+    db.customers.map(c=>`
+
+      <option value="${c.id}">
+        ${esc(c.name)}
+        ${c.phone
+          ? " - "+esc(c.phone)
+          : ""}
+      </option>
+
+    `).join("");
+
+  ps.innerHTML=
+    `<option value="">
+      -- Product Select --
+    </option>`+
+
+    db.products.map(p=>`
+
+      <option value="${p.id}">
+        ${esc(p.name)}
+      </option>
+
+    `).join("");
+
+  if(
+    db.customers.some(
+      c=>c.id===oldCustomer
+    )
+  ){
+    cs.value=oldCustomer;
+  }
+
+  if(
+    db.products.some(
+      p=>p.id===oldProduct
+    )
+  ){
+    ps.value=oldProduct;
+  }
+}
+
+
+function loadCustomerRateForManager(){
+
+  const cid=
+    document.getElementById(
+      "rateCustomer"
+    ).value;
+
+  const pid=
+    document.getElementById(
+      "rateProduct"
+    ).value;
+
+  const input=
+    document.getElementById(
+      "customerRate"
+    );
+
+  const hint=
+    document.getElementById(
+      "customerRateHint"
+    );
+
+  if(!cid || !pid){
+
+    input.value="";
+
+    hint.innerHTML=
+      "Customer এবং Product select করুন.";
+
+    renderCustomerRateList();
+
+    return;
+  }
+
+  const product=
+    productById(pid);
+
+  const saved=
+    getCustomerRate(cid,pid);
+
+  if(saved!==null){
+
+    input.value=saved;
+
+    hint.innerHTML=
+      `💵 Saved Customer Rate:
+       <strong>${money(saved)}</strong>`;
+
+  }else{
+
+    input.value=
+      product ? product.price : "";
+
+    hint.innerHTML=
+      `Default Product Rate:
+       <strong>
+       ${money(product?.price || 0)}
+       </strong>
+       <br>
+       এখনো customer-wise rate save করা হয়নি।`;
+  }
+
+  renderCustomerRateList();
+}
+
+
+function saveCustomerRate(){
+
+  const cid=
+    document.getElementById(
+      "rateCustomer"
+    ).value;
+
+  const pid=
+    document.getElementById(
+      "rateProduct"
+    ).value;
+
+  const rate=
+    num(
+      document.getElementById(
+        "customerRate"
+      ).value
+    );
+
+  if(!cid){
+
+    alert("Customer select করুন");
+    return;
+  }
+
+  if(!pid){
+
+    alert("Product select করুন");
+    return;
+  }
+
+  if(rate<=0){
+
+    alert("Valid customer rate দিন");
+    return;
+  }
+
+  const customer=
+    customerById(cid);
+
+  if(!customer) return;
+
+  if(!customer.rates){
+    customer.rates={};
+  }
+
+  customer.rates[pid]=rate;
+
+  saveDB();
+
+  renderCustomerRateList();
+
+  /*
+    If same customer/product is currently
+    selected in sale, update sale rate too.
+  */
+
+  updateSaleRateIfMatching(
+    cid,
+    pid
+  );
+
+  alert(
+    "Customer-wise rate saved successfully ✅"
+  );
+}
+
+
+function renderCustomerRateList(){
+
+  const box=
+    document.getElementById(
+      "customerRateList"
+    );
+
+  if(!box) return;
+
+  const cid=
+    document.getElementById(
+      "rateCustomer"
+    )?.value;
+
+  if(!cid){
+
+    box.innerHTML=
+      `<div class="empty">
+        Customer select করলে saved rates এখানে দেখা যাবে।
+      </div>`;
+
+    return;
+  }
+
+  const customer=
+    customerById(cid);
+
+  if(!customer){
+
+    box.innerHTML="";
+    return;
+  }
+
+  const rates=
+    customer.rates || {};
+
+  const entries=
+    Object.entries(rates)
+      .filter(([pid])=>
+        !!productById(pid)
+      );
+
+  if(!entries.length){
+
+    box.innerHTML=`
+      <div class="empty">
+        ${esc(customer.name)}
+        -এর কোনো customer-wise rate save করা নেই।
+      </div>
+    `;
+
+    return;
+  }
+
+  box.innerHTML=`
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Product</th>
+            <th>Default Rate</th>
+            <th>Customer Rate</th>
+            <th>Difference</th>
+            <th>Action</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${entries.map(([pid,rate])=>{
+
+            const p=
+              productById(pid);
+
+            const diff=
+              num(p.price)-num(rate);
+
+            return `
+
+              <tr>
+
+                <td>
+                  <strong>
+                    ${esc(p.name)}
+                  </strong>
+                </td>
+
+                <td>
+                  ${money(p.price)}
+                </td>
+
+                <td>
+                  <span class="badge badge-blue">
+                    ${money(rate)}
+                  </span>
+                </td>
+
+                <td>
+                  ${
+                    diff>0
+                      ? "↓ "+money(diff)
+                      : diff<0
+                      ? "↑ "+money(Math.abs(diff))
+                      : "Same"
+                  }
+                </td>
+
+                <td>
+
+                  <button
+                    class="btn btn-danger"
+                    onclick="
+                      deleteCustomerRate(
+                        '${cid}',
+                        '${pid}'
+                      )
+                    "
+                  >
+                    Delete
+                  </button>
+
+                </td>
+
+              </tr>
+
+            `;
+
+          }).join("")}
+
+        </tbody>
+
+      </table>
+
+    </div>
+  `;
+}
+
+
+function deleteCustomerRate(
+  cid,
+  pid
+){
+
+  const customer=
+    customerById(cid);
+
+  if(
+    !customer ||
+    !customer.rates
+  ){
+    return;
+  }
+
+  if(!confirm(
+    "এই customer-এর saved rate delete করবেন?"
+  )){
+    return;
+  }
+
+  delete customer.rates[pid];
+
+  saveDB();
+
+  const selectedCid=
+    document.getElementById(
+      "rateCustomer"
+    ).value;
+
+  const selectedPid=
+    document.getElementById(
+      "rateProduct"
+    ).value;
+
+  if(
+    selectedCid===cid &&
+    selectedPid===pid
+  ){
+    loadCustomerRateForManager();
+  }
+
+  renderCustomerRateList();
+}
+
+
+function clearCustomerRateForm(){
+
+  document.getElementById(
+    "rateCustomer"
+  ).value="";
+
+  document.getElementById(
+    "rateProduct"
+  ).value="";
+
+  document.getElementById(
+    "customerRate"
+  ).value="";
+
+  document.getElementById(
+    "customerRateHint"
+  ).innerHTML=
+    "Customer এবং Product select করুন.";
+
+  renderCustomerRateList();
+}
+
+
+/* ==========================================
+   SALE AUTO RATE
+========================================== */
+
+function applyCustomerProductRate(){
+
+  const cid=
+    document.getElementById(
+      "saleCustomer"
+    ).value;
+
+  const pid=
+    document.getElementById(
+      "saleProduct"
+    ).value;
+
+  const rateInput=
+    document.getElementById(
+      "saleRate"
+    );
+
+  const info=
+    document.getElementById(
+      "saleRateInfo"
+    );
+
+  if(!rateInput) return;
+
+  if(!pid){
+
+    rateInput.value="";
+
+    if(info){
+      info.innerHTML=
+        "Customer select করলে saved rate automatically আসবে.";
+    }
+
+    return;
+  }
+
+  const product=
+    productById(pid);
+
+  if(!product){
+
+    rateInput.value="";
+    return;
+  }
+
+  let customerRate=null;
+
+  if(cid){
+
+    customerRate=
+      getCustomerRate(
+        cid,
+        pid
+      );
+  }
+
+  if(customerRate!==null){
+
+    rateInput.value=
+      customerRate;
+
+    rateInput.dataset.rateType=
+      "customer";
+
+    if(info){
+
+      info.innerHTML=
+        `💵 Customer Rate:
+         <strong>
+         ${money(customerRate)}
+         </strong>
+         <br>
+         এই customer-এর জন্য saved rate.`;
+    }
+
+  }else{
+
+    rateInput.value=
+      num(product.price);
+
+    rateInput.dataset.rateType=
+      "default";
+
+    if(info){
+
+      info.innerHTML=
+        `📦 Default Rate:
+         <strong>
+         ${money(product.price)}
+         </strong>
+         <br>
+         Customer-wise rate নেই।`;
+    }
+
+  }
+}
+
+
+function updateSaleRateIfMatching(
+  cid,
+  pid
+){
+
+  const saleCid=
+    document.getElementById(
+      "saleCustomer"
+    )?.value;
+
+  const salePid=
+    document.getElementById(
+      "saleProduct"
+    )?.value;
+
+  if(
+    saleCid===cid &&
+    salePid===pid
+  ){
+
+    applyCustomerProductRate();
+  }
+}
+
+
+function customerSelected(){
+
+  const cid=
+    document.getElementById(
+      "saleCustomer"
+    ).value;
+
+  const c=
+    customerById(cid);
+
+  if(c){
+
+    document.getElementById(
+      "saleCustomerName"
+    ).value=c.name;
+  }
+
+  applyCustomerProductRate();
+}
+
+
+function productSelected(){
+
+  applyCustomerProductRate();
+}
+
+
+/*
+  Save currently selected sale rate
+  directly from New Sale page.
+*/
+
+function saveCurrentSaleRate(){
+
+  const cid=
+    document.getElementById(
+      "saleCustomer"
+    ).value;
+
+  const pid=
+    document.getElementById(
+      "saleProduct"
+    ).value;
+
+  const rate=
+    num(
+      document.getElementById(
+        "saleRate"
+      ).value
+    );
+
+  if(!cid){
+
+    alert(
+      "Customer select করুন। Walk-in customer-এর জন্য customer rate save করা যাবে না।"
+    );
+
+    return;
+  }
+
+  if(!pid){
+
+    alert("Product select করুন");
+    return;
+  }
+
+  if(rate<=0){
+
+    alert("Rate দিন");
+    return;
+  }
+
+  const customer=
+    customerById(cid);
+
+  if(!customer) return;
+
+  if(!customer.rates){
+    customer.rates={};
+  }
+
+  customer.rates[pid]=rate;
+
+  saveDB();
+
+  applyCustomerProductRate();
+
+  alert(
+    "এই customer-এর জন্য rate save হয়েছে ✅"
+  );
+}
+
+
+/* ==========================================
+   SALE
+========================================== */
+
+let currentSaleItems=[];
+
+
+function addSaleItem(){
+
+  const pid=
+    document.getElementById(
+      "saleProduct"
+    ).value;
+
+  const qty=
+    num(
+      document.getElementById(
+        "saleQty"
+      ).value
+    );
+
+  const rate=
+    num(
+      document.getElementById(
+        "saleRate"
+      ).value
+    );
+
+  const kg=
+    num(
+      document.getElementById(
+        "saleKg"
+      ).value
+    );
+
+  if(!pid){
+
+    alert("Product select করুন");
+    return;
+  }
+
+  if(qty<=0){
+
+    alert("Quantity দিন");
+    return;
+  }
+
+  if(rate<=0){
+
+    alert("Rate দিন");
+    return;
+  }
+
+  const p=
+    productById(pid);
+
+  if(!p) return;
+
+  const item={
+    id:id(),
+    productId:pid,
+    name:p.name,
+    qty:qty,
+    rate:rate,
+    kg:kg,
+    total:qty*rate,
+    totalKg:kg
+  };
+
+  currentSaleItems.push(item);
+
+  renderSaleItems();
+
+  document.getElementById(
+    "saleQty"
+  ).value="1";
+
+  document.getElementById(
+    "saleKg"
+  ).value="";
+
+}
+
+
+function renderSaleItems(){
+
+  const box=
+    document.getElementById(
+      "saleItems"
+    );
+
+  if(!currentSaleItems.length){
+
+    box.innerHTML=
+      `<div class="empty">
+        এখনো কোনো item যোগ করা হয়নি।
+      </div>`;
+
+    updateSaleTotals();
+
+    return;
+  }
+
+  box.innerHTML=`
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Rate</th>
+            <th>KG</th>
+            <th>Total</th>
+            <th>Action</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${currentSaleItems.map((item,i)=>`
+
+            <tr>
+
+              <td>
+                ${esc(item.name)}
+              </td>
+
+              <td>
+                ${num(item.qty)}
+              </td>
+
+              <td>
+                ${money(item.rate)}
+              </td>
+
+              <td>
+                ${num(item.totalKg)}
+              </td>
+
+              <td>
+                <strong>
+                  ${money(item.total)}
+                </strong>
+              </td>
+
+              <td>
+
+                <button
+                  class="btn btn-danger"
+                  onclick="removeSaleItem(${i})"
+                >
+                  Remove
+                </button>
+
+              </td>
+
+            </tr>
+
+          `).join("")}
+
+        </tbody>
+
+      </table>
+
+    </div>
+  `;
+
+  updateSaleTotals();
+}
+
+
+function removeSaleItem(index){
+
+  currentSaleItems.splice(
+    index,
+    1
+  );
+
+  renderSaleItems();
+}
+
+
+function updateSaleTotals(){
+
+  const total=
+    currentSaleItems.reduce(
+      (sum,item)=>
+        sum+num(item.total),
+      0
+    );
+
+  const paid=
+    num(
+      document.getElementById(
+        "salePaid"
+      )?.value
+    );
+
+  document.getElementById(
+    "saleTotal"
+  ).value=total.toFixed(2);
+
+}
+
+
+function saveSale(){
+
+  if(!currentSaleItems.length){
+
+    alert("কমপক্ষে একটি product add করুন");
+    return;
+  }
+
+  let customerId=
+    document.getElementById(
+      "saleCustomer"
+    ).value;
+
+  let customerName=
+    document.getElementById(
+      "saleCustomerName"
+    ).value.trim();
+
+  if(!customerName){
+
+    alert("Customer name দিন");
+    return;
+  }
+
+  /*
+    If customer not selected,
+    create new customer automatically.
+  */
+
+  if(!customerId){
+
+    const existing=
+      db.customers.find(
+        c=>
+          c.name.toLowerCase()===
+          customerName.toLowerCase()
+      );
+
+    if(existing){
+
+      customerId=existing.id;
+
+    }else{
+
+      const c={
+        id:id(),
+        name:customerName,
+        phone:"",
+        address:"",
+        openingDue:0,
+        rates:{},
+        createdAt:
+          new Date().toISOString()
+      };
+
+      db.customers.push(c);
+
+      customerId=c.id;
+    }
+  }
+
+  const total=
+    currentSaleItems.reduce(
+      (sum,item)=>
+        sum+num(item.total),
+      0
+    );
+
+  const paid=
+    num(
+      document.getElementById(
+        "salePaid"
+      ).value
+    );
+
+  const paymentMethod=
+    document.getElementById(
+      "salePaymentMethod"
+    ).value;
+
+  const saleDate=
+    document.getElementById(
+      "saleDate"
+    ).value ||
+    today();
+
+  const invoiceNo=
+    makeInvoiceNo();
+
+  /*
+    Stock reduce
+  */
+
+  currentSaleItems.forEach(item=>{
+
+    const p=
+      productById(item.productId);
+
+    if(p){
+
+      p.stock=
+        Math.max(
+          0,
+          num(p.stock)-num(item.qty)
+        );
+    }
+
+  });
+
+
+  const sale={
+
+    id:id(),
+
+    invoiceNo:invoiceNo,
+
+    customerId:customerId,
+
+    customerName:customerName,
+
+    date:saleDate,
+
+    items:
+      JSON.parse(
+        JSON.stringify(
+          currentSaleItems
+        )
+      ),
+
+    total:total,
+
+    paid:paid,
+
+    paymentMethod:paymentMethod,
+
+    note:
+      document.getElementById(
+        "saleNote"
+      ).value.trim(),
+
+    createdAt:
+      new Date().toISOString()
+  };
+
+  db.sales.push(sale);
+
+  saveDB();
+
+  alert(
+    "Invoice saved successfully: "+
+    invoiceNo
+  );
+
+  clearSale();
+
+  refreshAll();
+
+  showInvoice(sale.id);
+}
+
+
+function clearSale(){
+
+  currentSaleItems=[];
+
+  document.getElementById(
+    "saleCustomer"
+  ).value="";
+
+  document.getElementById(
+    "saleCustomerName"
+  ).value="";
+
+  document.getElementById(
+    "saleProduct"
+  ).value="";
+
+  document.getElementById(
+    "saleQty"
+  ).value="1";
+
+  document.getElementById(
+    "saleRate"
+  ).value="";
+
+  document.getElementById(
+    "saleKg"
+  ).value="";
+
+  document.getElementById(
+    "salePaid"
+  ).value="0";
+
+  document.getElementById(
+    "saleNote"
+  ).value="";
+
+  renderSaleItems();
+
+  document.getElementById(
+    "saleDate"
+  ).value=today();
+
+  applyCustomerProductRate();
+}
+
+
+function makeInvoiceNo(){
+
+  const prefix=
+    db.settings.prefix || "AKH";
+
+  const count=
+    db.sales.length+1;
+
+  return prefix+
+    "-"+
+    String(count)
+      .padStart(5,"0");
+}
+
+
+/* ==========================================
+   PAYMENT STATUS
+========================================== */
+
+function getInvoiceStatus(
+  total,
+  paid,
+  paymentMethod
+){
+
+  total=num(total);
+  paid=num(paid);
+
+  if(
+    paid>total &&
+    total>0
+  ){
+
+    return{
+      text:"ADVANCE",
+      icon:"↗",
+      cls:"status-advance"
+    };
+  }
+
+  if(
+    total>0 &&
+    paid>=total
+  ){
+
+    return{
+      text:
+        paymentMethod==="Cash"
+          ?"CASH PAID"
+          :"PAID",
+
+      icon:"✓",
+      cls:"status-paid"
+    };
+  }
+
+  if(
+    paid>0 &&
+    paid<total
+  ){
+
+    return{
+      text:"BAKI / PARTIAL",
+      icon:"⚠",
+      cls:"status-baki"
+    };
+  }
+
+  return{
+    text:"UNPAID",
+    icon:"✕",
+    cls:"status-unpaid"
+  };
+}
+
+
+/* ==========================================
+   INVOICE HISTORY
+========================================== */
+
+function renderHistory(){
+
+  const box=
+    document.getElementById(
+      "historyList"
+    );
+
+  const search=
+    (
+      document.getElementById(
+        "historySearch"
+      )?.value || ""
+    ).toLowerCase();
+
+  const list=
+    [...db.sales]
+      .reverse()
+      .filter(s=>
+        s.invoiceNo
+          .toLowerCase()
+          .includes(search) ||
+        s.customerName
+          .toLowerCase()
+          .includes(search)
+      );
+
+  if(!list.length){
+
+    box.innerHTML=
+      `<div class="empty">
+        কোনো invoice পাওয়া যায়নি।
+      </div>`;
+
+    return;
+  }
+
+  box.innerHTML=`
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Invoice</th>
+            <th>Date</th>
+            <th>Customer</th>
+            <th>Total</th>
+            <th>Paid</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${list.map(s=>{
+
+            const st=
+              getInvoiceStatus(
+                s.total,
+                s.paid,
+                s.paymentMethod
+              );
+
+            return `
+
+              <tr>
+
+                <td>
+                  <strong>
+                    ${esc(s.invoiceNo)}
+                  </strong>
+                </td>
+
+                <td>
+                  ${esc(s.date)}
+                </td>
+
+                <td>
+                  ${esc(s.customerName)}
+                </td>
+
+                <td>
+                  ${money(s.total)}
+                </td>
+
+                <td>
+                  ${money(s.paid)}
+                </td>
+
+                <td>
+
+                  <span
+                    class="payment-status ${st.cls}"
+                  >
+                    ${st.icon}
+                    ${st.text}
+                  </span>
+
+                </td>
+
+                <td>
+
+                  <button
+                    class="btn btn-blue"
+                    onclick="showInvoice('${s.id}')"
+                  >
+                    View
+                  </button>
+
+                  <button
+                    class="btn btn-danger"
+                    onclick="deleteSale('${s.id}')"
+                  >
+                    Delete
+                  </button>
+
+                </td>
+
+              </tr>
+
+            `;
+
+          }).join("")}
+
+        </tbody>
+
+      </table>
+
+    </div>
+  `;
+}
+
+
+function deleteSale(sid){
+
+  const sale=
+    db.sales.find(
+      s=>s.id===sid
+    );
+
+  if(!sale) return;
+
+  if(!confirm(
+    `Invoice ${sale.invoiceNo} delete করবেন?`
+  )){
+    return;
+  }
+
+  /*
+    Restore stock
+  */
+
+  sale.items.forEach(item=>{
+
+    const p=
+      productById(item.productId);
+
+    if(p){
+
+      p.stock=
+        num(p.stock)+num(item.qty);
+    }
+
+  });
+
+  db.sales=
+    db.sales.filter(
+      s=>s.id!==sid
+    );
+
+  saveDB();
+
+  refreshAll();
+}
+
+
+/* ==========================================
+   INVOICE
+========================================== */
+
+function showInvoice(sid){
+
+  const sale=
+    db.sales.find(
+      s=>s.id===sid
+    );
+
+  if(!sale) return;
+
+  const st=
+    getInvoiceStatus(
+      sale.total,
+      sale.paid,
+      sale.paymentMethod
+    );
+
+  const due=
+    Math.max(
+      0,
+      num(sale.total)-num(sale.paid)
+    );
+
+  const logo=
+    db.settings.logo ||
+    "";
+
+  const box=
+    document.getElementById(
+      "invoicePrint"
+    );
+
+  box.innerHTML=`
+
+    <div class="invoice-head">
+
+      <div class="invoice-business">
 
         ${
-          advance>0
+          logo
           ? `
-            <div class="summary-row" style="color:#175cd3;font-weight:900">
-              <span>Advance</span>
-              <span>${money(advance)}</span>
-            </div>
+            <img
+              class="invoice-logo"
+              src="${logo}"
+            >
           `
-          : `
-            <div class="summary-row due">
-              <span>Due / Baki</span>
-              <span>${money(due)}</span>
-            </div>
-          `
+          :""
         }
+
+        <div>
+
+          <h2 style="margin:0">
+            ${esc(
+              db.settings.businessName
+            )}
+          </h2>
+
+          <div>
+            ${esc(
+              db.settings.address
+            )}
+          </div>
+
+          <div>
+            Phone:
+            ${esc(
+              db.settings.phone
+            )}
+          </div>
+
+          <div>
+            ${esc(
+              db.settings.email
+            )}
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="invoice-title">
+
+        <h2>
+          INVOICE
+        </h2>
+
+        <strong>
+          ${esc(sale.invoiceNo)}
+        </strong>
+
+        <br>
+
+        Date:
+        ${esc(sale.date)}
+
+        <br><br>
+
+        <span
+          class="payment-status ${st.cls}"
+        >
+          ${st.icon}
+          ${st.text}
+        </span>
 
       </div>
 
     </div>
 
 
-    <div style="padding:0 22px 18px">
+    <div class="invoice-info">
 
-      <div class="status-stamp ${status.cls}">
-        ${status.icon} ${status.text}
+      <div>
+
+        <strong>
+          Customer
+        </strong>
+
+        <br>
+
+        ${esc(sale.customerName)}
+
+      </div>
+
+      <div>
+
+        <strong>
+          Payment
+        </strong>
+
+        <br>
+
+        ${esc(
+          sale.paymentMethod
+        )}
+
+      </div>
+
+    </div>
+
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>#</th>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>KG</th>
+            <th>Rate</th>
+            <th>Total</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${sale.items.map(
+            (item,i)=>`
+
+            <tr>
+
+              <td>
+                ${i+1}
+              </td>
+
+              <td>
+                ${esc(item.name)}
+              </td>
+
+              <td>
+                ${num(item.qty)}
+              </td>
+
+              <td>
+                ${num(item.totalKg)}
+              </td>
+
+              <td>
+                ${money(item.rate)}
+              </td>
+
+              <td>
+                ${money(item.total)}
+              </td>
+
+            </tr>
+
+          `
+          ).join("")}
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+
+    <div class="invoice-total">
+
+      <div>
+        <span>
+          Total
+        </span>
+
+        <strong>
+          ${money(sale.total)}
+        </strong>
+      </div>
+
+      <div>
+        <span>
+          Paid
+        </span>
+
+        <strong>
+          ${money(sale.paid)}
+        </strong>
+      </div>
+
+      <div>
+        <span>
+          Due
+        </span>
+
+        <strong>
+          ${money(due)}
+        </strong>
+      </div>
+
+      <div class="grand">
+
+        <span>
+          Status
+        </span>
+
+        <span>
+          ${st.text}
+        </span>
+
       </div>
 
     </div>
 
 
     ${
-      s.note
+      sale.note
       ? `
-        <div style="padding:0 22px 18px">
-          <strong>Note:</strong> ${esc(s.note)}
+        <div
+          style="
+            margin-top:20px;
+            padding:12px;
+            background:#f6f6f6;
+            border-radius:8px
+          "
+        >
+          <strong>
+            Note:
+          </strong>
+
+          ${esc(sale.note)}
+
         </div>
       `
-      : ""
+      :""
     }
 
 
-    <div class="invoice-footer">
+    <div class="invoice-stamp">
 
-      <div>
-        Thank you for your business.
-      </div>
-
-      <div>
-        ${esc(db.settings.businessName)}
-      </div>
+      <span
+        style="
+          color:inherit
+        "
+      >
+        ${st.icon}
+        ${st.text}
+      </span>
 
     </div>
 
-  </div>
+
+    <div
+      style="
+        text-align:center;
+        margin-top:40px;
+        font-size:13px;
+        color:#777
+      "
+    >
+      Thank you.
+      Visit again.
+    </div>
+
   `;
+
+  /*
+    Hide all normal pages
+  */
+
+  document.querySelectorAll(".page")
+    .forEach(p=>{
+      p.classList.remove("active");
+    });
+
+  document.getElementById(
+    "invoiceSection"
+  ).classList.add("active");
 }
 
-function shareInvoice(){
 
-  const s=db.sales.find(x=>x.id===currentInvoiceId);
+function printInvoice(){
 
-  if(!s)return;
+  window.print();
+}
 
-  const status=getInvoiceStatus(s.total,s.paid,s.paymentMethod);
 
-  const due=Math.max(0,num(s.total)-num(s.paid));
+async function shareInvoice(){
+
+  const sale=
+    db.sales.find(
+      s=>
+        document
+          .getElementById(
+            "invoicePrint"
+          )
+          .innerText
+          .includes(s.invoiceNo)
+    );
 
   const text=
-`Invoice: ${s.invoiceNo}
-Customer: ${s.customerName}
-Date: ${s.date}
+    document.getElementById(
+      "invoicePrint"
+    ).innerText;
 
-Total: ${money(s.total)}
-Paid: ${money(s.paid)}
-Due: ${money(due)}
+  if(
+    navigator.share
+  ){
 
-Status: ${status.text}
-Payment: ${s.paymentMethod}`;
+    try{
 
-  if(navigator.share){
-    navigator.share({
-      title:s.invoiceNo,
-      text
-    }).catch(()=>{});
+      await navigator.share({
+        title:"Invoice",
+        text:text
+      });
+
+    }catch(e){}
+
   }else{
-    navigator.clipboard?.writeText(text);
-    alert("Invoice details copied");
+
+    try{
+
+      await navigator.clipboard.writeText(
+        text
+      );
+
+      alert(
+        "Invoice copied. এখন WhatsApp-এ paste করতে পারবেন।"
+      );
+
+    }catch(e){
+
+      alert(
+        "Share not supported on this device."
+      );
+
+    }
+
   }
 }
 
 
-/* =========================
+/* ==========================================
    PAYMENT
-========================= */
+========================================== */
 
 function savePayment(){
 
-  const customerId=document.getElementById("paymentCustomer").value;
-  const amount=num(document.getElementById("paymentAmount").value);
+  const cid=
+    document.getElementById(
+      "paymentCustomer"
+    ).value;
 
-  if(!customerId){
+  const amount=
+    num(
+      document.getElementById(
+        "paymentAmount"
+      ).value
+    );
+
+  if(!cid){
+
     alert("Customer select করুন");
     return;
   }
 
   if(amount<=0){
+
     alert("Payment amount দিন");
     return;
   }
 
-  db.payments.unshift({
-    id:Date.now().toString(),
-    customerId,
-    amount,
-    method:document.getElementById("paymentMethod").value,
-    date:document.getElementById("paymentDate").value || today(),
-    note:document.getElementById("paymentNote").value.trim(),
-    createdAt:new Date().toISOString()
-  });
+  const payment={
+
+    id:id(),
+
+    customerId:cid,
+
+    amount:amount,
+
+    method:
+      document.getElementById(
+        "paymentMethod"
+      ).value,
+
+    date:
+      document.getElementById(
+        "paymentDate"
+      ).value ||
+      today(),
+
+    note:
+      document.getElementById(
+        "paymentNote"
+      ).value.trim(),
+
+    createdAt:
+      new Date().toISOString()
+  };
+
+  db.payments.push(payment);
 
   saveDB();
 
-  document.getElementById("paymentAmount").value="";
-  document.getElementById("paymentNote").value="";
+  document.getElementById(
+    "paymentAmount"
+  ).value="";
+
+  document.getElementById(
+    "paymentNote"
+  ).value="";
 
   refreshAll();
 
-  alert("Payment saved");
+  alert("Payment saved successfully");
 }
+
 
 function renderPayments(){
 
-  const box=document.getElementById("paymentList");
+  const box=
+    document.getElementById(
+      "paymentList"
+    );
 
   if(!db.payments.length){
-    box.innerHTML='<div class="empty">কোনো payment নেই</div>';
+
+    box.innerHTML=
+      `<div class="empty">
+        কোনো payment নেই।
+      </div>`;
+
     return;
   }
 
   box.innerHTML=`
-  <div class="table-wrap">
-  <table>
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Customer</th>
-        <th>Amount</th>
-        <th>Method</th>
-        <th>Note</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      ${db.payments.map(p=>{
-        const c=customerById(p.customerId);
 
-        return `
-        <tr>
-          <td>${p.date}</td>
-          <td>${esc(c?.name||"Unknown")}</td>
-          <td><strong>${money(p.amount)}</strong></td>
-          <td>${esc(p.method)}</td>
-          <td>${esc(p.note||"-")}</td>
-          <td>
-            <button class="btn btn-danger" onclick="deletePayment('${p.id}')">
-              Delete
-            </button>
-          </td>
-        </tr>
-        `;
-      }).join("")}
-    </tbody>
-  </table>
-  </div>
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Date</th>
+            <th>Customer</th>
+            <th>Amount</th>
+            <th>Method</th>
+            <th>Note</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${[...db.payments]
+            .reverse()
+            .map(p=>{
+
+              const c=
+                customerById(
+                  p.customerId
+                );
+
+              return `
+
+                <tr>
+
+                  <td>
+                    ${esc(p.date)}
+                  </td>
+
+                  <td>
+                    ${esc(
+                      c?.name ||
+                      "Unknown"
+                    )}
+                  </td>
+
+                  <td>
+                    <strong>
+                      ${money(p.amount)}
+                    </strong>
+                  </td>
+
+                  <td>
+                    ${esc(p.method)}
+                  </td>
+
+                  <td>
+                    ${esc(p.note)}
+                  </td>
+
+                </tr>
+
+              `;
+
+            }).join("")}
+
+        </tbody>
+
+      </table>
+
+    </div>
   `;
 }
 
-function deletePayment(id){
 
-  if(!confirm("Payment delete করবেন?"))return;
+/* ==========================================
+   SELECTS
+========================================== */
 
-  db.payments=db.payments.filter(p=>p.id!==id);
-  saveDB();
-  refreshAll();
-}
+function populateSelects(){
+
+  const customerOptions=
+    `<option value="">
+      Select Customer
+    </option>`+
+
+    db.customers.map(c=>`
+
+      <option value="${c.id}">
+        ${esc(c.name)}
+      </option>
+
+    `).join("");
 
 
-/* =========================
-   HISTORY
-========================= */
+  const productOptions=
+    `<option value="">
+      Select Product
+    </option>`+
 
-function renderHistory(){
+    db.products.map(p=>`
 
-  const box=document.getElementById("historyList");
+      <option value="${p.id}">
+        ${esc(p.name)}
+      </option>
 
-  if(!db.sales.length){
-    box.innerHTML='<div class="empty">কোনো invoice নেই</div>';
-    return;
-  }
+    `).join("");
 
-  box.innerHTML=`
-  <div class="table-wrap">
-  <table>
 
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Invoice</th>
-        <th>Customer</th>
-        <th>Total</th>
-        <th>Paid</th>
-        <th>Due</th>
-        <th>Status</th>
-        <th>Action</th>
-      </tr>
-    </thead>
+  const saleCustomer=
+    document.getElementById(
+      "saleCustomer"
+    );
 
-    <tbody>
+  const saleProduct=
+    document.getElementById(
+      "saleProduct"
+    );
 
-      ${db.sales.map(s=>{
+  const paymentCustomer=
+    document.getElementById(
+      "paymentCustomer"
+    );
 
-        const due=Math.max(0,num(s.total)-num(s.paid));
-        const status=getInvoiceStatus(s.total,s.paid,s.paymentMethod);
 
-        return `
-        <tr>
+  if(saleCustomer){
 
-          <td>${s.date}</td>
+    const old=saleCustomer.value;
 
-          <td>
-            <strong>${esc(s.invoiceNo)}</strong>
-          </td>
+    saleCustomer.innerHTML=
+      `<option value="">
+        Walk-in / New Customer
+      </option>`+
 
-          <td>${esc(s.customerName)}</td>
+      db.customers.map(c=>`
 
-          <td>${money(s.total)}</td>
+        <option value="${c.id}">
+          ${esc(c.name)}
+        </option>
 
-          <td>${money(s.paid)}</td>
+      `).join("");
 
-          <td>${money(due)}</td>
-
-          <td>
-            <span class="payment-status ${status.cls}">
-              ${status.icon} ${status.text}
-            </span>
-          </td>
-
-          <td>
-            <div class="actions">
-              <button class="btn btn-primary"
-                onclick="showInvoice('${s.id}')">
-                Invoice
-              </button>
-
-              <button class="btn btn-danger"
-                onclick="deleteSale('${s.id}')">
-                Delete
-              </button>
-            </div>
-          </td>
-
-        </tr>
-        `;
-
-      }).join("")}
-
-    </tbody>
-
-  </table>
-  </div>
-  `;
-}
-
-function deleteSale(id){
-
-  const s=db.sales.find(x=>x.id===id);
-
-  if(!s)return;
-
-  if(!confirm("এই invoice delete করবেন?"))return;
-
-  /*
-    Restore stock
-  */
-  s.items.forEach(item=>{
-    const p=productById(item.productId);
-
-    if(p){
-      p.stock=num(p.stock)+num(item.qty);
+    if(
+      db.customers.some(
+        c=>c.id===old
+      )
+    ){
+      saleCustomer.value=old;
     }
-  });
 
-  db.sales=db.sales.filter(x=>x.id!==id);
-
-  saveDB();
-
-  refreshAll();
-}
-
-
-/* =========================
-   REPORT
-========================= */
-
-function renderReports(){
-
-  const totalSales=db.sales.reduce((a,s)=>a+num(s.total),0);
-  const totalPaid=db.sales.reduce((a,s)=>a+num(s.paid),0);
-
-  let totalPayments=db.payments.reduce(
-    (a,p)=>a+num(p.amount),0
-  );
-
-  const totalDue=db.customers.reduce(
-    (a,c)=>a+customerStats(c.id).due,
-    0
-  );
-
-  document.getElementById("reportSales").textContent=money(totalSales);
-  document.getElementById("reportPaid").textContent=
-    money(totalPaid+totalPayments);
-  document.getElementById("reportDue").textContent=money(totalDue);
-
-  const box=document.getElementById("dueReport");
-
-  if(!db.customers.length){
-    box.innerHTML='<div class="empty">কোনো customer নেই</div>';
-    return;
   }
 
-  box.innerHTML=`
-  <div class="table-wrap">
-  <table>
 
-    <thead>
-      <tr>
-        <th>Customer</th>
-        <th>Opening Due</th>
-        <th>Sales</th>
-        <th>Collected</th>
-        <th>Current Due</th>
-      </tr>
-    </thead>
+  if(saleProduct){
 
-    <tbody>
+    const old=saleProduct.value;
 
-      ${db.customers.map(c=>{
+    saleProduct.innerHTML=
+      productOptions;
 
-        const st=customerStats(c.id);
+    if(
+      db.products.some(
+        p=>p.id===old
+      )
+    ){
+      saleProduct.value=old;
+    }
 
-        return `
-        <tr>
-          <td><strong>${esc(c.name)}</strong></td>
-          <td>${money(st.openingDue)}</td>
-          <td>${money(st.totalSales)}</td>
-          <td>${money(st.salePaid+st.payments)}</td>
-          <td>
-            <span class="badge ${st.due>0?'badge-red':'badge-green'}">
-              ${money(st.due)}
-            </span>
-          </td>
-        </tr>
-        `;
+  }
 
-      }).join("")}
 
-    </tbody>
+  if(paymentCustomer){
 
-  </table>
-  </div>
-  `;
+    const old=
+      paymentCustomer.value;
+
+    paymentCustomer.innerHTML=
+      customerOptions;
+
+    if(
+      db.customers.some(
+        c=>c.id===old
+      )
+    ){
+      paymentCustomer.value=old;
+    }
+
+  }
+
 }
 
 
-/* =========================
+/* ==========================================
    DASHBOARD
-========================= */
+========================================== */
 
 function renderDashboard(){
 
-  const t=today();
+  const totalSales=
+    db.sales.reduce(
+      (sum,s)=>
+        sum+num(s.total),
+      0
+    );
 
-  const todaySales=db.sales
-    .filter(s=>s.date===t)
-    .reduce((a,s)=>a+num(s.total),0);
+  const collected=
+    db.sales.reduce(
+      (sum,s)=>
+        sum+num(s.paid),
+      0
+    )+
+    db.payments.reduce(
+      (sum,p)=>
+        sum+num(p.amount),
+      0
+    );
 
-  const todayPaid=db.sales
-    .filter(s=>s.date===t)
-    .reduce((a,s)=>a+num(s.paid),0);
+  const due=
+    db.customers.reduce(
+      (sum,c)=>
+        sum+
+        customerStats(c.id).due,
+      0
+    );
 
-  const totalDue=db.customers.reduce(
-    (a,c)=>a+customerStats(c.id).due,
-    0
-  );
+  document.getElementById(
+    "dashSales"
+  ).innerText=money(totalSales);
 
-  document.getElementById("dashTodaySales").textContent=money(todaySales);
-  document.getElementById("dashTodayPaid").textContent=money(todayPaid);
-  document.getElementById("dashTotalDue").textContent=money(totalDue);
-  document.getElementById("dashCustomers").textContent=db.customers.length;
+  document.getElementById(
+    "dashCollected"
+  ).innerText=money(collected);
 
-  const recent=document.getElementById("recentSales");
+  document.getElementById(
+    "dashDue"
+  ).innerText=money(due);
 
-  if(!db.sales.length){
-    recent.innerHTML='<div class="empty">কোনো sales নেই</div>';
+  document.getElementById(
+    "dashCustomers"
+  ).innerText=
+    db.customers.length;
+
+
+  const recent=
+    [...db.sales]
+      .reverse()
+      .slice(0,8);
+
+  const box=
+    document.getElementById(
+      "dashboardRecent"
+    );
+
+  if(!recent.length){
+
+    box.innerHTML=
+      `<div class="empty">
+        কোনো invoice নেই।
+      </div>`;
+
     return;
   }
 
-  recent.innerHTML=`
-  <div class="table-wrap">
-  <table>
+  box.innerHTML=`
 
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Invoice</th>
-        <th>Customer</th>
-        <th>Total</th>
-        <th>Status</th>
-      </tr>
-    </thead>
+    <div class="table-wrap">
 
-    <tbody>
+      <table>
 
-      ${db.sales.slice(0,8).map(s=>{
+        <thead>
 
-        const status=getInvoiceStatus(
-          s.total,
-          s.paid,
-          s.paymentMethod
-        );
+          <tr>
+            <th>Invoice</th>
+            <th>Customer</th>
+            <th>Total</th>
+            <th>Status</th>
+          </tr>
 
-        return `
-        <tr>
-          <td>${s.date}</td>
-          <td>${esc(s.invoiceNo)}</td>
-          <td>${esc(s.customerName)}</td>
-          <td>${money(s.total)}</td>
-          <td>
-            <span class="payment-status ${status.cls}">
-              ${status.icon} ${status.text}
-            </span>
-          </td>
-        </tr>
-        `;
+        </thead>
 
-      }).join("")}
+        <tbody>
 
-    </tbody>
+          ${recent.map(s=>{
 
-  </table>
-  </div>
+            const st=
+              getInvoiceStatus(
+                s.total,
+                s.paid,
+                s.paymentMethod
+              );
+
+            return `
+
+              <tr
+                onclick="showInvoice('${s.id}')"
+                style="cursor:pointer"
+              >
+
+                <td>
+                  ${esc(s.invoiceNo)}
+                </td>
+
+                <td>
+                  ${esc(s.customerName)}
+                </td>
+
+                <td>
+                  ${money(s.total)}
+                </td>
+
+                <td>
+
+                  <span
+                    class="payment-status ${st.cls}"
+                  >
+                    ${st.icon}
+                    ${st.text}
+                  </span>
+
+                </td>
+
+              </tr>
+
+            `;
+
+          }).join("")}
+
+        </tbody>
+
+      </table>
+
+    </div>
   `;
 }
 
 
-/* =========================
+/* ==========================================
+   REPORTS
+========================================== */
+
+function renderReports(){
+
+  const total=
+    db.sales.reduce(
+      (sum,s)=>
+        sum+num(s.total),
+      0
+    );
+
+  const paid=
+    db.sales.reduce(
+      (sum,s)=>
+        sum+num(s.paid),
+      0
+    );
+
+  const due=
+    db.customers.reduce(
+      (sum,c)=>
+        sum+
+        customerStats(c.id).due,
+      0
+    );
+
+  document.getElementById(
+    "reportInvoiceCount"
+  ).innerText=
+    db.sales.length;
+
+  document.getElementById(
+    "reportSales"
+  ).innerText=
+    money(total);
+
+  document.getElementById(
+    "reportPaid"
+  ).innerText=
+    money(paid);
+
+  document.getElementById(
+    "reportDue"
+  ).innerText=
+    money(due);
+
+
+  const box=
+    document.getElementById(
+      "reportTable"
+    );
+
+  if(!db.sales.length){
+
+    box.innerHTML=
+      `<div class="empty">
+        কোনো sales data নেই।
+      </div>`;
+
+    return;
+  }
+
+  box.innerHTML=`
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+            <th>Date</th>
+            <th>Invoice</th>
+            <th>Customer</th>
+            <th>Total</th>
+            <th>Paid</th>
+            <th>Due</th>
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${[...db.sales]
+            .reverse()
+            .map(s=>`
+
+              <tr>
+
+                <td>
+                  ${esc(s.date)}
+                </td>
+
+                <td>
+                  ${esc(s.invoiceNo)}
+                </td>
+
+                <td>
+                  ${esc(s.customerName)}
+                </td>
+
+                <td>
+                  ${money(s.total)}
+                </td>
+
+                <td>
+                  ${money(s.paid)}
+                </td>
+
+                <td>
+                  ${money(
+                    Math.max(
+                      0,
+                      num(s.total)-
+                      num(s.paid)
+                    )
+                  )}
+                </td>
+
+              </tr>
+
+            `).join("")}
+
+        </tbody>
+
+      </table>
+
+    </div>
+  `;
+}
+
+
+/* ==========================================
    SETTINGS
-========================= */
+========================================== */
 
 function loadSettings(){
 
-  const s=db.settings;
+  document.getElementById(
+    "setBusinessName"
+  ).value=
+    db.settings.businessName || "";
 
-  document.getElementById("settingBusinessName").value=s.businessName||"";
-  document.getElementById("settingPhone").value=s.phone||"";
-  document.getElementById("settingEmail").value=s.email||"";
-  document.getElementById("settingAddress").value=s.address||"";
-  document.getElementById("settingPrefix").value=s.prefix||"AKH";
+  document.getElementById(
+    "setPhone"
+  ).value=
+    db.settings.phone || "";
 
-  document.getElementById("topBusinessName").textContent=
-    s.businessName || "Akhondo Smart Business Manager";
+  document.getElementById(
+    "setEmail"
+  ).value=
+    db.settings.email || "";
 
-  const logo=document.getElementById("topLogo");
+  document.getElementById(
+    "setPrefix"
+  ).value=
+    db.settings.prefix || "AKH";
 
-  if(s.logo){
-    logo.innerHTML=`<img src="${s.logo}">`;
+  document.getElementById(
+    "setAddress"
+  ).value=
+    db.settings.address || "";
 
-    document.getElementById("logoPreview").innerHTML=`
-      <img src="${s.logo}"
-           style="width:80px;height:80px;object-fit:cover;border-radius:15px">
-    `;
-  }else{
-    logo.innerHTML="🐔";
-    document.getElementById("logoPreview").innerHTML="";
-  }
+
+  const logo=
+    db.settings.logo || "";
+
+  document.getElementById(
+    "logoPreview"
+  ).src=logo;
+
+  document.getElementById(
+    "headerLogo"
+  ).src=logo || createLogoPlaceholder();
+
+  document.getElementById(
+    "headerBusinessName"
+  ).innerText=
+    db.settings.businessName ||
+    "Akhondo Smart Business Manager";
 }
+
 
 function saveSettings(){
 
   db.settings.businessName=
-    document.getElementById("settingBusinessName").value.trim();
+    document.getElementById(
+      "setBusinessName"
+    ).value.trim();
 
   db.settings.phone=
-    document.getElementById("settingPhone").value.trim();
+    document.getElementById(
+      "setPhone"
+    ).value.trim();
 
   db.settings.email=
-    document.getElementById("settingEmail").value.trim();
-
-  db.settings.address=
-    document.getElementById("settingAddress").value.trim();
+    document.getElementById(
+      "setEmail"
+    ).value.trim();
 
   db.settings.prefix=
-    document.getElementById("settingPrefix").value.trim() || "AKH";
+    document.getElementById(
+      "setPrefix"
+    ).value.trim() ||
+    "AKH";
+
+  db.settings.address=
+    document.getElementById(
+      "setAddress"
+    ).value.trim();
 
   saveDB();
+
   loadSettings();
 
-  alert("Settings saved");
+  alert("Settings saved successfully");
 }
+
 
 function uploadLogo(event){
 
-  const file=event.target.files[0];
+  const file=
+    event.target.files[0];
 
-  if(!file)return;
+  if(!file) return;
 
-  const reader=new FileReader();
+  const reader=
+    new FileReader();
 
-  reader.onload=function(e){
+  reader.onload=function(){
 
-    db.settings.logo=e.target.result;
+    db.settings.logo=
+      reader.result;
 
     saveDB();
+
     loadSettings();
+
   };
 
   reader.readAsDataURL(file);
 }
 
 
-/* =========================
+function createLogoPlaceholder(){
+
+  return "data:image/svg+xml;charset=UTF-8,"+
+    encodeURIComponent(`
+      <svg xmlns="http://www.w3.org/2000/svg"
+        width="100"
+        height="100">
+
+        <rect
+          width="100%"
+          height="100%"
+          rx="20"
+          fill="#0b6b4d"/>
+
+        <text
+          x="50"
+          y="58"
+          text-anchor="middle"
+          font-size="42">
+          🐔
+        </text>
+
+      </svg>
+    `);
+}
+
+
+/* ==========================================
    BACKUP
-========================= */
+========================================== */
 
-function backupData(){
+function downloadBackup(){
 
-  const data=JSON.stringify(db,null,2);
+  const data=
+    JSON.stringify(
+      db,
+      null,
+      2
+    );
 
-  const blob=new Blob(
-    [data],
-    {type:"application/json"}
-  );
+  const blob=
+    new Blob(
+      [data],
+      {
+        type:"application/json"
+      }
+    );
 
-  const url=URL.createObjectURL(blob);
+  const url=
+    URL.createObjectURL(blob);
 
-  const a=document.createElement("a");
+  const a=
+    document.createElement("a");
 
   a.href=url;
+
   a.download=
-    "akhondo-backup-"+today()+".json";
+    "akhondo-backup-"+
+    today()+
+    ".json";
 
   a.click();
 
   URL.revokeObjectURL(url);
 }
 
-function restoreData(event){
 
-  const file=event.target.files[0];
+function restoreBackup(event){
 
-  if(!file)return;
+  const file=
+    event.target.files[0];
 
-  const reader=new FileReader();
+  if(!file) return;
 
-  reader.onload=function(e){
+  const reader=
+    new FileReader();
+
+  reader.onload=function(){
 
     try{
 
-      const data=JSON.parse(e.target.result);
+      const restored=
+        JSON.parse(
+          reader.result
+        );
 
-      if(!data.settings ||
-         !data.customers ||
-         !data.products ||
-         !data.sales ||
-         !data.payments){
+      if(
+        !restored ||
+        !Array.isArray(
+          restored.customers
+        ) ||
+        !Array.isArray(
+          restored.products
+        )
+      ){
 
-        throw new Error("Invalid backup");
+        throw new Error(
+          "Invalid backup"
+        );
       }
 
-      if(!confirm("বর্তমান data replace করে backup restore করবেন?")){
+      if(!confirm(
+        "বর্তমান data replace করে backup restore করবেন?"
+      )){
         return;
       }
 
-      db=data;
+      db=restored;
+
+      db.settings=
+        db.settings || {};
+
+      db.customers=
+        db.customers || [];
+
+      db.products=
+        db.products || [];
+
+      db.sales=
+        db.sales || [];
+
+      db.payments=
+        db.payments || [];
+
+
+      db.customers.forEach(c=>{
+
+        if(!c.rates){
+          c.rates={};
+        }
+
+      });
+
       saveDB();
+
       refreshAll();
 
-      alert("Backup restored");
+      alert(
+        "Backup restored successfully"
+      );
 
-    }catch(err){
-      alert("Backup file সঠিক নয়");
+    }catch(e){
+
+      alert(
+        "Backup file invalid."
+      );
+
     }
 
   };
@@ -2532,47 +4758,71 @@ function restoreData(event){
   reader.readAsText(file);
 }
 
+
+/* ==========================================
+   CSV EXPORT
+========================================== */
+
 function exportCSV(){
 
   const rows=[
-    ["Date","Invoice","Customer","Total","Paid","Due","Status"]
+    [
+      "Invoice",
+      "Date",
+      "Customer",
+      "Total",
+      "Paid",
+      "Due",
+      "Payment Method"
+    ]
   ];
 
   db.sales.forEach(s=>{
 
-    const status=getInvoiceStatus(
-      s.total,
-      s.paid,
-      s.paymentMethod
-    );
-
     rows.push([
-      s.date,
       s.invoiceNo,
+      s.date,
       s.customerName,
       s.total,
       s.paid,
-      Math.max(0,s.total-s.paid),
-      status.text
+      Math.max(
+        0,
+        num(s.total)-
+        num(s.paid)
+      ),
+      s.paymentMethod
     ]);
 
   });
 
-  const csv=rows.map(row=>
-    row.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(",")
-  ).join("\n");
+  const csv=
+    rows
+      .map(row=>
+        row.map(v=>
+          `"${String(v)
+            .replace(/"/g,'""')}"`
+        ).join(",")
+      )
+      .join("\n");
 
-  const blob=new Blob(
-    ["\ufeff"+csv],
-    {type:"text/csv;charset=utf-8"}
-  );
+  const blob=
+    new Blob(
+      ["\ufeff"+csv],
+      {
+        type:"text/csv;charset=utf-8;"
+      }
+    );
 
-  const url=URL.createObjectURL(blob);
+  const url=
+    URL.createObjectURL(blob);
 
-  const a=document.createElement("a");
+  const a=
+    document.createElement("a");
 
   a.href=url;
-  a.download="akhondo-sales-"+today()+".csv";
+
+  a.download=
+    "akhondo-sales-"+today()+".csv";
 
   a.click();
 
@@ -2580,77 +4830,56 @@ function exportCSV(){
 }
 
 
-/* =========================
-   DELETE ALL
-========================= */
-
-function clearAllData(){
-
-  const text=
-    "সতর্কতা!\n\nসব customer, product, sales, payment ও settings delete হবে।\n\nআপনি কি নিশ্চিত?";
-
-  if(!confirm(text))return;
-
-  localStorage.removeItem(DB_KEY);
-
-  location.reload();
-}
-
-
-/* =========================
-   UTIL
-========================= */
-
-function esc(value){
-
-  return String(value??"")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
-}
-
-
-/* =========================
-   REFRESH
-========================= */
+/* ==========================================
+   REFRESH ALL
+========================================== */
 
 function refreshAll(){
 
   populateSelects();
+
+  populateRateSelects();
+
   renderDashboard();
+
   renderCustomers();
+
   renderProducts();
+
+  renderCustomerRateList();
+
   renderPayments();
+
   renderHistory();
+
   renderReports();
+
   loadSettings();
 
-  if(document.getElementById("invoicePage").classList.contains("active")){
-    renderInvoice();
-  }
+  renderSaleItems();
 }
 
 
-/* =========================
-   INIT
-========================= */
+/* ==========================================
+   INITIALIZE
+========================================== */
 
-document.addEventListener("DOMContentLoaded",()=>{
+document.addEventListener(
+  "DOMContentLoaded",
+  function(){
 
-  document.getElementById("saleDate").value=today();
-  document.getElementById("paymentDate").value=today();
+    document.getElementById(
+      "saleDate"
+    ).value=today();
 
-  refreshAll();
+    document.getElementById(
+      "paymentDate"
+    ).value=today();
 
-  renderSaleItems();
-  updateSaleTotals();
+    refreshAll();
 
-});
-
-document.getElementById("salePaymentMethod")
-?.addEventListener("change",updateSaleTotals);
+  }
+);
 
 </script>
 

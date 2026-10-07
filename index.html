@@ -1,129 +1,2256 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>দোকান ম্যানেজমেন্ট সফটওয়্যার - POS & ERP</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
-        body { font-family: 'Hind Siliguri', sans-serif; }
-        @media print {
-            .no-print { display: none !important; }
-            .print-only { display: block !important; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akhondo Manager PRO</title>
+
+<style>
+:root{
+  --green:#087f5b;
+  --green2:#12b886;
+  --dark:#063b2d;
+  --bg:#f4f7f6;
+  --white:#fff;
+  --text:#17352d;
+  --muted:#71817b;
+  --red:#e03131;
+  --orange:#f08c00;
+  --blue:#1971c2;
+  --border:#e3ebe7;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Arial,"Noto Sans Bengali",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+button,input,select,textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+  border:0;
+}
+
+.app{
+  display:flex;
+  min-height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+  width:245px;
+  position:fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  background:linear-gradient(180deg,#063b2d,#075640);
+  color:white;
+  padding:18px 12px;
+  overflow-y:auto;
+  z-index:20;
+}
+
+.brand{
+  font-size:19px;
+  font-weight:800;
+  padding:10px 12px 20px;
+}
+
+.brand small{
+  display:block;
+  font-size:10px;
+  opacity:.7;
+  margin-top:5px;
+}
+
+.nav button{
+  width:100%;
+  text-align:left;
+  background:transparent;
+  color:#dff8ee;
+  padding:12px 13px;
+  margin:2px 0;
+  border-radius:10px;
+  font-weight:600;
+}
+
+.nav button:hover,
+.nav button.active{
+  background:#ffffff20;
+  color:#fff;
+}
+
+/* MAIN */
+
+.main{
+  margin-left:245px;
+  width:calc(100% - 245px);
+  padding:20px;
+}
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.top h1{
+  margin:0;
+  font-size:24px;
+}
+
+.date{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:4px;
+}
+
+/* CARDS */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+
+.card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:16px;
+  box-shadow:0 3px 12px #00000008;
+}
+
+.stat .label{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.stat .value{
+  font-size:23px;
+  font-weight:800;
+  margin-top:8px;
+}
+
+/* SECTION */
+
+.section{
+  display:none;
+}
+
+.section.active{
+  display:block;
+}
+
+.panel{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:18px;
+  margin-bottom:16px;
+}
+
+.panel h2{
+  margin:0 0 15px;
+  font-size:18px;
+}
+
+/* FORM */
+
+.row{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+.field label{
+  display:block;
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:5px;
+}
+
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  padding:10px;
+  border:1px solid #dbe4e0;
+  border-radius:9px;
+  outline:none;
+  background:white;
+}
+
+.field input:focus,
+.field select:focus{
+  border-color:var(--green);
+}
+
+.actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+
+.btn{
+  padding:10px 14px;
+  border-radius:9px;
+  background:var(--green);
+  color:white;
+  font-weight:700;
+}
+
+.btn.secondary{
+  background:#edf5f2;
+  color:var(--green);
+}
+
+.btn.red{
+  background:var(--red);
+}
+
+.btn.orange{
+  background:var(--orange);
+}
+
+.btn.blue{
+  background:var(--blue);
+}
+
+/* TABLE */
+
+.tablewrap{
+  overflow:auto;
+  max-height:500px;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:13px;
+}
+
+th,td{
+  padding:10px 8px;
+  border-bottom:1px solid var(--border);
+  text-align:left;
+}
+
+th{
+  background:#f7faf9;
+  color:#52635d;
+  position:sticky;
+  top:0;
+}
+
+.empty{
+  text-align:center;
+  padding:30px;
+  color:var(--muted);
+}
+
+.danger{
+  color:var(--red);
+  font-weight:700;
+}
+
+.profit{
+  color:var(--green);
+  font-weight:800;
+}
+
+/* BADGE */
+
+.badge{
+  padding:4px 8px;
+  border-radius:20px;
+  background:#e8f5ef;
+  color:var(--green);
+  font-size:11px;
+  font-weight:700;
+}
+
+/* ALERT */
+
+.alerts{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.alert{
+  padding:13px;
+  border-radius:12px;
+  background:#fff4e6;
+  border:1px solid #ffe0ad;
+}
+
+.alert.red{
+  background:#fff0f0;
+  border-color:#ffc9c9;
+}
+
+/* CHART */
+
+.barwrap{
+  height:190px;
+  display:flex;
+  align-items:end;
+  gap:8px;
+  padding:10px;
+  border-bottom:1px solid #ddd;
+}
+
+.bar{
+  flex:1;
+  background:linear-gradient(180deg,var(--green2),var(--green));
+  border-radius:6px 6px 0 0;
+  min-width:10px;
+  position:relative;
+}
+
+.bar span{
+  position:absolute;
+  bottom:-22px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:9px;
+  color:#777;
+}
+
+/* MINI */
+
+.kpi{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.mini{
+  background:#f7faf9;
+  border-radius:10px;
+  padding:10px 13px;
+}
+
+.mini b{
+  display:block;
+  font-size:17px;
+  margin-top:4px;
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:#0008;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+  z-index:50;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modalbox{
+  background:white;
+  border-radius:16px;
+  max-width:950px;
+  width:100%;
+  max-height:92vh;
+  overflow:auto;
+  padding:20px;
+}
+
+.close{
+  float:right;
+  background:#eee;
+  border-radius:50%;
+  width:32px;
+  height:32px;
+}
+
+/* INVOICE */
+
+.invoice{
+  max-width:850px;
+  margin:auto;
+  background:white;
+  padding:28px;
+  color:#111;
+}
+
+.invhead{
+  display:flex;
+  justify-content:space-between;
+  border-bottom:2px solid var(--green);
+  padding-bottom:14px;
+}
+
+.invhead h1{
+  margin:0;
+  color:var(--green);
+}
+
+.totals{
+  margin-left:auto;
+  max-width:320px;
+}
+
+.totals div{
+  display:flex;
+  justify-content:space-between;
+  padding:5px;
+}
+
+.grand{
+  font-size:18px;
+  font-weight:800;
+  border-top:2px solid #ddd;
+  margin-top:5px;
+  padding-top:8px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+  .sidebar{
+    width:72px;
+  }
+
+  .brand{
+    font-size:0;
+    text-align:center;
+  }
+
+  .brand:before{
+    content:"🐔";
+    font-size:25px;
+  }
+
+  .brand small,
+  .nav button span{
+    display:none;
+  }
+
+  .nav button{
+    text-align:center;
+  }
+
+  .main{
+    margin-left:72px;
+    width:calc(100% - 72px);
+  }
+
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .row{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:560px){
+
+  .main{
+    padding:10px;
+  }
+
+  .grid,
+  .row,
+  .alerts{
+    grid-template-columns:1fr;
+  }
+
+  .top h1{
+    font-size:19px;
+  }
+
+  .panel{
+    padding:13px;
+  }
+}
+</style>
 </head>
-<body class="bg-slate-100 text-slate-800 antialiased min-h-screen flex flex-col">
 
-    <!-- Top Navbar -->
-    <header class="bg-indigo-900 text-white shadow-md sticky top-0 z-50 no-print">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center gap-3">
-                <i class="fa-solid me-1 fa-shop text-2xl text-amber-400"></i>
-                <h1 class="text-xl font-bold tracking-wide">আখন্দ পোল্ট্রি ফিড ও স্টোর</h1>
-            </div>
-            <div class="flex items-center gap-4 text-sm">
-                <span class="hidden md:inline bg-indigo-800 px-3 py-1 rounded-full"><i class="fa-regular fa-clock me-1"></i> <span id="clock"></span></span>
-                <button onclick="exportData()" class="bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold px-3 py-1.5 rounded text-xs flex items-center gap-1">
-                    <i class="fa-solid fa-download"></i> ব্যাকআপ
-                </button>
-            </div>
-        </div>
-    </header>
+<body>
 
-    <div class="flex-1 flex max-w-7xl w-full mx-auto my-4 gap-4 px-2 md:px-4">
-        
-        <!-- Sidebar Navigation -->
-        <aside class="w-16 md:w-64 bg-white rounded-xl shadow-sm p-2 md:p-4 flex flex-col gap-2 no-print shrink-0">
-            <nav class="space-y-1">
-                <button onclick="switchTab('dashboard')" class="nav-btn active w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 font-medium transition text-left">
-                    <i class="fa-solid fa-chart-pie text-lg w-6"></i>
-                    <span class="hidden md:inline">ড্যাশবোর্ড</span>
-                </button>
-                <button onclick="switchTab('pos')" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 font-medium transition text-left">
-                    <i class="fa-solid fa-cart-shopping text-lg w-6"></i>
-                    <span class="hidden md:inline">বিক্রি / POS</span>
-                </button>
-                <button onclick="switchTab('products')" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 font-medium transition text-left">
-                    <i class="fa-solid fa-boxes-stacked text-lg w-6"></i>
-                    <span class="hidden md:inline">প্রোডাক্ট ও স্টক</span>
-                </button>
-                <button onclick="switchTab('customers')" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 font-medium transition text-left">
-                    <i class="fa-solid fa-users text-lg w-6"></i>
-                    <span class="hidden md:inline">কাস্টমার খাতা</span>
-                </button>
-                <button onclick="switchTab('expenses')" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 font-medium transition text-left">
-                    <i class="fa-solid fa-receipt text-lg w-6"></i>
-                    <span class="hidden md:inline">খরচ খাতা</span>
-                </button>
-                <button onclick="switchTab('reports')" class="nav-btn w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 hover:bg-indigo-50 hover:text-indigo-600 font-medium transition text-left">
-                    <i class="fa-solid fa-file-invoice-dollar text-lg w-6"></i>
-                    <span class="hidden md:inline">লাভ-ক্ষতি ও রিপোর্ট</span>
-                </button>
-            </nav>
-        </aside>
+<div class="app">
 
-        <!-- Main Content Area -->
-        <main class="flex-1 bg-white rounded-xl shadow-sm p-4 md:p-6 overflow-x-hidden">
-            
-            <!-- Alert Center -->
-            <div id="alertsContainer" class="mb-6 space-y-2 no-print"></div>
+<!-- SIDEBAR -->
 
-            <!-- TAB 1: Dashboard -->
-            <section id="tab-dashboard" class="tab-content">
-                <h2 class="text-xl font-bold mb-4 text-slate-800 flex items-center gap-2">
-                    <i class="fa-solid fa-gauge-high text-indigo-600"></i> ওভারভিউ
-                </h2>
-                
-                <!-- KPI Cards Grid -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                    <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100">
-                        <p class="text-xs font-semibold text-indigo-600 uppercase">আজকের বিক্রি</p>
-                        <h3 class="text-2xl font-bold text-indigo-900 mt-1">৳<span id="dashTodaySales">0</span></h3>
-                    </div>
-                    <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100">
-                        <p class="text-xs font-semibold text-emerald-600 uppercase">আজকের আদায়</p>
-                        <h3 class="text-2xl font-bold text-emerald-900 mt-1">৳<span id="dashTodayCollection">0</span></h3>
-                    </div>
-                    <div class="bg-amber-50 p-4 rounded-xl border border-amber-100">
-                        <p class="text-xs font-semibold text-amber-600 uppercase">আজকের বাকি</p>
-                        <h3 class="text-2xl font-bold text-amber-900 mt-1">৳<span id="dashTodayDue">0</span></h3>
-                    </div>
-                    <div class="bg-rose-50 p-4 rounded-xl border border-rose-100">
-                        <p class="text-xs font-semibold text-rose-600 uppercase">মোট খাতা বাকি</p>
-                        <h3 class="text-2xl font-bold text-rose-900 mt-1">৳<span id="dashTotalDue">0</span></h3>
-                    </div>
-                </div>
+<aside class="sidebar">
 
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                        <p class="text-xs font-medium text-slate-500">মোট স্টক ভ্যালু</p>
-                        <h4 class="text-xl font-bold text-slate-700 mt-1">৳<span id="dashStockValue">0</span></h4>
-                    </div>
-                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                        <p class="text-xs font-medium text-slate-500">ক্যাশ ইন হ্যান্ড (ক্যাশ আদায় - খরচ)</p>
-                        <h4 class="text-xl font-bold text-slate-700 mt-1">৳<span id="dashCashInHand">0</span></h4>
-                    </div>
-                    <div class="bg-teal-50 p-4 rounded-xl border border-teal-200 col-span-2 md:col-span-1">
-                        <p class="text-xs font-medium text-teal-700">আজকের আনুমানিক নেট লাভ</p>
-                        <h4 class="text-xl font-bold text-teal-900 mt-1">৳<span id="dashNetProfit">0</span></h4>
-                    </div>
-                </div>
+<div class="brand">
+🐔 AKHONDO MANAGER PRO
+<small>Smart Poultry Feed Business System</small>
+</div>
 
-                <!-- Sales Chart -->
-                <div class="bg-white border rounded-xl p-4 mb-6">
-                    <h3 class="text-md font-bold mb-3 text-slate-700">বিক্রির চিত্রলেখ (Sales Chart)</h3>
-                    <canvas id="salesChart" height="100"></canvas>
-                </div>
-            </section>
+<div class="nav">
 
-            <!-- TAB 2: POS / Sales Entry -->
-            <section id="tab-pos" class="tab-content hidden">
-                <h2 class="text-xl font-bold mb-4 text-slate-800 flex items-center gap-2">
-                    <i class="fa-solid fa-cart-shopping text-indigo-60
+<button class="active" onclick="showPage('dashboard',this)">
+🏠 <span>Dashboard</span>
+</button>
+
+<button onclick="showPage('customers',this)">
+👥 <span>Customer Management</span>
+</button>
+
+<button onclick="showPage('sales',this)">
+🧾 <span>Sales / Invoice</span>
+</button>
+
+<button onclick="showPage('stock',this)">
+📦 <span>Stock Management</span>
+</button>
+
+<button onclick="showPage('purchases',this)">
+🚚 <span>Purchase Management</span>
+</button>
+
+<button onclick="showPage('payments',this)">
+💳 <span>Payment System</span>
+</button>
+
+<button onclick="showPage('expenses',this)">
+💸 <span>Expense Management</span>
+</button>
+
+<button onclick="showPage('products',this)">
+🏷️ <span>Product Management</span>
+</button>
+
+<button onclick="showPage('reports',this)">
+📊 <span>Reports Center</span>
+</button>
+
+<button onclick="showPage('suppliers',this)">
+🏢 <span>Suppliers</span>
+</button>
+
+<button onclick="showPage('audit',this)">
+🛡️ <span>Audit Log</span>
+</button>
+
+<button onclick="showPage('settings',this)">
+⚙️ <span>Backup & Settings</span>
+</button>
+
+</div>
+</aside>
+
+
+<!-- MAIN -->
+
+<main class="main">
+
+<div class="top">
+
+<div>
+
+<h1 id="pageTitle">
+Dashboard
+</h1>
+
+<div class="date" id="today"></div>
+
+</div>
+
+<button class="btn" onclick="showPage('sales')">
+＋ New Sale
+</button>
+
+</div>
+
+
+<!-- DASHBOARD -->
+
+<section id="dashboard" class="section active">
+
+<div class="grid">
+
+<div class="card stat">
+<div class="label">আজকের বিক্রি</div>
+<div class="value" id="todaySales">৳0</div>
+</div>
+
+<div class="card stat">
+<div class="label">আজকের আদায়</div>
+<div class="value" id="todayPaid">৳0</div>
+</div>
+
+<div class="card stat">
+<div class="label">আজকের বাকি</div>
+<div class="value" id="todayDue">৳0</div>
+</div>
+
+<div class="card stat">
+<div class="label">মোট বাকি</div>
+<div class="value danger" id="totalDue">৳0</div>
+</div>
+
+<div class="card stat">
+<div class="label">মোট Stock Value</div>
+<div class="value" id="stockValueDashboard">৳0</div>
+</div>
+
+<div class="card stat">
+<div class="label">Cash in Hand</div>
+<div class="value" id="cashInHand">৳0</div>
+</div>
+
+<div class="card stat">
+<div class="label">Gross Profit</div>
+<div class="value profit" id="grossProfitDashboard">৳0</div>
+</div>
+
+<div class="card stat">
+<div class="label">Net Profit</div>
+<div class="value profit" id="netProfitDashboard">৳0</div>
+</div>
+
+</div>
+
+
+<div class="panel" style="margin-top:16px">
+
+<h2>📈 Sales Chart — Last 7 Days</h2>
+
+<div class="barwrap" id="salesChart"></div>
+
+</div>
+
+
+<div class="grid">
+
+<div class="panel">
+
+<h2>🔥 সবচেয়ে বেশি বিক্রি হওয়া Product</h2>
+
+<div id="topProducts"></div>
+
+</div>
+
+
+<div class="panel">
+
+<h2>🔔 Customer Due Alert</h2>
+
+<div id="dueAlerts"></div>
+
+</div>
+
+
+<div class="panel">
+
+<h2>📦 Low Stock Alert</h2>
+
+<div id="lowStockAlerts"></div>
+
+</div>
+
+
+<div class="panel">
+
+<h2>💊 Expiry Alert</h2>
+
+<div id="expiryAlerts"></div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CUSTOMER -->
+
+<section id="customers" class="section">
+
+<div class="panel">
+
+<h2>👥 Customer Management</h2>
+
+<div class="row">
+
+<div class="field">
+<label>Customer Name</label>
+<input id="customerName">
+</div>
+
+<div class="field">
+<label>Mobile</label>
+<input id="customerMobile">
+</div>
+
+<div class="field">
+<label>Address</label>
+<input id="customerAddress">
+</div>
+
+<div class="field">
+<label>Opening Due</label>
+<input id="customerOpening" type="number" value="0">
+</div>
+
+<div class="field">
+<label>Customer Type</label>
+
+<select id="customerType">
+<option>Regular</option>
+<option>Dealer</option>
+<option>Retail</option>
+<option>Farm</option>
+<option>Other</option>
+</select>
+
+</div>
+
+</div>
+
+<div class="actions">
+
+<button class="btn" onclick="addCustomer()">
+Save Customer
+</button>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<input
+class="field"
+style="padding:10px;width:100%;border:1px solid #ddd;border-radius:8px"
+id="customerSearch"
+placeholder="🔎 Customer Search..."
+oninput="renderCustomers()"
+>
+
+<br><br>
+
+<div class="tablewrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+<th>Mobile</th>
+<th>Type</th>
+<th>Total Purchase</th>
+<th>Payment</th>
+<th>Current Due</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="customerTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SALES -->
+
+<section id="sales" class="section">
+
+<div class="panel">
+
+<h2>🧾 Quick Sale / Invoice</h2>
+
+<div class="row">
+
+<div class="field">
+
+<label>Customer</label>
+
+<select id="saleCustomer"></select>
+
+</div>
+
+
+<div class="field">
+
+<label>Payment Method</label>
+
+<select id="saleMethod">
+
+<option>Cash</option>
+<option>Bank</option>
+<option>bKash</option>
+<option>Nagad</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>Discount</label>
+
+<input
+id="saleDiscount"
+type="number"
+value="0"
+oninput="calculateCart()"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>Paid Today</label>
+
+<input
+id="salePaid"
+type="number"
+value="0"
+oninput="calculateCart()"
+>
+
+</div>
+
+</div>
+
+
+<div class="row" style="margin-top:12px">
+
+<div class="field">
+
+<label>Product</label>
+
+<select id="saleProduct"></select>
+
+</div>
+
+
+<div class="field">
+
+<label>Quantity</label>
+
+<input id="saleQuantity" type="number" value="1">
+
+</div>
+
+
+<div class="field">
+
+<label>Rate</label>
+
+<input id="saleRate" type="number">
+
+</div>
+
+
+<div class="actions">
+
+<button class="btn" onclick="addCart()">
+＋ Add Product
+</button>
+
+</div>
+
+</div>
+
+
+<div class="tablewrap" style="margin-top:15px">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Product</th>
+<th>Qty</th>
+<th>Rate</th>
+<th>Total</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="cartTable"></tbody>
+
+</table>
+
+</div>
+
+
+<div class="totals">
+
+<div>
+Subtotal
+<b id="cartSubtotal">৳0</b>
+</div>
+
+<div>
+Previous Due
+<b id="previousDue">৳0</b>
+</div>
+
+<div>
+Discount
+<b id="cartDiscount">৳0</b>
+</div>
+
+<div>
+Paid
+<b id="cartPaid">৳0</b>
+</div>
+
+<div class="grand">
+New Due
+<b id="newDue">৳0</b>
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button class="btn" onclick="completeSale()">
+💾 Save Sale & Generate Invoice
+</button>
+
+<button class="btn secondary" onclick="clearCart()">
+Clear
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- STOCK -->
+
+<section id="stock" class="section">
+
+<div class="panel">
+
+<h2>📦 Stock Management</h2>
+
+<div class="kpi">
+
+<div class="mini">
+Products
+<b id="stockProducts">0</b>
+</div>
+
+<div class="mini">
+Stock Value
+<b id="stockValue">৳0</b>
+</div>
+
+<div class="mini">
+Low Stock
+<b id="lowStockCount">0</b>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<div class="tablewrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Product</th>
+<th>Code</th>
+<th>Stock</th>
+<th>Minimum</th>
+<th>Purchase</th>
+<th>Sale</th>
+<th>Value</th>
+<th>Batch</th>
+<th>Expiry</th>
+</tr>
+
+</thead>
+
+<tbody id="stockTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PURCHASE -->
+
+<section id="purchases" class="section">
+
+<div class="panel">
+
+<h2>🚚 Purchase Entry</h2>
+
+<div class="row">
+
+<div class="field">
+<label>Supplier</label>
+<select id="purchaseSupplier"></select>
+</div>
+
+<div class="field">
+<label>Product</label>
+<select id="purchaseProduct"></select>
+</div>
+
+<div class="field">
+<label>Quantity</label>
+<input id="purchaseQuantity" type="number" value="1">
+</div>
+
+<div class="field">
+<label>Cost Price</label>
+<input id="purchaseCost" type="number">
+</div>
+
+<div class="field">
+<label>Batch / Lot</label>
+<input id="purchaseBatch">
+</div>
+
+<div class="field">
+<label>Expiry</label>
+<input id="purchaseExpiry" type="date">
+</div>
+
+<div class="field">
+<label>Paid</label>
+<input id="purchasePaid" type="number" value="0">
+</div>
+
+</div>
+
+<div class="actions">
+
+<button class="btn" onclick="addPurchase()">
+Save Purchase
+</button>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h2>Purchase History</h2>
+
+<div class="tablewrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Date</th>
+<th>Supplier</th>
+<th>Product</th>
+<th>Qty</th>
+<th>Total</th>
+<th>Paid</th>
+<th>Due</th>
+</tr>
+
+</thead>
+
+<tbody id="purchaseTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PAYMENT -->
+
+<section id="payments" class="section">
+
+<div class="panel">
+
+<h2>💳 Payment Collection</h2>
+
+<div class="row">
+
+<div class="field">
+
+<label>Payment Type</label>
+
+<select id="paymentType" onchange="updatePaymentParties()">
+
+<option>Customer Payment</option>
+<option>Supplier Payment</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>Party</label>
+
+<select id="paymentParty"></select>
+
+</div>
+
+
+<div class="field">
+
+<label>Amount</label>
+
+<input id="paymentAmount" type="number">
+
+</div>
+
+
+<div class="field">
+
+<label>Method</label>
+
+<select id="paymentMethod">
+
+<option>Cash</option>
+<option>Bank</option>
+<option>bKash</option>
+<option>Nagad</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button class="btn" onclick="savePayment()">
+Save Payment
+</button>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h2>Payment History</h2>
+
+<div class="tablewrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Date</th>
+<th>Type</th>
+<th>Party</th>
+<th>Amount</th>
+<th>Method</th>
+</tr>
+
+</thead>
+
+<tbody id="paymentTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- EXPENSE -->
+
+<section id="expenses" class="section">
+
+<div class="panel">
+
+<h2>💸 Expense Management</h2>
+
+<div class="row">
+
+<div class="field">
+
+<label>Category</label>
+
+<select id="expenseCategory">
+
+<option>দোকান ভাড়া</option>
+<option>বিদ্যুৎ</option>
+<option>কর্মচারীর বেতন</option>
+<option>পরিবহন</option>
+<option>মোবাইল বিল</option>
+<option>অন্যান্য</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>Amount</label>
+
+<input id="expenseAmount" type="number">
+
+</div>
+
+
+<div class="field">
+
+<label>Note</label>
+
+<input id="expenseNote">
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button class="btn" onclick="addExpense()">
+Save Expense
+</button>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h2>Expense History</h2>
+
+<div class="tablewrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Date</th>
+<th>Category</th>
+<th>Amount</th>
+<th>Note</th>
+</tr>
+
+</thead>
+
+<tbody id="expenseTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PRODUCTS -->
+
+<section id="products" class="section">
+
+<div class="panel">
+
+<h2>🏷️ Product Management</h2>
+
+<div class="row">
+
+<div class="field">
+<label>Product Name</label>
+<input id="productName">
+</div>
+
+<div class="field">
+
+<label>Category</label>
+
+<select id="productCategory">
+
+<option>Poultry Feed</option>
+<option>Fish Feed</option>
+<option>Cattle Feed</option>
+<option>Medicine</option>
+<option>Vaccine</option>
+<option>Chicks</option>
+<option>Others</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+<label>Brand / Company</label>
+<input id="productBrand">
+</div>
+
+
+<div class="field">
+
+<label>Unit</label>
+
+<select id="productUnit">
+
+<option>Bag</option>
+<option>KG</option>
+<option>Piece</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+<label>Purchase Price</label>
+<input id="productBuy" type="number">
+</div>
+
+
+<div class="field">
+<label>Sale Price</label>
+<input id="productSale" type="number">
+</div>
+
+
+<div class="field">
+<label>Initial Stock</label>
+<input id="productStock" type="number" value="0">
+</div>
+
+
+<div class="field">
+<label>Minimum Stock</label>
+<input id="productMinimum" type="number" value="5">
+</div>
+
+
+<div class="field">
+<label>Batch</label>
+<input id="productBatch">
+</div>
+
+
+<div class="field">
+<label>Expiry</label>
+<input id="productExpiry" type="date">
+</div>
+
+
+<div class="field">
+<label>Product Code / Barcode</label>
+<input id="productCode">
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button class="btn" onclick="addProduct()">
+Save Product
+</button>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<div class="tablewrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+<th>Category</th>
+<th>Unit</th>
+<th>Buy</th>
+<th>Sale</th>
+<th>Stock</th>
+<th>Code</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="productTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SUPPLIER -->
+
+<section id="suppliers" class="section">
+
+<div class="panel">
+
+<h2>🏢 Supplier Management</h2>
+
+<div class="row">
+
+<div class="field">
+<label>Supplier Name</label>
+<input id="supplierName">
+</div>
+
+<div class="field">
+<label>Mobile</label>
+<input id="supplierMobile">
+</div>
+
+<div class="field">
+<label>Address</label>
+<input id="supplierAddress">
+</div>
+
+<div class="field">
+<label>Opening Due</label>
+<input id="supplierOpening" type="number" value="0">
+</div>
+
+</div>
+
+<div class="actions">
+
+<button class="btn" onclick="addSupplier()">
+Save Supplier
+</button>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<div class="tablewrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+<th>Mobile</th>
+<th>Opening Due</th>
+<th>Purchase</th>
+<th>Payment</th>
+<th>Current Due</th>
+
+</tr>
+
+</thead>
+
+<tbody id="supplierTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- REPORTS -->
+
+<section id="reports" class="section">
+
+<div class="panel">
+
+<h2>📊 Reports Center</h2>
+
+<div class="actions">
+
+<button class="btn" onclick="showReport('sales')">
+Sales Report
+</button>
+
+<button class="btn" onclick="showReport('profit')">
+Profit Report
+</button>
+
+<button class="btn" onclick="showReport('due')">
+Due Report
+</button>
+
+<button class="btn" onclick="showReport('stock')">
+Stock Report
+</button>
+
+<button class="btn" onclick="showReport('expense')">
+Expense Report
+</button>
+
+<button class="btn blue" onclick="exportCSV()">
+Export CSV
+</button>
+
+<button class="btn secondary" onclick="window.print()">
+Print
+</button>
+
+</div>
+
+
+<div id="reportBox" style="margin-top:20px"></div>
+
+</div>
+
+</section>
+
+
+<!-- AUDIT -->
+
+<section id="audit" class="section">
+
+<div class="panel">
+
+<h2>🛡️ Audit Log</h2>
+
+<div class="tablewrap">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Date / Time</th>
+<th>Action</th>
+<th>Details</th>
+</tr>
+
+</thead>
+
+<tbody id="auditTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SETTINGS -->
+
+<section id="settings" class="section">
+
+<div class="panel">
+
+<h2>⚙️ Business Settings</h2>
+
+<div class="row">
+
+<div class="field">
+
+<label>Business Name</label>
+
+<input id="businessName">
+
+</div>
+
+
+<div class="field">
+
+<label>Phone</label>
+
+<input id="businessPhone">
+
+</div>
+
+
+<div class="field">
+
+<label>Address</label>
+
+<input id="businessAddress">
+
+</div>
+
+
+<div class="field">
+
+<label>Email</label>
+
+<input id="businessEmail">
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button class="btn" onclick="saveSettings()">
+Save Settings
+</button>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h2>💾 Backup & Security</h2>
+
+<div class="actions">
+
+<button class="btn" onclick="downloadBackup()">
+Download Backup
+</button>
+
+<button class="btn secondary" onclick="document.getElementById('restoreFile').click()">
+Restore Backup
+</button>
+
+<button class="btn red" onclick="resetData()">
+Reset All Data
+</button>
+
+<input
+id="restoreFile"
+type="file"
+accept=".json"
+style="display:none"
+onchange="restoreBackup(event)"
+>
+
+</div>
+
+<p style="font-size:12px;color:#777">
+আপনার data browser-এর LocalStorage-এ সংরক্ষিত থাকবে।
+গুরুত্বপূর্ণ তথ্য নিয়মিত Backup রাখুন।
+</p>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+
+<div class="modalbox">
+
+<button class="close" onclick="closeModal()">×</button>
+
+<div id="modalContent"></div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =====================================
+   DATABASE
+===================================== */
+
+const STORAGE_KEY="akhondo_manager_pro";
+
+let db=JSON.parse(
+localStorage.getItem(STORAGE_KEY)
+)||{
+
+customers:[],
+products:[],
+suppliers:[],
+sales:[],
+purchases:[],
+payments:[],
+expenses:[],
+audit:[],
+
+settings:{
+name:"আখন্দ পোল্ট্রি ফিড",
+phone:"01819193289",
+address:"লাকসাম রোড, চৌদ্দগ্রাম, কুমিল্লা",
+email:"masud.chauddagram2825@gmail.com"
+}
+
+};
+
+let cart=[];
+
+
+/* =====================================
+   BASIC FUNCTIONS
+===================================== */
+
+function money(number){
+
+return "৳"+Number(number||0)
+.toLocaleString("en-IN",{
+maximumFractionDigits:2
+});
+
+}
+
+
+function today(){
+
+return new Date()
+.toISOString()
+.slice(0,10);
+
+}
+
+
+function saveDB(){
+
+localStorage.setItem(
+STORAGE_KEY,
+JSON.stringify(db)
+);
+
+}
+
+
+function logAction(action,details){
+
+db.audit.unshift({
+
+date:new Date().toLocaleString("en-BD"),
+
+action:action,
+
+details:details
+
+});
+
+db.audit=db.audit.slice(0,500);
+
+saveDB();
+
+}
+
+
+/* =====================================
+   PAGE NAVIGATION
+===================================== */
+
+function showPage(page,button){
+
+document
+.querySelectorAll(".section")
+.forEach(section=>{
+section.classList.remove("active");
+});
+
+document
+.getElementById(page)
+.classList.add("active");
+
+
+document
+.querySelectorAll(".nav button")
+.forEach(btn=>{
+btn.classList.remove("active");
+});
+
+
+if(button){
+
+button.classList.add("active");
+
+}
+
+let titles={
+
+dashboard:"Dashboard",
+
+customers:"Customer Management",
+
+sales:"Sales / Invoice",
+
+stock:"Stock Management",
+
+purchases:"Purchase Management",
+
+payments:"Payment System",
+
+expenses:"Expense Management",
+
+products:"Product Management",
+
+suppliers:"Supplier Management",
+
+reports:"Reports Center",
+
+audit:"Audit Log",
+
+settings:"Backup & Settings"
+
+};
+
+document.getElementById("pageTitle")
+.textContent=titles[page];
+
+renderAll();
+
+}
+
+
+/* =====================================
+   CUSTOMER
+===================================== */
+
+function customerDue(customer){
+
+let salesDue=db.sales
+.filter(s=>s.customerId===customer.id)
+.reduce((sum,s)=>sum+s.due,0);
+
+let payments=db.payments
+.filter(p=>
+p.type==="Customer Payment"
+&&
+p.partyId===customer.id
+)
+.reduce((sum,p)=>sum+p.amount,0);
+
+return Number(customer.opening||0)
++salesDue
+-payments;
+
+}
+
+
+function customerPurchase(customer){
+
+return db.sales
+.filter(s=>s.customerId===customer.id)
+.reduce((sum,s)=>sum+s.total,0);
+
+}
+
+
+function addCustomer(){
+
+let name=document
+.getElementById("customerName")
+.value.trim();
+
+if(!name){
+
+alert("Customer Name দিন");
+
+return;
+
+}
+
+db.customers.push({
+
+id:Date.now(),
+
+name:name,
+
+mobile:document.getElementById("customerMobile").value,
+
+address:document.getElementById("customerAddress").value,
+
+opening:Number(document.getElementById("customerOpening").value)||0,
+
+type:document.getElementById("customerType").value
+
+});
+
+logAction("Customer Added",name);
+
+saveDB();
+
+renderAll();
+
+alert("Customer Successfully Added");
+
+}
+
+
+/* =====================================
+   PRODUCT
+===================================== */
+
+function productById(id){
+
+return db.products.find(
+p=>p.id===Number(id)
+);
+
+}
+
+
+function addProduct(){
+
+let name=document
+.getElementById("productName")
+.value.trim();
+
+if(!name){
+
+alert("Product Name দিন");
+
+return;
+
+}
+
+db.products.push({
+
+id:Date.now(),
+
+name:name,
+
+category:document.getElementById("productCategory").value,
+
+brand:document.getElementById("productBrand").value,
+
+unit:document.getElementById("productUnit").value,
+
+buy:Number(document.getElementById("productBuy").value)||0,
+
+sale:Number(document.getElementById("productSale").value)||0,
+
+stock:Number(document.getElementById("productStock").value)||0,
+
+minimum:Number(document.getElementById("productMinimum").value)||0,
+
+batch:document.getElementById("productBatch").value,
+
+expiry:document.getElementById("productExpiry").value,
+
+code:document.getElementById("productCode").value
+
+});
+
+logAction("Product Added",name);
+
+saveDB();
+
+renderAll();
+
+alert("Product Added");
+
+}
+
+
+/* =====================================
+   SUPPLIER
+===================================== */
+
+function supplierDue(supplier){
+
+let purchase=db.purchases
+.filter(p=>p.supplierId===supplier.id)
+.reduce((sum,p)=>sum+p.total,0);
+
+let payments=db.payments
+.filter(p=>
+p.type==="Supplier Payment"
+&&
+p.partyId===supplier.id
+)
+.reduce((sum,p)=>sum+p.amount,0);
+
+return Number(supplier.opening||0)
++purchase
+-payments;
+
+}
+
+
+function addSupplier(){
+
+let name=document
+.getElementById("supplierName")
+.value.trim();
+
+if(!name){
+
+alert("Supplier Name দিন");
+
+return;
+
+}
+
+db.suppliers.push({
+
+id:Date.now(),
+
+name:name,
+
+mobile:document.getElementById("supplierMobile").value,
+
+address:document.getElementById("supplierAddress").value,
+
+opening:Number(document.getElementById("supplierOpening").value)||0
+
+});
+
+logAction("Supplier Added",name);
+
+saveDB();
+
+renderAll();
+
+alert("Supplier Added");
+
+}
+
+
+/* =====================================
+   SALES CART
+===================================== */
+
+function addCart(){
+
+let product=productById(
+document.getElementById("saleProduct").value
+);
+
+let quantity=Number(
+document.getElementById("saleQuantity").value
+);
+
+let rate=Number(
+document.getElementById("saleRate").value
+);
+
+if(!product){
+
+alert("Product নির্বাচন করুন");
+
+return;
+
+}
+
+if(quantity<=0){
+
+alert("Quantity ঠিক করুন");
+
+return;
+
+}
+
+if(quantity>product.stock){
+
+alert("Stock পর্যাপ্ত নেই");
+
+return;
+
+}
+
+cart.push({
+
+productId:product.id,
+
+name:product.name,
+
+quantity:quantity,
+
+rate:rate,
+
+total:quantity*rate
+
+});
+
+calculateCart();
+
+}
+
+
+function removeCart(index){
+
+cart.splice(index,1);
+
+calculateCart();
+
+}
+
+
+function calculateCart(){
+
+let subtotal=cart.reduce(
+(sum,item)=>sum+item.total,
+0
+);
+
+let discount=Number(
+document.getElementById("saleDiscount").value
+)||0;
+
+let paid=Number(
+document.getElementById("salePaid").value
+)||0;
+
+let customer=db.customers.find(
+c=>c.id===Number(
+document.getElementById("saleCustomer").value
+)
+);
+
+let previous=customer
+?customerDue(customer)
+:0;
+
+let total=Math.max(
+0,
+subtotal-discount
+);
+
+let due=Math.max(
+0,
+previous+total-paid
+);
+
+
+document.getElementById("cartSubtotal")
+.textContent=money(subtotal);
+
+document.getElementById("previousDue")
+.textContent=money(previous);
+
+document.getElementById("cartDiscount")
+.textContent=money(discount);
+
+document.getElementById("cartPaid")
+.textContent=money(paid);
+
+document.getElementById("newDue")
+.textContent=money(due);
+
+
+document.getElementById("cartTable")
+.innerHTML=
+
+cart.length
+
+?
+
+cart.map((item,index)=>`
+
+<tr>
+
+<td>${item.name}</td>
+
+<td>${item.quantity}</td>
+
+<td>${money(item.rate)}</td>
+
+<td>${money(item.total)}</td>
+
+<td>
+
+<button
+class="btn red"
+onclick="removeCart(${index})"
+>
+×
+</button>
+
+</td>
+
+</tr>
+
+`).join("")
+
+:
+
+`
+
+<tr>
+
+<td
+colspan="5"
+class="empty"
+>
+No Product Added
+</td>
+
+</tr>
+
+`;
+
+}
+
+
+function clearCart(){
+
+cart=[];
+
+document.getElementById("saleDiscount").value=0;
+
+document

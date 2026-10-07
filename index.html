@@ -2,2185 +2,1010 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Akhondo Poultry Feed</title>
+<title>Akhondo Manager PRO - Invoice</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
 *{
-  box-sizing:border-box;
-}
-
-:root{
-  --yellow:#ffc400;
-  --yellow2:#ffd633;
-  --green:#087443;
-  --dark:#172019;
-  --bg:#f7f7f5;
-  --white:#fff;
-  --red:#e53935;
-  --blue:#1769aa;
-  --border:#e5e5e5;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 body{
-  margin:0;
-  font-family:
-  Arial,
-  "Noto Sans Bengali",
-  sans-serif;
-  background:var(--bg);
-  color:var(--dark);
+    font-family:"Noto Sans Bengali","Segoe UI",Arial,sans-serif;
+    background:#eef4f1;
+    color:#17211c;
 }
 
-/* HEADER */
-
-.header{
-  background:var(--yellow);
-  padding:18px 15px 25px;
-  border-radius:0 0 28px 28px;
+/* TOP BAR */
+.topbar{
+    background:linear-gradient(135deg,#087f5b,#12b886);
+    color:white;
+    padding:14px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 4px 18px rgba(0,0,0,.12);
 }
 
-.top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
 }
 
-.logo{
-  width:48px;
-  height:48px;
-  background:white;
-  border-radius:14px;
-  object-fit:contain;
-  padding:4px;
+.brand-icon{
+    width:42px;
+    height:42px;
+    background:rgba(255,255,255,.16);
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:23px;
 }
 
-.shop-name{
-  flex:1;
-  margin-left:12px;
+.brand h1{
+    font-size:18px;
 }
 
-.shop-name h1{
-  margin:0;
-  font-size:20px;
-  font-weight:900;
+.brand p{
+    font-size:11px;
+    opacity:.85;
 }
 
-.shop-name p{
-  margin:4px 0 0;
-  font-size:12px;
-  opacity:.75;
+.top-actions{
+    display:flex;
+    gap:8px;
 }
 
-.icon-btn{
-  width:42px;
-  height:42px;
-  border:0;
-  border-radius:13px;
-  background:#fff;
-  font-size:20px;
-}
-
-/* MAIN */
-
-.container{
-  max-width:600px;
-  margin:auto;
-  padding:15px;
-}
-
-/* DATE */
-
-.date-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin:5px 0 15px;
-}
-
-.date{
-  font-size:13px;
-  color:#777;
-}
-
-.switch{
-  background:white;
-  padding:7px 12px;
-  border-radius:20px;
-  font-size:12px;
-}
-
-/* SALES CARD */
-
-.sales-card{
-  background:white;
-  border-radius:22px;
-  padding:20px;
-  box-shadow:0 6px 20px rgba(0,0,0,.08);
-  margin-top:-5px;
-}
-
-.sales-card small{
-  color:#777;
-}
-
-.sales-card h2{
-  color:#1769aa;
-  margin:7px 0 18px;
-  font-size:30px;
-}
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  border-top:1px solid #eee;
-  padding-top:15px;
-}
-
-.stat{
-  text-align:center;
-  border-right:1px solid #eee;
-}
-
-.stat:last-child{
-  border:0;
-}
-
-.stat span{
-  display:block;
-  font-size:12px;
-  color:#777;
-}
-
-.stat strong{
-  display:block;
-  margin-top:5px;
-  font-size:17px;
-}
-
-.red{
-  color:#e53935;
-}
-
-.green{
-  color:#159447;
-}
-
-.blue{
-  color:#1769aa;
-}
-
-/* QUICK ACTION */
-
-.section-title{
-  font-size:17px;
-  font-weight:900;
-  margin:25px 2px 12px;
-}
-
-.menu-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
-}
-
-.menu{
-  background:white;
-  border-radius:17px;
-  padding:13px 5px;
-  text-align:center;
-  border:1px solid #eee;
-  cursor:pointer;
-}
-
-.menu:hover{
-  transform:translateY(-2px);
-}
-
-.menu .emoji{
-  font-size:28px;
-  display:block;
-  margin-bottom:7px;
-}
-
-.menu span{
-  font-size:11px;
-  font-weight:700;
+.top-actions button{
+    border:0;
+    background:rgba(255,255,255,.15);
+    color:white;
+    padding:9px 13px;
+    border-radius:9px;
+    cursor:pointer;
 }
 
 /* PAGE */
-
 .page{
-  display:none;
+    padding:25px 15px 50px;
 }
 
-.page.active{
-  display:block;
-}
-
-/* CARD */
-
-.card{
-  background:white;
-  border-radius:20px;
-  padding:18px;
-  margin-bottom:15px;
-  box-shadow:0 4px 15px rgba(0,0,0,.05);
-}
-
-.card h3{
-  margin:0 0 15px;
-}
-
-/* FORM */
-
-label{
-  display:block;
-  font-size:12px;
-  font-weight:800;
-  margin-bottom:6px;
-}
-
-input,
-select{
-  width:100%;
-  padding:12px;
-  border:1px solid #ddd;
-  border-radius:12px;
-  outline:none;
-  background:#fff;
-}
-
-input:focus,
-select:focus{
-  border-color:var(--yellow);
-}
-
-.form-group{
-  margin-bottom:13px;
-}
-
-/* BUTTON */
-
-.btn{
-  width:100%;
-  border:0;
-  padding:13px;
-  border-radius:13px;
-  font-weight:900;
-  margin-top:8px;
-}
-
-.btn-yellow{
-  background:var(--yellow);
-  color:#111;
-}
-
-.btn-green{
-  background:var(--green);
-  color:white;
-}
-
-.btn-blue{
-  background:var(--blue);
-  color:white;
-}
-
-.btn-red{
-  background:var(--red);
-  color:white;
-}
-
-/* RATE */
-
-.rate-box{
-  background:#fff9d9;
-  border:1px solid #f3db5c;
-  padding:12px;
-  border-radius:13px;
-  margin-bottom:13px;
-  font-size:13px;
-}
-
-.rate-box strong{
-  color:var(--green);
-}
-
-/* ITEMS */
-
-.item{
-  border:1px solid #eee;
-  border-radius:15px;
-  padding:13px;
-  margin-bottom:10px;
-}
-
-.item-top{
-  display:flex;
-  justify-content:space-between;
-  font-weight:900;
-}
-
-.item small{
-  color:#777;
-}
-
-/* BOTTOM NAV */
-
-.bottom-nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  max-width:600px;
-  margin:auto;
-  height:68px;
-  background:white;
-  border-top:1px solid #ddd;
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  z-index:50;
-}
-
-.bottom-nav button{
-  border:0;
-  background:white;
-  font-size:10px;
-  color:#777;
-}
-
-.bottom-nav button.active{
-  color:var(--green);
-  font-weight:900;
-}
-
-.bottom-nav b{
-  display:block;
-  font-size:21px;
-  margin-bottom:3px;
+.invoice-wrapper{
+    max-width:900px;
+    margin:auto;
 }
 
 /* INVOICE */
-
 .invoice{
-  background:white;
-  padding:15px;
-  border-radius:5px;
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 12px 40px rgba(0,0,0,.08);
 }
 
+/* HEADER */
 .invoice-header{
-  background:var(--yellow);
-  padding:15px;
-  border-radius:8px;
-  display:flex;
-  align-items:center;
+    padding:28px 32px;
+    background:linear-gradient(135deg,#043c2b,#087f5b);
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
 }
 
-.invoice-logo{
-  width:65px;
-  height:65px;
-  object-fit:contain;
-  background:white;
-  border-radius:10px;
+.company{
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
 }
 
-.invoice-brand{
-  margin-left:10px;
+.company-logo{
+    width:62px;
+    height:62px;
+    border-radius:16px;
+    background:white;
+    color:#087f5b;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:34px;
+    flex-shrink:0;
 }
 
-.invoice-brand h2{
-  margin:0;
-  font-size:19px;
+.company h2{
+    font-size:23px;
+    margin-bottom:4px;
 }
 
-.invoice-brand p{
-  margin:4px 0 0;
-  font-size:10px;
+.company .tagline{
+    font-size:12px;
+    opacity:.8;
+    margin-bottom:9px;
+}
+
+.company-info{
+    font-size:12px;
+    line-height:1.7;
+    opacity:.95;
 }
 
 .invoice-title{
-  text-align:center;
-  margin:18px 0;
-  font-size:22px;
-  font-weight:900;
-  color:var(--green);
+    text-align:right;
 }
 
-.invoice-info{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  font-size:12px;
-  margin-bottom:15px;
+.invoice-title h3{
+    font-size:27px;
+    letter-spacing:1px;
 }
 
-.invoice-table{
-  width:100%;
-  border-collapse:collapse;
-  font-size:11px;
+.invoice-title .number{
+    margin-top:7px;
+    font-size:14px;
+    font-weight:700;
 }
 
-.invoice-table th{
-  background:var(--green);
-  color:white;
-  padding:8px 5px;
+.invoice-title .date{
+    margin-top:5px;
+    font-size:12px;
+    opacity:.8;
 }
 
-.invoice-table td{
-  border:1px solid #ddd;
-  padding:8px 5px;
+/* CUSTOMER */
+.customer-section{
+    padding:22px 32px;
+    border-bottom:1px solid #e8eeeb;
 }
 
-.invoice-total{
-  margin-left:auto;
-  width:65%;
-  margin-top:15px;
+.section-label{
+    font-size:11px;
+    color:#087f5b;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:.8px;
+    margin-bottom:12px;
 }
 
-.invoice-total div{
-  display:flex;
-  justify-content:space-between;
-  padding:7px;
-  border-bottom:1px solid #ddd;
+.customer-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
 }
 
-.invoice-total .grand{
-  background:var(--green);
-  color:white;
-  font-weight:900;
+.info-box{
+    background:#f5f9f7;
+    border:1px solid #e2ebe6;
+    border-radius:10px;
+    padding:12px 14px;
 }
 
-.thanks{
-  text-align:center;
-  margin-top:25px;
-  font-weight:900;
-  color:var(--green);
+.info-box span{
+    display:block;
+    color:#718078;
+    font-size:11px;
+    margin-bottom:4px;
+}
+
+.info-box strong{
+    font-size:14px;
+}
+
+/* TABLE */
+.table-area{
+    padding:22px 32px;
+}
+
+.product-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.product-table th{
+    background:#f0f6f3;
+    color:#315047;
+    font-size:11px;
+    padding:12px 10px;
+    text-align:left;
+    border-bottom:2px solid #dfe9e4;
+}
+
+.product-table td{
+    padding:13px 10px;
+    border-bottom:1px solid #edf1ef;
+    font-size:13px;
+}
+
+.product-table th:first-child,
+.product-table td:first-child{
+    width:45px;
+    text-align:center;
+}
+
+.product-table th:nth-child(3),
+.product-table td:nth-child(3){
+    text-align:center;
+}
+
+.product-table th:nth-child(4),
+.product-table td:nth-child(4),
+.product-table th:nth-child(5),
+.product-table td:nth-child(5){
+    text-align:right;
+}
+
+.product-name{
+    font-weight:700;
+}
+
+.product-sub{
+    font-size:10px;
+    color:#8a968f;
+    margin-top:2px;
+}
+
+/* SUMMARY */
+.bottom-area{
+    padding:0 32px 28px;
+    display:flex;
+    justify-content:flex-end;
+}
+
+.summary{
+    width:350px;
+}
+
+.summary-row{
+    display:flex;
+    justify-content:space-between;
+    padding:7px 0;
+    font-size:13px;
+    color:#58665f;
+}
+
+.summary-row strong{
+    color:#17211c;
+}
+
+.summary-row.total{
+    border-top:1px solid #dfe7e3;
+    margin-top:5px;
+    padding-top:13px;
+    font-size:18px;
+    font-weight:800;
+}
+
+.summary-row.total strong{
+    color:#087f5b;
+}
+
+.summary-row.due{
+    margin-top:7px;
+    background:#fff4f3;
+    border:1px solid #ffd8d4;
+    border-radius:9px;
+    padding:12px;
+    color:#c0392b;
+    font-weight:700;
+}
+
+.summary-row.paid{
+    color:#087f5b;
+    font-weight:700;
+}
+
+/* PAYMENT */
+.payment-section{
+    margin:0 32px 25px;
+    background:#f7faf8;
+    border:1px solid #e4ebe7;
+    border-radius:12px;
+    padding:15px 18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.payment-method{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.payment-icon{
+    width:38px;
+    height:38px;
+    background:#dff6ec;
+    color:#087f5b;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.payment-method span{
+    font-size:11px;
+    color:#75827c;
+}
+
+.payment-method strong{
+    display:block;
+    font-size:14px;
+}
+
+/* FOOTER */
+.invoice-footer{
+    border-top:1px solid #e7eeea;
+    padding:20px 32px;
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.thankyou{
+    font-size:13px;
+    color:#52625a;
+}
+
+.thankyou strong{
+    display:block;
+    color:#087f5b;
+    margin-bottom:4px;
+}
+
+.signature{
+    text-align:center;
+    min-width:180px;
+}
+
+.signature-line{
+    border-top:1px solid #aab7b0;
+    margin-top:30px;
+    padding-top:5px;
+    font-size:10px;
+    color:#75827c;
+}
+
+/* ACTION BAR */
+.action-bar{
+    max-width:900px;
+    margin:18px auto 0;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+.action-btn{
+    border:0;
+    padding:13px 10px;
+    border-radius:11px;
+    cursor:pointer;
+    font-weight:700;
+    background:white;
+    color:#25332d;
+    box-shadow:0 4px 15px rgba(0,0,0,.06);
+    transition:.2s;
+}
+
+.action-btn:hover{
+    transform:translateY(-2px);
+}
+
+.action-btn.primary{
+    background:#087f5b;
+    color:white;
+}
+
+.action-btn.danger{
+    background:#fff1ef;
+    color:#c0392b;
+}
+
+/* TOAST */
+.toast{
+    position:fixed;
+    bottom:25px;
+    left:50%;
+    transform:translateX(-50%) translateY(80px);
+    background:#17211c;
+    color:white;
+    padding:12px 20px;
+    border-radius:30px;
+    font-size:13px;
+    opacity:0;
+    transition:.3s;
+    z-index:999;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
 }
 
 /* MOBILE */
+@media(max-width:650px){
 
-@media(max-width:380px){
+    .topbar{
+        padding:11px 13px;
+    }
 
-  .menu-grid{
-    grid-template-columns:repeat(3,1fr);
-  }
+    .brand h1{
+        font-size:15px;
+    }
 
-  .stats{
-    grid-template-columns:1fr;
-    gap:10px;
-  }
+    .brand p{
+        font-size:9px;
+    }
 
-  .stat{
-    border-right:0;
-    border-bottom:1px solid #eee;
-    padding-bottom:8px;
-  }
+    .top-actions button{
+        padding:8px 9px;
+        font-size:12px;
+    }
 
+    .page{
+        padding:12px 8px 35px;
+    }
+
+    .invoice{
+        border-radius:12px;
+    }
+
+    .invoice-header{
+        padding:20px 17px;
+        flex-direction:column;
+    }
+
+    .company h2{
+        font-size:19px;
+    }
+
+    .company-logo{
+        width:52px;
+        height:52px;
+        font-size:28px;
+    }
+
+    .invoice-title{
+        text-align:left;
+        border-top:1px solid rgba(255,255,255,.2);
+        padding-top:13px;
+    }
+
+    .invoice-title h3{
+        font-size:22px;
+    }
+
+    .customer-section,
+    .table-area{
+        padding:17px;
+    }
+
+    .customer-grid{
+        grid-template-columns:1fr;
+        gap:8px;
+    }
+
+    .product-table{
+        min-width:650px;
+    }
+
+    .table-scroll{
+        overflow-x:auto;
+    }
+
+    .bottom-area{
+        padding:0 17px 20px;
+    }
+
+    .summary{
+        width:100%;
+    }
+
+    .payment-section{
+        margin:0 17px 20px;
+    }
+
+    .invoice-footer{
+        padding:17px;
+        flex-direction:column;
+    }
+
+    .signature{
+        align-self:flex-end;
+    }
+
+    .action-bar{
+        grid-template-columns:repeat(2,1fr);
+        margin:12px 8px 0;
+    }
 }
 
-body{
-  padding-bottom:80px;
+/* PRINT */
+@media print{
+
+    body{
+        background:white;
+    }
+
+    .topbar,
+    .action-bar,
+    .toast{
+        display:none!important;
+    }
+
+    .page{
+        padding:0;
+    }
+
+    .invoice-wrapper{
+        max-width:none;
+    }
+
+    .invoice{
+        box-shadow:none;
+        border-radius:0;
+    }
+
+    .table-scroll{
+        overflow:visible;
+    }
+
+    .product-table{
+        min-width:0;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
+<!-- TOP BAR -->
+<header class="topbar">
 
-<header class="header">
-
-  <div class="top">
-
-    <img
-      id="logo"
-      class="logo"
-      src=""
-      alt="Logo"
-    >
-
-    <div class="shop-name">
-
-      <h1>Akhondo Poultry Feed</h1>
-
-      <p>
-        Feed • Medicine • Vaccine • Chicks
-      </p>
-
+    <div class="brand">
+        <div class="brand-icon">🐔</div>
+        <div>
+            <h1>AKHONDO MANAGER PRO</h1>
+            <p>Smart Business Management</p>
+        </div>
     </div>
 
-    <button class="icon-btn"
-      onclick="showPage('settings')">
-      ⚙️
-    </button>
-
-  </div>
+    <div class="top-actions">
+        <button onclick="window.print()">🖨️ Print</button>
+        <button onclick="downloadPDF()">📄 PDF</button>
+    </div>
 
 </header>
 
 
-<div class="container">
+<main class="page">
 
-<!-- ================= DASHBOARD ================= -->
+<div class="invoice-wrapper">
 
-<section id="dashboard" class="page active">
+<section class="invoice" id="invoice">
 
-  <div class="date-row">
+    <!-- HEADER -->
+    <div class="invoice-header">
 
-    <div class="date">
-      আজকের হিসাব
-    </div>
+        <div class="company">
 
-    <div class="switch">
-      📅 আজ
-    </div>
+            <div class="company-logo">🐔</div>
 
-  </div>
+            <div>
+                <h2>আখন্দ পোল্ট্রি ফিড</h2>
+
+                <div class="tagline">
+                    Poultry Feed • Fish Feed • Cattle Feed • Medicine
+                </div>
+
+                <div class="company-info">
+                    লাকসাম রোড, চৌদ্দগ্রাম, কুমিল্লা<br>
+                    মোবাইল: 01819193289
+                </div>
+            </div>
+
+        </div>
 
 
-  <div class="sales-card">
+        <div class="invoice-title">
 
-    <small>আজকের বিক্রি</small>
+            <h3>INVOICE</h3>
 
-    <h2 id="todaySales">৳ 0</h2>
+            <div class="number">
+                #INV-1025
+            </div>
 
-    <div class="stats">
+            <div class="date">
+                07 October 2026 • 07:42 PM
+            </div>
 
-      <div class="stat">
-
-        <span>আজকের খরচ</span>
-
-        <strong class="red">
-          ৳ <span id="todayExpense">0</span>
-        </strong>
-
-      </div>
-
-      <div class="stat">
-
-        <span>আজকের বাকি</span>
-
-        <strong class="red">
-          ৳ <span id="todayDue">0</span>
-        </strong>
-
-      </div>
-
-      <div class="stat">
-
-        <span>স্টক সংখ্যা</span>
-
-        <strong class="green">
-          <span id="stockCount">0</span>
-        </strong>
-
-      </div>
+        </div>
 
     </div>
 
-  </div>
 
+    <!-- CUSTOMER -->
+    <div class="customer-section">
 
-  <div class="section-title">
-    দ্রুত কাজ
-  </div>
+        <div class="section-label">
+            Customer Information
+        </div>
 
+        <div class="customer-grid">
 
-  <div class="menu-grid">
+            <div class="info-box">
+                <span>Customer Name</span>
+                <strong>মোঃ রহিম</strong>
+            </div>
 
-    <div class="menu"
-      onclick="showPage('sale')">
+            <div class="info-box">
+                <span>Mobile Number</span>
+                <strong>01XXXXXXXXX</strong>
+            </div>
 
-      <span class="emoji">🧾</span>
-      <span>বিক্রি</span>
+            <div class="info-box">
+                <span>Address</span>
+                <strong>চৌদ্দগ্রাম</strong>
+            </div>
 
-    </div>
-
-    <div class="menu"
-      onclick="showPage('customers')">
-
-      <span class="emoji">👥</span>
-      <span>কাস্টমার</span>
-
-    </div>
-
-    <div class="menu"
-      onclick="showPage('products')">
-
-      <span class="emoji">📦</span>
-      <span>পণ্য</span>
+        </div>
 
     </div>
 
-    <div class="menu"
-      onclick="showPage('payments')">
 
-      <span class="emoji">💰</span>
-      <span>পেমেন্ট</span>
+    <!-- PRODUCTS -->
+    <div class="table-area">
+
+        <div class="section-label">
+            Product Details
+        </div>
+
+        <div class="table-scroll">
+
+            <table class="product-table">
+
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>Rate</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>01</td>
+
+                        <td>
+                            <div class="product-name">
+                                Broiler Starter Feed
+                            </div>
+                            <div class="product-sub">
+                                Unit: Bag
+                            </div>
+                        </td>
+
+                        <td>10</td>
+
+                        <td>৳ 3,250</td>
+
+                        <td><strong>৳ 32,500</strong></td>
+                    </tr>
+
+
+                    <tr>
+                        <td>02</td>
+
+                        <td>
+                            <div class="product-name">
+                                Broiler Grower Feed
+                            </div>
+                            <div class="product-sub">
+                                Unit: Bag
+                            </div>
+                        </td>
+
+                        <td>5</td>
+
+                        <td>৳ 3,150</td>
+
+                        <td><strong>৳ 15,750</strong></td>
+                    </tr>
+
+
+                    <tr>
+                        <td>03</td>
+
+                        <td>
+                            <div class="product-name">
+                                Poultry Medicine
+                            </div>
+                            <div class="product-sub">
+                                Unit: Piece
+                            </div>
+                        </td>
+
+                        <td>2</td>
+
+                        <td>৳ 450</td>
+
+                        <td><strong>৳ 900</strong></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
 
     </div>
 
-    <div class="menu"
-      onclick="showPage('rates')">
 
-      <span class="emoji">💵</span>
-      <span>রেট</span>
+    <!-- SUMMARY -->
+    <div class="bottom-area">
+
+        <div class="summary">
+
+            <div class="summary-row">
+                <span>Sub Total</span>
+                <strong>৳ 49,150</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Discount</span>
+                <strong>− ৳ 500</strong>
+            </div>
+
+            <div class="summary-row total">
+                <span>Net Total</span>
+                <strong>৳ 48,650</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Previous Due</span>
+                <strong>৳ 5,000</strong>
+            </div>
+
+            <div class="summary-row paid">
+                <span>Paid Today</span>
+                <strong>৳ 20,000</strong>
+            </div>
+
+            <div class="summary-row due">
+                <span>NEW DUE</span>
+                <strong>৳ 33,650</strong>
+            </div>
+
+        </div>
 
     </div>
 
-    <div class="menu"
-      onclick="showPage('history')">
 
-      <span class="emoji">📋</span>
-      <span>হিসাব</span>
+    <!-- PAYMENT -->
+    <div class="payment-section">
+
+        <div class="payment-method">
+
+            <div class="payment-icon">
+                💵
+            </div>
+
+            <div>
+                <span>Payment Method</span>
+                <strong>Cash</strong>
+            </div>
+
+        </div>
+
+
+        <div style="text-align:right">
+
+            <span style="font-size:10px;color:#7b8781">
+                Amount in Words
+            </span>
+
+            <div style="font-size:12px;font-weight:700;margin-top:4px">
+                Forty Eight Thousand Six Hundred Fifty Taka
+            </div>
+
+        </div>
 
     </div>
 
-    <div class="menu"
-      onclick="showPage('reports')">
 
-      <span class="emoji">📊</span>
-      <span>রিপোর্ট</span>
+    <!-- FOOTER -->
+    <div class="invoice-footer">
+
+        <div class="thankyou">
+
+            <strong>ধন্যবাদ ❤️</strong>
+
+            আপনার ব্যবসায়িক সহযোগিতার জন্য আন্তরিক ধন্যবাদ।<br>
+
+            <span style="font-size:10px">
+                Please keep this invoice for future reference.
+            </span>
+
+        </div>
+
+
+        <div class="signature">
+
+            <div class="signature-line">
+                Authorized Signature
+            </div>
+
+        </div>
 
     </div>
-
-    <div class="menu"
-      onclick="showPage('settings')">
-
-      <span class="emoji">⚙️</span>
-      <span>সেটিংস</span>
-
-    </div>
-
-  </div>
-
-
-  <div class="section-title">
-    সাম্প্রতিক বিক্রি
-  </div>
-
-  <div id="recentSales"></div>
 
 </section>
 
 
-<!-- ================= SALE ================= -->
+<!-- ACTION BUTTONS -->
 
-<section id="sale" class="page">
+<div class="action-bar">
 
-  <div class="card">
-
-    <h3>🧾 নতুন ইনভয়েস</h3>
-
-    <div class="form-group">
-
-      <label>কাস্টমার</label>
-
-      <select id="saleCustomer"
-        onchange="customerChanged()">
-
-        <option value="">
-          কাস্টমার নির্বাচন করুন
-        </option>
-
-      </select>
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>কাস্টমার নাম</label>
-
-      <input
-        id="saleCustomerName"
-        placeholder="নাম"
-      >
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>পণ্য</label>
-
-      <select id="saleProduct"
-        onchange="productChanged()">
-
-        <option value="">
-          পণ্য নির্বাচন করুন
-        </option>
-
-      </select>
-
-    </div>
-
-
-    <div class="rate-box">
-
-      Customer-wise Rate:
-
-      <strong id="customerRateDisplay">
-        Select customer + product
-      </strong>
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>Quantity / Bag</label>
-
-      <input
-        id="saleQty"
-        type="number"
-        value="1"
-        min="1"
-      >
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>Rate / Bag</label>
-
-      <input
-        id="saleRate"
-        type="number"
-        placeholder="Rate"
-      >
-
-    </div>
-
-
-    <button
-      class="btn btn-yellow"
-      onclick="addItem()">
-
-      ➕ পণ্য যোগ করুন
-
+    <button class="action-btn primary"
+            onclick="window.print()">
+        🖨️ Print Invoice
     </button>
 
-  </div>
-
-
-  <div class="card">
-
-    <h3>🛒 Invoice Items</h3>
-
-    <div id="cart"></div>
-
-    <hr>
-
-    <h3>
-      মোট:
-      <span id="saleTotal">৳ 0</span>
-    </h3>
-
-
-    <div class="form-group">
-
-      <label>Paid Amount</label>
-
-      <input
-        id="salePaid"
-        type="number"
-        value="0"
-        oninput="calculateSale()"
-      >
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>Payment Method</label>
-
-      <select id="paymentMethod">
-
-        <option>Cash</option>
-        <option>bKash</option>
-        <option>Nagad</option>
-        <option>Pubali Bank</option>
-        <option>Bank</option>
-        <option>Credit</option>
-
-      </select>
-
-    </div>
-
-
-    <button
-      class="btn btn-green"
-      onclick="saveInvoice()">
-
-      💾 Invoice Save করুন
-
+    <button class="action-btn"
+            onclick="downloadPDF()">
+        📄 Download PDF
     </button>
 
-  </div>
-
-</section>
-
-
-<!-- ================= CUSTOMERS ================= -->
-
-<section id="customers" class="page">
-
-  <div class="card">
-
-    <h3>👥 নতুন কাস্টমার</h3>
-
-    <div class="form-group">
-
-      <label>নাম</label>
-
-      <input id="customerName">
-
-    </div>
-
-    <div class="form-group">
-
-      <label>Phone</label>
-
-      <input id="customerPhone">
-
-    </div>
-
-    <button
-      class="btn btn-yellow"
-      onclick="addCustomer()">
-
-      ➕ Customer Save
-
+    <button class="action-btn"
+            onclick="shareInvoice()">
+        📤 Share
     </button>
 
-  </div>
-
-
-  <div class="card">
-
-    <h3>Customer List</h3>
-
-    <div id="customerList"></div>
-
-  </div>
-
-</section>
-
-
-<!-- ================= PRODUCTS ================= -->
-
-<section id="products" class="page">
-
-  <div class="card">
-
-    <h3>📦 নতুন পণ্য</h3>
-
-    <div class="form-group">
-
-      <label>Product Name</label>
-
-      <input id="productName">
-
-    </div>
-
-    <div class="form-group">
-
-      <label>Default Rate</label>
-
-      <input id="productPrice"
-        type="number">
-
-    </div>
-
-    <div class="form-group">
-
-      <label>Stock / Bag</label>
-
-      <input id="productStock"
-        type="number">
-
-    </div>
-
-    <button
-      class="btn btn-yellow"
-      onclick="addProduct()">
-
-      ➕ Product Save
-
+    <button class="action-btn danger"
+            onclick="showToast('Invoice deleted demo')">
+        🗑️ Delete
     </button>
-
-  </div>
-
-
-  <div class="card">
-
-    <h3>Product & Stock</h3>
-
-    <div id="productList"></div>
-
-  </div>
-
-</section>
-
-
-<!-- ================= RATES ================= -->
-
-<section id="rates" class="page">
-
-  <div class="card">
-
-    <h3>💵 Customer-wise Rate</h3>
-
-    <div class="rate-box">
-
-      একই পণ্যের জন্য প্রতিটি কাস্টমারের
-      আলাদা rate রাখা যাবে।
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>Customer</label>
-
-      <select id="rateCustomer"></select>
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>Product</label>
-
-      <select id="rateProduct"></select>
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>Customer Rate</label>
-
-      <input
-        id="customRate"
-        type="number"
-        placeholder="যেমন 2925"
-      >
-
-    </div>
-
-
-    <button
-      class="btn btn-green"
-      onclick="saveRate()">
-
-      💾 Customer Rate Save
-
-    </button>
-
-  </div>
-
-
-  <div class="card">
-
-    <h3>Saved Rates</h3>
-
-    <div id="rateList"></div>
-
-  </div>
-
-</section>
-
-
-<!-- ================= PAYMENTS ================= -->
-
-<section id="payments" class="page">
-
-  <div class="card">
-
-    <h3>💰 Payment Collection</h3>
-
-    <div class="form-group">
-
-      <label>Customer</label>
-
-      <select id="paymentCustomer"></select>
-
-    </div>
-
-    <div class="form-group">
-
-      <label>Amount</label>
-
-      <input
-        id="paymentAmount"
-        type="number"
-      >
-
-    </div>
-
-    <button
-      class="btn btn-green"
-      onclick="savePayment()">
-
-      💰 Payment Save
-
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- ================= HISTORY ================= -->
-
-<section id="history" class="page">
-
-  <div class="card">
-
-    <h3>📋 Invoice History</h3>
-
-    <div id="invoiceHistory"></div>
-
-  </div>
-
-</section>
-
-
-<!-- ================= REPORTS ================= -->
-
-<section id="reports" class="page">
-
-  <div class="card">
-
-    <h3>📊 Business Report</h3>
-
-    <p>
-      মোট বিক্রি:
-      <b id="reportSales">৳0</b>
-    </p>
-
-    <p>
-      মোট Invoice:
-      <b id="reportInvoices">0</b>
-    </p>
-
-    <p>
-      মোট Customer:
-      <b id="reportCustomers">0</b>
-    </p>
-
-  </div>
-
-</section>
-
-
-<!-- ================= SETTINGS ================= -->
-
-<section id="settings" class="page">
-
-  <div class="card">
-
-    <h3>⚙️ Settings</h3>
-
-    <div class="form-group">
-
-      <label>Business Name</label>
-
-      <input
-        id="businessName"
-        value="Akhondo Poultry Feed"
-      >
-
-    </div>
-
-    <button
-      class="btn btn-yellow"
-      onclick="saveSettings()">
-
-      💾 Settings Save
-
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- INVOICE -->
-
-<section id="invoicePage" class="page">
-
-  <div class="card">
-
-    <div id="invoice"></div>
-
-    <button
-      class="btn btn-green"
-      onclick="window.print()">
-
-      🖨️ Print / PDF
-
-    </button>
-
-  </div>
-
-</section>
-
 
 </div>
 
+</div>
 
-<!-- BOTTOM NAV -->
+</main>
 
-<nav class="bottom-nav">
 
-  <button
-    class="active"
-    onclick="showPage('dashboard',this)">
-
-    <b>⌂</b>
-    Home
-
-  </button>
-
-  <button
-    onclick="showPage('sale',this)">
-
-    <b>＋</b>
-    Sale
-
-  </button>
-
-  <button
-    onclick="showPage('customers',this)">
-
-    <b>♙</b>
-    Customer
-
-  </button>
-
-  <button
-    onclick="showPage('products',this)">
-
-    <b>▣</b>
-    Stock
-
-  </button>
-
-  <button
-    onclick="showPage('history',this)">
-
-    <b>☷</b>
-    History
-
-  </button>
-
-</nav>
+<div class="toast" id="toast">
+    Done
+</div>
 
 
 <script>
 
-let customers =
-JSON.parse(localStorage.getItem("akhondo_customers") || "[]");
+function showToast(message){
 
-let products =
-JSON.parse(localStorage.getItem("akhondo_products") || "[]");
+    const toast = document.getElementById("toast");
 
-let rates =
-JSON.parse(localStorage.getItem("akhondo_rates") || "[]");
+    toast.innerText = message;
 
-let invoices =
-JSON.parse(localStorage.getItem("akhondo_invoices") || "[]");
+    toast.classList.add("show");
 
-let payments =
-JSON.parse(localStorage.getItem("akhondo_payments") || "[]");
-
-let cart=[];
-
-
-/* PAGE */
-
-function showPage(id,btn){
-
-  document.querySelectorAll(".page")
-  .forEach(p=>p.classList.remove("active"));
-
-  const page=document.getElementById(id);
-
-  if(page) page.classList.add("active");
-
-  document.querySelectorAll(".bottom-nav button")
-  .forEach(b=>b.classList.remove("active"));
-
-  if(btn) btn.classList.add("active");
-
-  refresh();
-
+    setTimeout(()=>{
+        toast.classList.remove("show");
+    },2500);
 }
 
 
-/* CUSTOMER */
+/* PDF */
 
-function addCustomer(){
+async function downloadPDF(){
 
-  const name=
-  document.getElementById("customerName").value.trim();
+    showToast("PDF তৈরি হচ্ছে...");
 
-  const phone=
-  document.getElementById("customerPhone").value.trim();
+    const invoice = document.getElementById("invoice");
 
-  if(!name){
-    alert("Customer name দিন");
-    return;
-  }
-
-  customers.push({
-    id:Date.now(),
-    name,
-    phone
-  });
-
-  save();
-
-  document.getElementById("customerName").value="";
-  document.getElementById("customerPhone").value="";
-
-  refresh();
-
-}
-
-
-/* PRODUCT */
-
-function addProduct(){
-
-  const name=
-  document.getElementById("productName").value.trim();
-
-  const price=
-  Number(document.getElementById("productPrice").value);
-
-  const stock=
-  Number(document.getElementById("productStock").value);
-
-  if(!name){
-    alert("Product name দিন");
-    return;
-  }
-
-  products.push({
-    id:Date.now(),
-    name,
-    price,
-    stock
-  });
-
-  save();
-
-  document.getElementById("productName").value="";
-  document.getElementById("productPrice").value="";
-  document.getElementById("productStock").value="";
-
-  refresh();
-
-}
-
-
-/* CUSTOMER RATE */
-
-function saveRate(){
-
-  const customer=
-  Number(document.getElementById("rateCustomer").value);
-
-  const product=
-  Number(document.getElementById("rateProduct").value);
-
-  const rate=
-  Number(document.getElementById("customRate").value);
-
-  if(!customer || !product || !rate){
-
-    alert("Customer, Product এবং Rate দিন");
-
-    return;
-  }
-
-  const old=
-  rates.find(r=>
-    r.customer===customer &&
-    r.product===product
-  );
-
-  if(old){
-
-    old.rate=rate;
-
-  }else{
-
-    rates.push({
-      customer,
-      product,
-      rate
+    const canvas = await html2canvas(invoice,{
+        scale:2,
+        useCORS:true,
+        backgroundColor:"#ffffff"
     });
 
-  }
+    const imgData = canvas.toDataURL("image/png");
 
-  save();
+    const {jsPDF} = window.jspdf;
 
-  document.getElementById("customRate").value="";
+    const pdf = new jsPDF("p","mm","a4");
 
-  refresh();
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
 
-  alert("Customer-wise rate saved");
+    const imgWidth = pageWidth;
+    const imgHeight =
+        canvas.height * imgWidth / canvas.width;
 
-}
+    let heightLeft = imgHeight;
+    let position = 0;
 
-
-/* SALE CUSTOMER */
-
-function customerChanged(){
-
-  const customer=
-  Number(document.getElementById("saleCustomer").value);
-
-  const name=
-  document.getElementById("saleCustomerName");
-
-  const c=
-  customers.find(x=>x.id===customer);
-
-  if(c){
-    name.value=c.name;
-  }
-
-  productChanged();
-
-}
-
-
-/* PRODUCT CHANGE */
-
-function productChanged(){
-
-  const customer=
-  Number(document.getElementById("saleCustomer").value);
-
-  const product=
-  Number(document.getElementById("saleProduct").value);
-
-  const rateInput=
-  document.getElementById("saleRate");
-
-  const display=
-  document.getElementById("customerRateDisplay");
-
-  const p=
-  products.find(x=>x.id===product);
-
-  if(!p) return;
-
-  let rate=p.price;
-
-  if(customer){
-
-    const custom=
-    rates.find(r=>
-      r.customer===customer &&
-      r.product===product
+    pdf.addImage(
+        imgData,
+        "PNG",
+        0,
+        position,
+        imgWidth,
+        imgHeight
     );
 
-    if(custom){
-      rate=custom.rate;
-      display.innerText=
-      "৳ "+custom.rate+" (Customer Rate)";
+    heightLeft -= pageHeight;
+
+    while(heightLeft > 0){
+
+        position = heightLeft - imgHeight;
+
+        pdf.addPage();
+
+        pdf.addImage(
+            imgData,
+            "PNG",
+            0,
+            position,
+            imgWidth,
+            imgHeight
+        );
+
+        heightLeft -= pageHeight;
+    }
+
+    pdf.save("Akhondo-Invoice-INV-1025.pdf");
+
+    showToast("PDF Download হয়েছে");
+}
+
+
+/* SHARE */
+
+async function shareInvoice(){
+
+    const shareData = {
+        title:"Akhondo Manager PRO",
+        text:
+        "আখন্দ পোল্ট্রি ফিড\n"+
+        "Invoice #INV-1025\n"+
+        "Total: ৳48,650\n"+
+        "Paid: ৳20,000\n"+
+        "New Due: ৳33,650"
+    };
+
+    if(navigator.share){
+
+        try{
+
+            await navigator.share(shareData);
+
+        }catch(error){
+
+            console.log(error);
+
+        }
+
     }else{
-      display.innerText=
-      "Default ৳ "+p.price;
+
+        navigator.clipboard.writeText(shareData.text);
+
+        showToast("Invoice তথ্য Copy হয়েছে");
+
     }
 
-  }else{
-
-    display.innerText=
-    "Default ৳ "+p.price;
-
-  }
-
-  rateInput.value=rate;
-
 }
-
-
-/* ADD ITEM */
-
-function addItem(){
-
-  const productId=
-  Number(document.getElementById("saleProduct").value);
-
-  const qty=
-  Number(document.getElementById("saleQty").value);
-
-  const rate=
-  Number(document.getElementById("saleRate").value);
-
-  if(!productId || !qty || !rate){
-
-    alert("Product, quantity এবং rate দিন");
-
-    return;
-  }
-
-  const p=
-  products.find(x=>x.id===productId);
-
-  cart.push({
-    productId,
-    name:p.name,
-    qty,
-    rate,
-    total:qty*rate
-  });
-
-  renderCart();
-
-}
-
-
-/* CART */
-
-function renderCart(){
-
-  const box=
-  document.getElementById("cart");
-
-  if(!cart.length){
-
-    box.innerHTML=
-    "<p style='color:#888'>কোনো পণ্য যোগ করা হয়নি</p>";
-
-    calculateSale();
-
-    return;
-  }
-
-  box.innerHTML=
-  cart.map((x,i)=>`
-
-    <div class="item">
-
-      <div class="item-top">
-
-        <span>${x.name}</span>
-
-        <span>৳ ${x.total.toLocaleString()}</span>
-
-      </div>
-
-      <small>
-        ${x.qty} bag × ৳ ${x.rate}
-      </small>
-
-      <br>
-
-      <button
-        class="btn btn-red"
-        onclick="removeItem(${i})">
-
-        Remove
-
-      </button>
-
-    </div>
-
-  `).join("");
-
-  calculateSale();
-
-}
-
-
-function removeItem(i){
-
-  cart.splice(i,1);
-
-  renderCart();
-
-}
-
-
-/* TOTAL */
-
-function calculateSale(){
-
-  const total=
-  cart.reduce((s,x)=>s+x.total,0);
-
-  document.getElementById("saleTotal")
-  .innerText=
-  "৳ "+total.toLocaleString();
-
-}
-
-
-/* SAVE INVOICE */
-
-function saveInvoice(){
-
-  if(!cart.length){
-
-    alert("কমপক্ষে একটি পণ্য যোগ করুন");
-
-    return;
-  }
-
-  const customerId=
-  Number(document.getElementById("saleCustomer").value);
-
-  const customerName=
-  document.getElementById("saleCustomerName").value ||
-  "Walk-in Customer";
-
-  const total=
-  cart.reduce((s,x)=>s+x.total,0);
-
-  const paid=
-  Number(document.getElementById("salePaid").value)||0;
-
-  const due=
-  Math.max(0,total-paid);
-
-  const invoice={
-
-    id:Date.now(),
-
-    number:
-    "APF-"+Date.now(),
-
-    date:
-    new Date().toLocaleDateString("en-GB"),
-
-    customerId,
-
-    customerName,
-
-    items:[...cart],
-
-    total,
-
-    paid,
-
-    due,
-
-    method:
-    document.getElementById("paymentMethod").value
-
-  };
-
-  invoices.push(invoice);
-
-  cart=[];
-
-  save();
-
-  renderCart();
-
-  showInvoice(invoice);
-
-  refresh();
-
-}
-
-
-/* INVOICE */
-
-function showInvoice(x){
-
-  const rows=x.items.map((i,n)=>`
-
-    <tr>
-
-      <td>${n+1}</td>
-
-      <td>${i.name}</td>
-
-      <td>${i.qty}</td>
-
-      <td>৳ ${i.rate}</td>
-
-      <td>৳ ${i.total}</td>
-
-    </tr>
-
-  `).join("");
-
-  document.getElementById("invoice").innerHTML=`
-
-    <div class="invoice">
-
-      <div class="invoice-header">
-
-        <img
-          src=""
-          class="invoice-logo"
-        >
-
-        <div class="invoice-brand">
-
-          <h2>Akhondo Poultry Feed</h2>
-
-          <p>
-            Healthy Birds | Better Growth | More Profit
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="invoice-title">
-        SALES INVOICE
-      </div>
-
-
-      <div class="invoice-info">
-
-        <div>
-          <b>Customer:</b>
-          ${x.customerName}
-        </div>
-
-        <div>
-          <b>Invoice:</b>
-          ${x.number}
-        </div>
-
-        <div>
-          <b>Date:</b>
-          ${x.date}
-        </div>
-
-        <div>
-          <b>Payment:</b>
-          ${x.method}
-        </div>
-
-      </div>
-
-
-      <table class="invoice-table">
-
-        <thead>
-
-          <tr>
-
-            <th>No.</th>
-            <th>Product</th>
-            <th>Qty</th>
-            <th>Rate</th>
-            <th>Total</th>
-
-          </tr>
-
-        </thead>
-
-        <tbody>
-
-          ${rows}
-
-        </tbody>
-
-      </table>
-
-
-      <div class="invoice-total">
-
-        <div>
-          <span>Total</span>
-          <b>৳ ${x.total}</b>
-        </div>
-
-        <div>
-          <span>Paid</span>
-          <b>৳ ${x.paid}</b>
-        </div>
-
-        <div class="grand">
-
-          <span>Due</span>
-          <b>৳ ${x.due}</b>
-
-        </div>
-
-      </div>
-
-
-      <div class="thanks">
-
-        ধন্যবাদ। আবার আসবেন।<br>
-
-        Akhondo Poultry Feed
-
-      </div>
-
-    </div>
-
-  `;
-
-  showPage("invoicePage");
-
-}
-
-
-/* PAYMENT */
-
-function savePayment(){
-
-  const customer=
-  Number(document.getElementById("paymentCustomer").value);
-
-  const amount=
-  Number(document.getElementById("paymentAmount").value);
-
-  if(!customer || !amount){
-
-    alert("Customer এবং Amount দিন");
-
-    return;
-  }
-
-  payments.push({
-
-    id:Date.now(),
-
-    customer,
-
-    amount,
-
-    date:
-    new Date().toLocaleDateString("en-GB")
-
-  });
-
-  save();
-
-  document.getElementById("paymentAmount").value="";
-
-  alert("Payment saved");
-
-  refresh();
-
-}
-
-
-/* SETTINGS */
-
-function saveSettings(){
-
-  const name=
-  document.getElementById("businessName").value;
-
-  localStorage.setItem(
-    "akhondo_business",
-    name
-  );
-
-  document.querySelector(".shop-name h1")
-  .innerText=name;
-
-  alert("Settings saved");
-
-}
-
-
-/* RENDER */
-
-function refresh(){
-
-  renderCustomers();
-  renderProducts();
-  renderRates();
-  renderHistory();
-  fillSelects();
-  dashboard();
-
-}
-
-
-function fillSelects(){
-
-  const customerSelects=[
-    "saleCustomer",
-    "rateCustomer",
-    "paymentCustomer"
-  ];
-
-  customerSelects.forEach(id=>{
-
-    const el=document.getElementById(id);
-
-    if(!el) return;
-
-    const first=el.options[0]?.text || "";
-
-    el.innerHTML=
-    `<option value="">${first}</option>`+
-
-    customers.map(c=>
-      `<option value="${c.id}">
-        ${c.name}
-      </option>`
-    ).join("");
-
-  });
-
-
-  const productSelects=[
-    "saleProduct",
-    "rateProduct"
-  ];
-
-  productSelects.forEach(id=>{
-
-    const el=document.getElementById(id);
-
-    if(!el) return;
-
-    el.innerHTML=
-    `<option value="">
-      Product Select
-    </option>`+
-
-    products.map(p=>
-      `<option value="${p.id}">
-        ${p.name}
-      </option>`
-    ).join("");
-
-  });
-
-}
-
-
-function renderCustomers(){
-
-  const box=
-  document.getElementById("customerList");
-
-  if(!box)return;
-
-  box.innerHTML=
-  customers.map(c=>`
-
-    <div class="item">
-
-      <div class="item-top">
-
-        <span>${c.name}</span>
-
-        <span>👤</span>
-
-      </div>
-
-      <small>${c.phone || ""}</small>
-
-    </div>
-
-  `).join("") ||
-
-  "<p>কোনো customer নেই</p>";
-
-}
-
-
-function renderProducts(){
-
-  const box=
-  document.getElementById("productList");
-
-  if(!box)return;
-
-  box.innerHTML=
-  products.map(p=>`
-
-    <div class="item">
-
-      <div class="item-top">
-
-        <span>${p.name}</span>
-
-        <span>৳ ${p.price}</span>
-
-      </div>
-
-      <small>
-        Stock: ${p.stock} Bag
-      </small>
-
-    </div>
-
-  `).join("") ||
-
-  "<p>কোনো product নেই</p>";
-
-}
-
-
-function renderRates(){
-
-  const box=
-  document.getElementById("rateList");
-
-  if(!box)return;
-
-  box.innerHTML=
-  rates.map(r=>{
-
-    const c=
-    customers.find(x=>x.id===r.customer);
-
-    const p=
-    products.find(x=>x.id===r.product);
-
-    return `
-
-      <div class="item">
-
-        <div class="item-top">
-
-          <span>
-            ${c?.name || "Unknown"}
-          </span>
-
-          <span>
-            ৳ ${r.rate}
-          </span>
-
-        </div>
-
-        <small>
-          ${p?.name || "Unknown Product"}
-        </small>
-
-      </div>
-
-    `;
-
-  }).join("") ||
-
-  "<p>কোনো customer rate নেই</p>";
-
-}
-
-
-function renderHistory(){
-
-  const box=
-  document.getElementById("invoiceHistory");
-
-  if(!box)return;
-
-  box.innerHTML=
-  invoices.slice().reverse().map(x=>`
-
-    <div
-      class="item"
-      onclick='showInvoice(${JSON.stringify(x)})'
-    >
-
-      <div class="item-top">
-
-        <span>${x.customerName}</span>
-
-        <span>৳ ${x.total}</span>
-
-      </div>
-
-      <small>
-        ${x.number} • ${x.date}
-      </small>
-
-      <br>
-
-      <small>
-        Paid: ৳ ${x.paid}
-        |
-        Due: ৳ ${x.due}
-      </small>
-
-    </div>
-
-  `).join("") ||
-
-  "<p>কোনো invoice নেই</p>";
-
-}
-
-
-function dashboard(){
-
-  const today=
-  new Date().toLocaleDateString("en-GB");
-
-  const todayInvoices=
-  invoices.filter(x=>x.date===today);
-
-  const sales=
-  todayInvoices.reduce(
-    (s,x)=>s+x.total,0
-  );
-
-  const due=
-  todayInvoices.reduce(
-    (s,x)=>s+x.due,0
-  );
-
-  document.getElementById("todaySales")
-  .innerText=
-  "৳ "+sales.toLocaleString();
-
-  document.getElementById("todayDue")
-  .innerText=
-  due.toLocaleString();
-
-  document.getElementById("stockCount")
-  .innerText=
-  products.reduce(
-    (s,x)=>s+Number(x.stock||0),0
-  );
-
-  document.getElementById("reportSales")
-  .innerText=
-  "৳ "+invoices.reduce(
-    (s,x)=>s+x.total,0
-  ).toLocaleString();
-
-  document.getElementById("reportInvoices")
-  .innerText=invoices.length;
-
-  document.getElementById("reportCustomers")
-  .innerText=customers.length;
-
-
-  const recent=
-  document.getElementById("recentSales");
-
-  if(recent){
-
-    recent.innerHTML=
-    invoices.slice(-5).reverse().map(x=>`
-
-      <div class="item">
-
-        <div class="item-top">
-
-          <span>${x.customerName}</span>
-
-          <span>৳ ${x.total}</span>
-
-        </div>
-
-        <small>
-          ${x.date} • Due ৳ ${x.due}
-        </small>
-
-      </div>
-
-    `).join("") ||
-
-    "<p>আজ কোনো বিক্রি নেই</p>";
-
-  }
-
-}
-
-
-/* STORAGE */
-
-function save(){
-
-  localStorage.setItem(
-    "akhondo_customers",
-    JSON.stringify(customers)
-  );
-
-  localStorage.setItem(
-    "akhondo_products",
-    JSON.stringify(products)
-  );
-
-  localStorage.setItem(
-    "akhondo_rates",
-    JSON.stringify(rates)
-  );
-
-  localStorage.setItem(
-    "akhondo_invoices",
-    JSON.stringify(invoices)
-  );
-
-  localStorage.setItem(
-    "akhondo_payments",
-    JSON.stringify(payments)
-  );
-
-}
-
-
-/* DEFAULT PRODUCTS */
-
-if(products.length===0){
-
-  products=[
-    {
-      id:1,
-      name:"Layer-1 Feed",
-      price:2925,
-      stock:0
-    },
-
-    {
-      id:2,
-      name:"S/S Feed",
-      price:2982,
-      stock:0
-    },
-
-    {
-      id:3,
-      name:"Sonali Grower Feed",
-      price:2982,
-      stock:0
-    }
-
-  ];
-
-  save();
-
-}
-
-
-/* INIT */
-
-const savedName=
-localStorage.getItem("akhondo_business");
-
-if(savedName){
-
-  document.querySelector(".shop-name h1")
-  .innerText=savedName;
-
-  document.getElementById("businessName")
-  .value=savedName;
-
-}
-
-refresh();
 
 </script>
 
